@@ -1,0 +1,131 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.193124,
+          55.702401
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging01"
+      },
+      "id": "E1NjI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.19771,
+          55.700136
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging02"
+      },
+      "id": "c0Mjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.204762,
+          55.724272
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging03"
+      },
+      "id": "kzMjI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.158875,
+          55.720742
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging05"
+      },
+      "id": "Y3Mjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.181963,
+          55.699379
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging06"
+      },
+      "id": "Y1MDM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.225983,
+          55.717583
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging07"
+      },
+      "id": "MyMjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.223816,
+          55.714799
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging08"
+      },
+      "id": "k3MjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.227083,
+          55.694847
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging09"
+      },
+      "id": "I1NzY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.190913,
+          55.706532
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging10"
+      },
+      "id": "I3ODQ"
+    }
+  ]
+}
