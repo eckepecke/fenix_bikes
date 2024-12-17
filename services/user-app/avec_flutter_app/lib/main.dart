@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'AVEC app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(46, 174, 99, 1)),
-        primaryColor: const Color.fromRGBO(46, 174, 99, 1),
+            seedColor: const Color.fromARGB(255, 211, 141, 76)),
+        primaryColor: const Color.fromARGB(255, 211, 141, 76),
         textTheme: GoogleFonts.fugazOneTextTheme(textTheme).copyWith(
           bodyMedium: GoogleFonts.oswald(textStyle: textTheme.bodyMedium),
           bodyLarge: GoogleFonts.fugazOne(textStyle: textTheme.bodyMedium),

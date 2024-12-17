@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
 import L from "leaflet";
@@ -6,12 +6,15 @@ import scooterIcon from "/src/assets/scooter-pin.png";
 import chargingIcon from "/src/assets/charging-station.png";
 import parkingIcon from "/src/assets/parking-spot.png";
 import "./index.css";
+import { io } from "socket.io-client";
+
 
 
 const Map: React.FC = () => {
 	const { city } = useParams<{ city: string }>();
 	const [cityBorders, setCityBorders] = useState<any>(null);
 	const [cityCenter, setCityCenter] = useState<[number, number] | null>(null);
+	const socket = useRef(io());
 
 	// ett sätt att bibehålla å, ä och ö när vi skriver ut stadens namn,
 	// nackdel: behöva lägga in städer manuellt, fördel: smidig lösning
@@ -45,6 +48,14 @@ const Map: React.FC = () => {
 	});
 
 	useEffect(() => {
+		socket.current = io('localhost:1337');
+
+		return () => {
+			socket.current.disconnect();
+		}
+	}, []);
+
+	useEffect(() => {
 		document.title = city ? `Map ${cityNameDisplay[city]} - Avec` : 'Map - Avec';
 
 		const fetchCityBorders = async (cityName: string) => {
@@ -68,7 +79,7 @@ const Map: React.FC = () => {
 				console.error("Error fetching city data:", error);
 			}
 		};
-		
+
 		city ? fetchCityBorders(city) : "";
 
 	}, [city]);
@@ -77,7 +88,7 @@ const Map: React.FC = () => {
 	// få kartan centrerad kring önskat område.
 	// tar egentligen bara någon ms men krävs för
 	// att kunna sköta kartritningen på smidigt sätt.
-  	if (!cityCenter) {
+	if (!cityCenter) {
 		return (
 			<div>
 				<h1>{city ? cityNameDisplay[city] : ""}</h1>

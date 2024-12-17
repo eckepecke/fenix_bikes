@@ -69,7 +69,8 @@ class _MapPageState extends State<MapPage> {
   // Fetches all the bikes and filters them on city and availabilty, only the available bikes in the right city are shown.
 
   Future<void> _fetchBikes() async {
-    final response = await http.get(Uri.parse('http://localhost:1337/bikes'));
+    final response =
+        await http.get(Uri.parse('http://localhost:1337/get/all/bikes'));
     var bikes = <Bike>[];
     if (response.statusCode == 200) {
       var bikesData = json.decode(response.body);
@@ -133,8 +134,8 @@ class _MapPageState extends State<MapPage> {
                   PolygonLayer(useAltRendering: true, polygons: [
                     Polygon(points: [
                       const LatLng(30, 40),
-                      LatLng(20, 50),
-                      LatLng(25, 45)
+                      const LatLng(20, 50),
+                      const LatLng(25, 45)
                     ], color: Colors.blue, label: 'Här är en polygon'),
                   ]),
                   RichAttributionWidget(
