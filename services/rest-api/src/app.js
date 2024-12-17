@@ -49,7 +49,7 @@ app.get("/users", async (req, res) => {
 const startServer = async () => {
     try {
         // Connect to the database
-        const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/avec?retryWrites=true&w=majority&appName=Cluster0`;
+        const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 
         await connectToDatabase(mongoUri);
 
