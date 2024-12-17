@@ -11,6 +11,8 @@ import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
 import service from './routes/serviceRoutes.js';
+import { Server } from "socket.io";
+import { createServer } from 'http';
 
 dotenv.config();
 
@@ -32,6 +34,19 @@ app.use('/get', get);
 app.use('/service', service);
 
 app.use('/test', test);
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+    cors: {
+        origin: ['http://localhost:5173']
+    }
+});
+
+
+io.sockets.on('connection', function (socket) {
+    console.log(socket.id); // Nått lång och slumpat
+});
 
 
 app.get("/", (req, res) => {
@@ -55,7 +70,7 @@ const startServer = async () => {
 
         // Start the Express server
         const port = process.env.PORT || 1338;
-        app.listen(port, () => {
+        httpServer.listen(port, () => {
             console.log(`Server is running on port ${port}`);
         });
     } catch (error) {
