@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
-      title: 'AVEC app',
+      title: 'Fenix app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color.fromARGB(255, 211, 141, 76)),
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'AVEC'),
+      home: const MyHomePage(title: 'Fenix'),
     );
   }
 }
@@ -51,8 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Image(
-              image: AssetImage('assets/avec-logo.png'), height: 50),
+          title: const Text('Fenix'),
         ),
         body: selectedCity == null
             ? Center(
