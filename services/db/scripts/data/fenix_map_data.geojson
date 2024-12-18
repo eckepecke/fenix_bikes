@@ -1,0 +1,2438 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196841,
+              55.701948
+            ],
+            [
+              13.19657,
+              55.701938
+            ],
+            [
+              13.196706,
+              55.701819
+            ],
+            [
+              13.196875,
+              55.701832
+            ],
+            [
+              13.196841,
+              55.701948
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking01"
+      },
+      "id": "U2ODU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.197021,
+              55.701459
+            ],
+            [
+              13.196986,
+              55.701555
+            ],
+            [
+              13.196769,
+              55.701538
+            ],
+            [
+              13.196793,
+              55.701456
+            ],
+            [
+              13.197021,
+              55.701459
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "Parking02"
+      },
+      "id": "I3NDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194414,
+              55.700113
+            ],
+            [
+              13.194349,
+              55.70011
+            ],
+            [
+              13.194339,
+              55.699943
+            ],
+            [
+              13.194425,
+              55.699937
+            ],
+            [
+              13.194414,
+              55.700113
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking03"
+      },
+      "id": "IyMDE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.192751,
+              55.703052
+            ],
+            [
+              13.193159,
+              55.703001
+            ],
+            [
+              13.192981,
+              55.702877
+            ],
+            [
+              13.192971,
+              55.702807
+            ],
+            [
+              13.192804,
+              55.702792
+            ],
+            [
+              13.192751,
+              55.703052
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking04"
+      },
+      "id": "c4NTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194859,
+              55.704505
+            ],
+            [
+              13.194698,
+              55.704528
+            ],
+            [
+              13.194652,
+              55.704501
+            ],
+            [
+              13.194835,
+              55.70446
+            ],
+            [
+              13.194859,
+              55.704505
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking05"
+      },
+      "id": "g1NzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.195699,
+              55.700866
+            ],
+            [
+              13.195682,
+              55.700928
+            ],
+            [
+              13.19572,
+              55.700967
+            ],
+            [
+              13.195838,
+              55.700969
+            ],
+            [
+              13.195862,
+              55.700875
+            ],
+            [
+              13.195699,
+              55.700866
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking06"
+      },
+      "id": "gwMzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196694,
+              55.701056
+            ],
+            [
+              13.196694,
+              55.701011
+            ],
+            [
+              13.197013,
+              55.701044
+            ],
+            [
+              13.196989,
+              55.701067
+            ],
+            [
+              13.196694,
+              55.701056
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking07"
+      },
+      "id": "M2NjQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.182043,
+              55.699984
+            ],
+            [
+              13.182467,
+              55.699679
+            ],
+            [
+              13.182859,
+              55.700187
+            ],
+            [
+              13.18251,
+              55.700238
+            ],
+            [
+              13.182043,
+              55.699984
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking09"
+      },
+      "id": "kxMjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.207691,
+              55.71567
+            ],
+            [
+              13.207798,
+              55.715646
+            ],
+            [
+              13.207948,
+              55.715507
+            ],
+            [
+              13.20798,
+              55.715017
+            ],
+            [
+              13.207465,
+              55.71503
+            ],
+            [
+              13.207691,
+              55.71567
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking11"
+      },
+      "id": "M0MDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          18.020539,
+          59.35074
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "k0NTE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          18.034133,
+          59.353507
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "I4MDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          17.998347,
+          59.361075
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "U5ODc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          17.996002,
+          59.360329
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "M2ODk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          18.000026,
+          59.358716
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "kzMjU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          17.996678,
+          59.378862
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "AzNDY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          17.984147,
+          59.359216
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "czODQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [],
+        "type": "LineString"
+      },
+      "properties": {},
+      "id": "g3NjQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [],
+        "type": "LineString"
+      },
+      "properties": {},
+      "id": "M5NDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [],
+        "type": "LineString"
+      },
+      "properties": {},
+      "id": "U5MDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          14.443889,
+          50.058913
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "A3MzY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          12.478988,
+          41.894416
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "U5OTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          25.329151,
+          37.444911
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "E2ODM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          19.040401,
+          47.49837
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "YwNzk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          26.102636,
+          44.436489
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "EwMjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.395982,
+          52.51123
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "MyMjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          10.741239,
+          59.914029
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "_umap_options": {
+          "color": "Lime"
+        }
+      },
+      "id": "I2NTM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.190867,
+              55.706557
+            ],
+            [
+              13.190849,
+              55.706514
+            ],
+            [
+              13.19094,
+              55.706503
+            ],
+            [
+              13.190958,
+              55.706546
+            ],
+            [
+              13.190867,
+              55.706557
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "c01"
+      },
+      "id": "E2NTE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.158824,
+              55.720822
+            ],
+            [
+              13.158765,
+              55.720725
+            ],
+            [
+              13.15892,
+              55.720692
+            ],
+            [
+              13.158998,
+              55.72084
+            ],
+            [
+              13.158824,
+              55.720822
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "c02"
+      },
+      "id": "cwMzI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.204815,
+              55.724234
+            ],
+            [
+              13.204708,
+              55.724228
+            ],
+            [
+              13.204697,
+              55.724361
+            ],
+            [
+              13.204815,
+              55.724367
+            ],
+            [
+              13.204815,
+              55.724234
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "c03"
+      },
+      "id": "YxMDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.190867,
+              55.706557
+            ],
+            [
+              13.190849,
+              55.706514
+            ],
+            [
+              13.19094,
+              55.706503
+            ],
+            [
+              13.190958,
+              55.706546
+            ],
+            [
+              13.190867,
+              55.706557
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-01"
+      },
+      "id": "E2NTE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.158824,
+              55.720822
+            ],
+            [
+              13.158765,
+              55.720725
+            ],
+            [
+              13.15892,
+              55.720692
+            ],
+            [
+              13.158998,
+              55.72084
+            ],
+            [
+              13.158824,
+              55.720822
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-02"
+      },
+      "id": "cwMzI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.204815,
+              55.724234
+            ],
+            [
+              13.204708,
+              55.724228
+            ],
+            [
+              13.204697,
+              55.724361
+            ],
+            [
+              13.204815,
+              55.724367
+            ],
+            [
+              13.204815,
+              55.724234
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-03"
+      },
+      "id": "YxMDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.225868,
+              55.717596
+            ],
+            [
+              13.225932,
+              55.71764
+            ],
+            [
+              13.226206,
+              55.717521
+            ],
+            [
+              13.22615,
+              55.717478
+            ],
+            [
+              13.225868,
+              55.717596
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-04"
+      },
+      "id": "QyNjE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.223795,
+              55.71484
+            ],
+            [
+              13.223887,
+              55.714809
+            ],
+            [
+              13.223824,
+              55.714761
+            ],
+            [
+              13.223729,
+              55.714795
+            ],
+            [
+              13.223795,
+              55.71484
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-05"
+      },
+      "id": "k0MzU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.193113,
+              55.702385
+            ],
+            [
+              13.193176,
+              55.702455
+            ],
+            [
+              13.19309,
+              55.702479
+            ],
+            [
+              13.193031,
+              55.702397
+            ],
+            [
+              13.193113,
+              55.702385
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-06"
+      },
+      "id": "E3NTk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.197769,
+              55.700195
+            ],
+            [
+              13.1978,
+              55.700087
+            ],
+            [
+              13.197627,
+              55.700077
+            ],
+            [
+              13.197611,
+              55.700184
+            ],
+            [
+              13.197769,
+              55.700195
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-07"
+      },
+      "id": "A1NTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.18188,
+              55.69939
+            ],
+            [
+              13.181998,
+              55.699455
+            ],
+            [
+              13.182074,
+              55.699424
+            ],
+            [
+              13.181955,
+              55.699374
+            ],
+            [
+              13.18188,
+              55.69939
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-08"
+      },
+      "id": "czNzE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.227164,
+              55.694779
+            ],
+            [
+              13.227249,
+              55.694912
+            ],
+            [
+              13.227035,
+              55.694955
+            ],
+            [
+              13.226946,
+              55.694831
+            ],
+            [
+              13.227164,
+              55.694779
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-09"
+      },
+      "id": "M5NDY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196841,
+              55.701948
+            ],
+            [
+              13.19657,
+              55.701938
+            ],
+            [
+              13.196706,
+              55.701819
+            ],
+            [
+              13.196875,
+              55.701832
+            ],
+            [
+              13.196841,
+              55.701948
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking01"
+      },
+      "id": "U2ODU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.197021,
+              55.701459
+            ],
+            [
+              13.196986,
+              55.701555
+            ],
+            [
+              13.196769,
+              55.701538
+            ],
+            [
+              13.196793,
+              55.701456
+            ],
+            [
+              13.197021,
+              55.701459
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "Parking02"
+      },
+      "id": "I3NDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194414,
+              55.700113
+            ],
+            [
+              13.194349,
+              55.70011
+            ],
+            [
+              13.194339,
+              55.699943
+            ],
+            [
+              13.194425,
+              55.699937
+            ],
+            [
+              13.194414,
+              55.700113
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking03"
+      },
+      "id": "IyMDE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.192751,
+              55.703052
+            ],
+            [
+              13.193159,
+              55.703001
+            ],
+            [
+              13.192981,
+              55.702877
+            ],
+            [
+              13.192971,
+              55.702807
+            ],
+            [
+              13.192804,
+              55.702792
+            ],
+            [
+              13.192751,
+              55.703052
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking04"
+      },
+      "id": "c4NTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194859,
+              55.704505
+            ],
+            [
+              13.194698,
+              55.704528
+            ],
+            [
+              13.194652,
+              55.704501
+            ],
+            [
+              13.194835,
+              55.70446
+            ],
+            [
+              13.194859,
+              55.704505
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking05"
+      },
+      "id": "g1NzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.195699,
+              55.700866
+            ],
+            [
+              13.195682,
+              55.700928
+            ],
+            [
+              13.19572,
+              55.700967
+            ],
+            [
+              13.195838,
+              55.700969
+            ],
+            [
+              13.195862,
+              55.700875
+            ],
+            [
+              13.195699,
+              55.700866
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking06"
+      },
+      "id": "gwMzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196694,
+              55.701056
+            ],
+            [
+              13.196694,
+              55.701011
+            ],
+            [
+              13.197013,
+              55.701044
+            ],
+            [
+              13.196989,
+              55.701067
+            ],
+            [
+              13.196694,
+              55.701056
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking07"
+      },
+      "id": "M2NjQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.182043,
+              55.699984
+            ],
+            [
+              13.182467,
+              55.699679
+            ],
+            [
+              13.182859,
+              55.700187
+            ],
+            [
+              13.18251,
+              55.700238
+            ],
+            [
+              13.182043,
+              55.699984
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking09"
+      },
+      "id": "kxMjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.207691,
+              55.71567
+            ],
+            [
+              13.207798,
+              55.715646
+            ],
+            [
+              13.207948,
+              55.715507
+            ],
+            [
+              13.20798,
+              55.715017
+            ],
+            [
+              13.207465,
+              55.71503
+            ],
+            [
+              13.207691,
+              55.71567
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking11"
+      },
+      "id": "M0MDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.193124,
+          55.702401
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging01"
+      },
+      "id": "E1NjI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.19771,
+          55.700136
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging02"
+      },
+      "id": "c0Mjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.204762,
+          55.724272
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging03"
+      },
+      "id": "kzMjI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.158875,
+          55.720742
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging05"
+      },
+      "id": "Y3Mjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.181963,
+          55.699379
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging06"
+      },
+      "id": "Y1MDM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.225983,
+          55.717583
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging07"
+      },
+      "id": "MyMjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.223816,
+          55.714799
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging08"
+      },
+      "id": "k3MjA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.227083,
+          55.694847
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging09"
+      },
+      "id": "I1NzY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          13.190913,
+          55.706532
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "name": "charging10"
+      },
+      "id": "I3ODQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.190867,
+              55.706557
+            ],
+            [
+              13.190849,
+              55.706514
+            ],
+            [
+              13.19094,
+              55.706503
+            ],
+            [
+              13.190958,
+              55.706546
+            ],
+            [
+              13.190867,
+              55.706557
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-01"
+      },
+      "id": "E2NTE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.158824,
+              55.720822
+            ],
+            [
+              13.158765,
+              55.720725
+            ],
+            [
+              13.15892,
+              55.720692
+            ],
+            [
+              13.158998,
+              55.72084
+            ],
+            [
+              13.158824,
+              55.720822
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-02"
+      },
+      "id": "cwMzI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.204815,
+              55.724234
+            ],
+            [
+              13.204708,
+              55.724228
+            ],
+            [
+              13.204697,
+              55.724361
+            ],
+            [
+              13.204815,
+              55.724367
+            ],
+            [
+              13.204815,
+              55.724234
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-03"
+      },
+      "id": "YxMDc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.225868,
+              55.717596
+            ],
+            [
+              13.225932,
+              55.71764
+            ],
+            [
+              13.226206,
+              55.717521
+            ],
+            [
+              13.22615,
+              55.717478
+            ],
+            [
+              13.225868,
+              55.717596
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-04"
+      },
+      "id": "QyNjE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.223795,
+              55.71484
+            ],
+            [
+              13.223887,
+              55.714809
+            ],
+            [
+              13.223824,
+              55.714761
+            ],
+            [
+              13.223729,
+              55.714795
+            ],
+            [
+              13.223795,
+              55.71484
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-05"
+      },
+      "id": "k0MzU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.18188,
+              55.69939
+            ],
+            [
+              13.181998,
+              55.699455
+            ],
+            [
+              13.182074,
+              55.699424
+            ],
+            [
+              13.181955,
+              55.699374
+            ],
+            [
+              13.18188,
+              55.69939
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-08"
+      },
+      "id": "czNzE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196841,
+              55.701948
+            ],
+            [
+              13.19657,
+              55.701938
+            ],
+            [
+              13.196706,
+              55.701819
+            ],
+            [
+              13.196875,
+              55.701832
+            ],
+            [
+              13.196841,
+              55.701948
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-01"
+      },
+      "id": "U2ODU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.197021,
+              55.701459
+            ],
+            [
+              13.196986,
+              55.701555
+            ],
+            [
+              13.196769,
+              55.701538
+            ],
+            [
+              13.196793,
+              55.701456
+            ],
+            [
+              13.197021,
+              55.701459
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-02"
+      },
+      "id": "I3NDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.196694,
+              55.701056
+            ],
+            [
+              13.196694,
+              55.701011
+            ],
+            [
+              13.197013,
+              55.701044
+            ],
+            [
+              13.196989,
+              55.701067
+            ],
+            [
+              13.196694,
+              55.701056
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-07"
+      },
+      "id": "M2NjQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.193113,
+              55.702385
+            ],
+            [
+              13.193176,
+              55.702455
+            ],
+            [
+              13.19309,
+              55.702479
+            ],
+            [
+              13.193031,
+              55.702397
+            ],
+            [
+              13.193113,
+              55.702385
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-06"
+      },
+      "id": "E3NTk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194414,
+              55.700113
+            ],
+            [
+              13.194349,
+              55.70011
+            ],
+            [
+              13.194339,
+              55.699943
+            ],
+            [
+              13.194425,
+              55.699937
+            ],
+            [
+              13.194414,
+              55.700113
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-03"
+      },
+      "id": "IyMDE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.197769,
+              55.700195
+            ],
+            [
+              13.1978,
+              55.700087
+            ],
+            [
+              13.197627,
+              55.700077
+            ],
+            [
+              13.197611,
+              55.700184
+            ],
+            [
+              13.197769,
+              55.700195
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-07"
+      },
+      "id": "A1NTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.195699,
+              55.700866
+            ],
+            [
+              13.195682,
+              55.700928
+            ],
+            [
+              13.19572,
+              55.700967
+            ],
+            [
+              13.195838,
+              55.700969
+            ],
+            [
+              13.195862,
+              55.700875
+            ],
+            [
+              13.195699,
+              55.700866
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-06"
+      },
+      "id": "gwMzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.192751,
+              55.703052
+            ],
+            [
+              13.193159,
+              55.703001
+            ],
+            [
+              13.192981,
+              55.702877
+            ],
+            [
+              13.192971,
+              55.702807
+            ],
+            [
+              13.192804,
+              55.702792
+            ],
+            [
+              13.192751,
+              55.703052
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-04"
+      },
+      "id": "c4NTA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.182043,
+              55.699984
+            ],
+            [
+              13.182467,
+              55.699679
+            ],
+            [
+              13.182859,
+              55.700187
+            ],
+            [
+              13.18251,
+              55.700238
+            ],
+            [
+              13.182043,
+              55.699984
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-09"
+      },
+      "id": "kxMjc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.227164,
+              55.694779
+            ],
+            [
+              13.227249,
+              55.694912
+            ],
+            [
+              13.227035,
+              55.694955
+            ],
+            [
+              13.226946,
+              55.694831
+            ],
+            [
+              13.227164,
+              55.694779
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "charging_zone-09"
+      },
+      "id": "M5NDY"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.207691,
+              55.71567
+            ],
+            [
+              13.207798,
+              55.715646
+            ],
+            [
+              13.207948,
+              55.715507
+            ],
+            [
+              13.20798,
+              55.715017
+            ],
+            [
+              13.207465,
+              55.71503
+            ],
+            [
+              13.207691,
+              55.71567
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-10"
+      },
+      "id": "M0MDU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              13.194859,
+              55.704505
+            ],
+            [
+              13.194698,
+              55.704528
+            ],
+            [
+              13.194652,
+              55.704501
+            ],
+            [
+              13.194835,
+              55.70446
+            ],
+            [
+              13.194859,
+              55.704505
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {
+        "name": "parking_zone-05"
+      },
+      "id": "g1NzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              17.978246,
+              59.358899
+            ],
+            [
+              17.978096,
+              59.358779
+            ],
+            [
+              17.97859,
+              59.35856
+            ],
+            [
+              17.978654,
+              59.35868
+            ],
+            [
+              17.978246,
+              59.358899
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "cyMDM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              17.976615,
+              59.358297
+            ],
+            [
+              17.976229,
+              59.35809
+            ],
+            [
+              17.975757,
+              59.358265
+            ],
+            [
+              17.976122,
+              59.358516
+            ],
+            [
+              17.976615,
+              59.358297
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "A3NzM"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              17.966166,
+              59.368341
+            ],
+            [
+              17.966058,
+              59.368374
+            ],
+            [
+              17.965897,
+              59.368292
+            ],
+            [
+              17.965919,
+              59.368155
+            ],
+            [
+              17.966166,
+              59.368341
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "U1NDQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              18.000219,
+              59.358721
+            ],
+            [
+              17.999243,
+              59.358719
+            ],
+            [
+              17.999248,
+              59.358489
+            ],
+            [
+              17.999935,
+              59.358552
+            ],
+            [
+              18.000219,
+              59.358721
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "g3NTI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              17.998341,
+              59.370855
+            ],
+            [
+              17.998255,
+              59.370686
+            ],
+            [
+              17.998266,
+              59.370549
+            ],
+            [
+              17.99817,
+              59.37056
+            ],
+            [
+              17.998213,
+              59.370855
+            ],
+            [
+              17.998341,
+              59.370855
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "E0NDk"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              18.008244,
+              59.374064
+            ],
+            [
+              18.00833,
+              59.373933
+            ],
+            [
+              18.008995,
+              59.374086
+            ],
+            [
+              18.008909,
+              59.374184
+            ],
+            [
+              18.008244,
+              59.374064
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "M0NTQ"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              18.020861,
+              59.350619
+            ],
+            [
+              18.020518,
+              59.350619
+            ],
+            [
+              18.020089,
+              59.350701
+            ],
+            [
+              18.020335,
+              59.350964
+            ],
+            [
+              18.020861,
+              59.350619
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "gyMDI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              20.941776,
+              64.75727
+            ],
+            [
+              20.941604,
+              64.756914
+            ],
+            [
+              20.941958,
+              64.756886
+            ],
+            [
+              20.941991,
+              64.75706
+            ],
+            [
+              20.941776,
+              64.75727
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "k4ODU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              20.902364,
+              64.755683
+            ],
+            [
+              20.902283,
+              64.755497
+            ],
+            [
+              20.902466,
+              64.755426
+            ],
+            [
+              20.902728,
+              64.755667
+            ],
+            [
+              20.902364,
+              64.755683
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "IyMTc"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              20.953127,
+              64.748617
+            ],
+            [
+              20.953084,
+              64.748461
+            ],
+            [
+              20.953728,
+              64.748429
+            ],
+            [
+              20.953771,
+              64.748571
+            ],
+            [
+              20.953127,
+              64.748617
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "Y1NTE"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          [
+            [
+              20.953395,
+              64.751496
+            ],
+            [
+              20.953352,
+              64.75134
+            ],
+            [
+              20.953964,
+              64.751299
+            ],
+            [
+              20.954018,
+              64.751464
+            ],
+            [
+              20.953395,
+              64.751496
+            ]
+          ]
+        ],
+        "type": "Polygon"
+      },
+      "properties": {},
+      "id": "EwODU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          20.944941,
+          64.756973
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "I3NzI"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          20.95552,
+          64.758574
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "M3MjU"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          20.944179,
+          64.751592
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "Q5NzA"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          20.954854,
+          64.743756
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "ExODg"
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          20.972128,
+          64.755747
+        ],
+        "type": "Point"
+      },
+      "properties": {},
+      "id": "c0ODg"
+    }
+  ]
+}
