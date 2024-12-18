@@ -1,6 +1,11 @@
+import { config } from "dotenv";
+import { MongoClient } from "mongodb";
 
-const DB_USER = "scooter";
-const DB_PASS = "8g9xCnfVSVgiEVm";
+config();
+
+const DB_USER = process.env.DB_USER;
+const DB_PASS = process.env.DB_PASS;
+
 const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 import { MongoClient } from "mongodb";
 
