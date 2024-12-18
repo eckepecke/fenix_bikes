@@ -50,13 +50,17 @@ const Map: React.FC = () => {
 	useEffect(() => {
 		socket.current = io('localhost:1337');
 
+		socket.current.on("location_update", (data) => {
+			// Uppdatera cykelns postion på kartan
+		});
+
 		return () => {
 			socket.current.disconnect();
 		}
 	}, []);
 
 	useEffect(() => {
-		document.title = city ? `Map ${cityNameDisplay[city]} - Avec` : 'Map - Avec';
+		document.title = city ? `Map ${cityNameDisplay[city]} - Fenix` : 'Map - Fenix';
 
 		const fetchCityBorders = async (cityName: string) => {
 			try {
