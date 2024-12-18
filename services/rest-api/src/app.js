@@ -6,7 +6,7 @@ import { connectToDatabase } from "../../db/db.js";
 import { getUsers } from '../../db/users.js';
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
-import bikeManager from "../../bike-logic/bikeManager.js"
+// import bikeManager from "../../bike-logic/bikeManager.js"
 import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
@@ -49,7 +49,7 @@ app.get("/users", async (req, res) => {
 const startServer = async () => {
     try {
         // Connect to the database
-        const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/avec?retryWrites=true&w=majority&appName=Cluster0`;
+        const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 
         await connectToDatabase(mongoUri);
 
