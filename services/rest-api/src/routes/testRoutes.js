@@ -49,4 +49,27 @@ router.post("/stop", async (req, res) => {
     res.json(result);
 });
 
+router.post("/delete", async (req, res) => {
+    let bikeId = req.body.bike_id;
+    // Fake bike id:
+    // bikeId = "B0010";
+    const result = await bikeManager.deleteBike(bikeId);
+
+    res.json(result);
+});
+
+// router.post("/charge", async (req, res) => {
+//     const bikeId = req.body.bike_id;
+//     const result = await bikeManager.chargeBike(bikeId);
+
+//     res.json(result);
+// });
+
+// router.post("/stop_charge", async (req, res) => {
+//     const bikeId = req.body.bike_id;
+//     const result = await bikeManager.stopCharge(bikeId);
+
+//     res.json(result);
+// });
+
 export default router;

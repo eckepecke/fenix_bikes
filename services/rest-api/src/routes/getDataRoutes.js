@@ -49,11 +49,10 @@ router.get("/all/bikes/pagination", async (req, res) => {
 router.post("/all/bikes/in/city", async (req, res) => {
     // fake post variable
     let city = req.body.city;
-    city = "Lund";
+    // city = "Lund";
     console.log(city);
 
     const result = await bikeManager.getAllBikesInCity(city);
-    console.log("hello");
 
     res.json(result);
 });
