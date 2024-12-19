@@ -22,17 +22,44 @@ const bike = {
 
     start : async function start(bikeId) {
         let bikeCollection = getCollection("bikes");
+        let tripCollection = getCollection("trips");
+
         try {
+            const bikeObject = await bikeCollection.findOne({ bike_id: bikeId });
+        
+            if (!bikeObject) {
+                throw new Error(`Bike with bike_id: ${bikeId} not found.`);
+            }
+            
+            if (bikeObject.activeTrip !== null) {
+                throw new Error(`Bike with bike_id: ${bikeId} already has an active trip ${bikeObject.activeTrip}`);
+            }
+            // Log the location attribute
+            console.log(`Starting trip for bike_id: ${bikeId}, located at:`, bikeObject.location);
+            const tripResult = await tripCollection.insertOne(
+                {
+                    // id: generatedId
+                    start_time: new Date(),
+                    end_time: null,
+                    start_location: bikeObject.location,
+                    end_location: null
+                }
+            )
+
+            // Update the bike's status
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
                 {
                     $set: {
-                        "status.available": false
+                        "status.available": false,
+                        // active_trip: generatedId
                     }
                 },
                 { returnDocument: "after" }
             );
-
+    
+            console.log(result);
+    
             return result;
 
         } catch (e) {
@@ -44,13 +71,41 @@ const bike = {
 
     stop : async function stop(bikeId) {
         let bikeCollection = getCollection("bikes");
+        let tripCollection = getCollection("trips");
 
         try {
+            const bikeObject = await bikeCollection.findOne({ bike_id: bikeId });
+
+            if (!bikeObject) {
+                throw new Error(`Bike with bike_id: ${bikeId} not found.`);
+            }
+
+            if (!bikeObject.active_trip) {
+                throw new Error(`Bike with bike_id: ${bikeId} has no active trip.`);
+            }
+
+            const tripObject = await tripCollection.findOne({ id: bikeObject.active_trip });
+
+            console.log(`Ending trip for bike_id: ${bikeId}, located at:`, bikeObject.location);
+
+            const tripResult = await tripCollection.updateOne(
+                { id: bikeObject.active_trip },
+                {
+                    $set: {
+                        end_time: new Date(),
+                        end_location: bikeObject.location
+                    }
+                },
+            )
+
+            // Update the bike's status
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
                 {
                     $set: {
-                        "status.available": true
+                        "status.available": true,
+                        active_trip: null,
+                        completed_trips: { $push: tripObject.id }
                     }
                 },
                 { returnDocument: "after" }
@@ -64,7 +119,7 @@ const bike = {
         }
     },
 
-    putToCharge : async function putToCharge(bikeId) {
+    charge : async function charge(bikeId) {
         let bikeCollection = getCollection("bikes");
 
         try {
@@ -87,7 +142,7 @@ const bike = {
         }
     },
 
-    stopCharging : async function stopCharging(bikeId) {
+    stopCharge : async function stopCharge(bikeId) {
         let bikeCollection = getCollection("bikes");
 
         try {
@@ -188,6 +243,10 @@ const bike = {
             console.error(e);
             throw new Error(`Failed to ebd service for bike with bike_id: ${bikeId}.`);
         }
+    },
+
+    saveTrip: async function saveTrip() {
+
     }
 }
 
