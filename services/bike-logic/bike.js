@@ -64,6 +64,52 @@ const bike = {
         }
     },
 
+    putToCharge : async function putToCharge(bikeId) {
+        let bikeCollection = getCollection("bikes");
+
+        try {
+            const result = await bikeCollection.updateOne(
+                { bike_id: bikeId },
+                {
+                    $set: { 
+                        "status.available": false,
+                        "status.in_service": true
+                    }
+                },
+                { returnDocument: "after" }
+            );
+
+            return result;
+
+        } catch (e) {
+            console.error(e);
+            throw new Error(`Failed to start charging bike with bike_id: ${bikeId}.`);
+        }
+    },
+
+    stopCharging : async function stopCharging(bikeId) {
+        let bikeCollection = getCollection("bikes");
+
+        try {
+            const result = await bikeCollection.updateOne(
+                { bike_id: bikeId },
+                {
+                    $set: { 
+                        "status.available": true,
+                        "status.in_service": false
+                    }
+                },
+                { returnDocument: "after" }
+            );
+
+            return result;
+
+        } catch (e) {
+            console.error(e);
+            throw new Error(`Failed to stop charging bike with bike_id: ${bikeId}.`);
+        }
+    },
+
     // Not yet refactored
     checkForWarning : async function checkForWarning(bike) {
         let db = await database.getDb();
