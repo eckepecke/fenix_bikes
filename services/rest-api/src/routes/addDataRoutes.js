@@ -20,18 +20,18 @@ router.post("/bike", async (req, res) => {
     // let city = req.body.city;
 
     // fake new test bike
-    newBike =  {
-        location: [55.7047,13.191],
-        city_name: "Lund",
-        speed: 0,
-        status: {
-            available: true,
-            battery_level: 100,
-            in_service: false
-        },
-        red_light: false,
-        completed_trips: []
-    }
+    // newBike =  {
+    //     location: [55.7047,13.191],
+    //     city_name: "Lund",
+    //     speed: 0,
+    //     status: {
+    //         available: true,
+    //         battery_level: 100,
+    //         in_service: false
+    //     },
+    //     red_light: false,
+    //     completed_trips: []
+    // }
 
     // fake new test city object
     // city =  {

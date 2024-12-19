@@ -10,7 +10,7 @@ const bikeManager = {
         const counter = await counterCollection.findOneAndUpdate(
             { _id: "bike_id" },
             { $inc: { counter_value: 1 } },
-            { returnDocument: "after" } // Ensure the updated document is returned
+            { returnDocument: "after" }
         );
 
         return `B${counter.counter_value.toString().padStart(4, "0")}`;
@@ -153,53 +153,6 @@ const bikeManager = {
             console.error(`Failed to retrive bikes from ${cityName}.`, e.message || e);
             throw new Error(`Failed to retrive bikes from ${cityName}.`);
         }
-    },
-
-        // Not yet refactored
-    startBike: async function startBike(bikeId) {
-        // For now this only makes the bike unavailable 
-        const result = await bike.start(bikeId)
-
-        return result;
-    },
-
-    // Not yet refactored
-    stopBike: async function stopBike(bikeId) {
-        // For now this only makes the bike available and returns the location
-        // assuming the trip logic i handled elsewhere and just needs
-        // bike parking coordinates
-        const result = await bike.stop(bikeId)
-
-        // We should consider where to put the trip logic, ex:
-        // await trip.end(tripId)
-        return result;
-    },
-
-    bikeToService: async function bikeToService(bikeId) {
-        const result = await bike.startService(bikeId)
-        return result;
-    },
-
-    bikeEndService: async function bikeEndService(bikeId) {
-        const result = await bike.endService(bikeId)
-        return result;
-    },
-
-    //maybe this should be elsewhere?
-    findCityId: async function findCityId(cityName) {
-        let cities = await getCities();
-        const city = cities.find(city => city.name === cityName);
-        return city._id
-    },
-
-    chargeBike: async function chargeBike(bikeId) {
-        const result = await bike.putToCharge(bikeId)
-        return result;
-    },
-
-    stopCharge: async function stopCharge(bikeId) {
-        const result = await bike.stopCharging(bikeId)
-        return result;
     }
 }
 
