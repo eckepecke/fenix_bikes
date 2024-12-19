@@ -11,6 +11,8 @@ import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
 import service from './routes/serviceRoutes.js';
+import trip from './routes/tripRoutes.js';
+
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ app.use(helmet());
 app.use('/add', add);
 app.use('/get', get);
 app.use('/service', service);
+app.use('/trip', trip);
+
 
 app.use('/test', test);
 
