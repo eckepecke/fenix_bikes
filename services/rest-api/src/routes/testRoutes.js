@@ -33,12 +33,13 @@ router.get("/generate", async (req, res) => {
 
 router.post("/location/update", async (req, res) => {
     let bikeId = req.body.bike_id;
-    let coordinates = req.body.coordinates;
+    let location = req.body.location;
     // Fake bike id:
     // bikeId = "B0010";
-    const result = await bikeManager.deleteBike(bikeId);
+    const result = await bike.updateLocation(bikeId, location);
 
     res.json(result);
+    // console.log(bikeId, coordinates);
 });
 
 export default router;

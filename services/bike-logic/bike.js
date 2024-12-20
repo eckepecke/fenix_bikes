@@ -261,7 +261,28 @@ const bike = {
 
     saveTrip: async function saveTrip() {
 
-    }
+    },
+
+    updateLocation: async function updateLocation(bikeId, location) {
+        let bikeCollection = getCollection("bikes");
+
+        try {
+            const result = await bikeCollection.updateOne(
+                { bike_id: bikeId },
+                {
+                    $set: {
+                        "location": location,
+                    }
+                },
+                { returnDocument: "after" }
+            );
+
+            return result;
+        } catch (e) {
+            console.error(e);
+            throw new Error(`Failed to update location for bike with bike_id: ${bikeId}.`);
+        }
+    },
 }
 
 export default bike;
