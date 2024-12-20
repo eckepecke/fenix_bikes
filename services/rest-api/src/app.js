@@ -56,7 +56,7 @@ io.sockets.on('connection', function (socket) {
 
 
 app.get("/", (req, res) => {
-    res.send("Greetings, friend of AVEC!");
+    res.send("Greetings, friend of Fenix!");
 });
 
 // GET /users

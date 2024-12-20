@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
 import 'dart:convert';
 import 'model/bike.dart';
+import '/hire.dart';
 
 // Creates the map, locates the user and shows available bikes
 
@@ -84,6 +85,7 @@ class _MapPageState extends State<MapPage> {
         if (bike.cityName == widget.selectedCity) {
           if (bike.status.available == true) {
             _markers.add(Marker(
+                key: Key(bike.bikeID),
                 point: LatLng(bike.location[0], bike.location[1]),
                 child: const Icon(Icons.place)));
           }
@@ -151,6 +153,20 @@ class _MapPageState extends State<MapPage> {
                   ),
                 ],
               ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HireBike()),
+                                );
+                              },
+                              child: const Text('Hyr cykel')))))
             ],
           );
   }

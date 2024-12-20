@@ -38,6 +38,7 @@ router.post("/start", async (req, res) => {
     // bikeId = "B001";
     const result = await bikeManager.startBike(bikeId);
     res.json(result);
+    // console.log(bikeId);
 });
 
 router.post("/stop", async (req, res) => {
