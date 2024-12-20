@@ -2,18 +2,18 @@ import express from 'express';
 import { getCities } from '../../../db/cities.js';
 import { getBikes } from '../../../db/bikes.js';
 import { getParking } from '../../../db/parkingZones.js';
+import { getUsers } from '../../../db/users.js';
+import { getTrips } from '../../../db/trips.js';
 import bikeManager from "../../../bike-logic/bikeManager.js"
-
+import bike from "../../../bike-logic/bike.js"
 
 const router = express.Router();
 
 // GET /bikes
 router.get("/", async (req, res) => {
-
     res.json("hej getData routes");
 });
 
-// GET /cities
 router.get("/all/cities", async (req, res) => {
     const result = await getCities();
     res.json(result);
@@ -24,6 +24,16 @@ router.get("/all/cities", async (req, res) => {
 router.get("/all/bikes", async (req, res) => {
     const result = await bikeManager.getAllBikes();
 
+    res.json(result);
+});
+
+router.get("/all/users", async (req, res) => {
+    const result = await getUsers();
+    res.json(result);
+});
+
+router.get("/all/trips", async (req, res) => {
+    const result = await getTrips();
     res.json(result);
 });
 
@@ -49,14 +59,16 @@ router.get("/all/bikes/pagination", async (req, res) => {
     }
 });
 
-router.post("/all/bikes/in/city", async (req, res) => {
-    // fake post variable
-    let city = req.body.city;
-    city = "Lund";
-    console.log(city);
-
+router.get("/all/bikes/in/city/:city", async (req, res) => {
+    const city = req.params.city;
     const result = await bikeManager.getAllBikesInCity(city);
-    console.log("hello");
+
+    res.json(result);
+});
+
+router.get("/certain/bike/:bike_id", async (req, res) => {
+    const bikeId = req.params.bike_id;
+    const result = await bike.reportState(bikeId);
 
     res.json(result);
 });

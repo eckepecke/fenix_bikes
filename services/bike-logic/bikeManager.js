@@ -1,34 +1,60 @@
-// import database from "../db/db.js"
 import { getCollection } from "../db/collections.js"
 import { getCities } from "../db/cities.js"
-
 import bike from "./bike.js"
 
-// skapa bike_id för varje ny cykel som läggs till
-const generateBikeId = async () => {
-    const counterCollection = getCollection("bike_id_counter")
-    const counter = await counterCollection.findOneAndUpdate(
-        { _id: "counter" },
-        { $inc: { counter_value: 1 } }
-    );
-    return `B${counter.counter_value.toString().padStart(3, "0")}`;
-};
-
 const bikeManager = {
+    generateBikeId: async function () {
+        const counterCollection = getCollection("counters");
+
+        // Increment and retrieve the updated counter
+        const counter = await counterCollection.findOneAndUpdate(
+            { _id: "bike_id" },
+            { $inc: { counter_value: 1 } },
+            { returnDocument: "after" }
+        );
+
+        return `B${counter.counter_value.toString().padStart(4, "0")}`;
+    },
+
+    generateTripId: async function () {
+        const counterCollection = getCollection("counters");
+
+        // Increment and retrieve the updated counter
+        const counter = await counterCollection.findOneAndUpdate(
+            { _id: "trip_id" },
+            { $inc: { counter_value: 1 } },
+            { returnDocument: "after" }
+        );
+
+        return `T${counter.counter_value.toString().padStart(4, "0")}`;
+    },
+
+    generateUserId: async function () {
+        const counterCollection = getCollection("counters");
+
+        // Increment and retrieve the updated counter
+        const counter = await counterCollection.findOneAndUpdate(
+            { _id: "trip_id" },
+            { $inc: { counter_value: 1 } },
+            { returnDocument: "after" }
+        );
+
+        return `U${counter.counter_value.toString().padStart(4, "0")}`;
+    },
+
     createBike: async function createBike(bike) {
         let bikeCollection = getCollection("bikes");
         let cityCollection = getCollection("cities");
 
-
         try {
             // add bike
-            const bike_id = await generateBikeId();
+            const bike_id = await this.generateBikeId();
             bike.bike_id = bike_id;
             const bikeResult = await bikeCollection.insertOne(bike); 
 
             // // add bike to given city
             await cityCollection.updateOne(
-                { display_name: bike.city_name },
+                { name: bike.city_name },
                 { $push: { bikes: bike.bike_id } }
             );
 
@@ -41,29 +67,40 @@ const bikeManager = {
 
     createManyBikes: async function createManyBikes(bikeArray, cityObject) {
         let bikeCollection = getCollection("bikes");
+        let cityCollection = getCollection("cities");
 
         // Map through the array of bikes and prepare multiple bike documents
-        const newBikes = bikeArray.map((bike) => ({
-            speed: bike.speed,
-            location: bike.location,
-            city_id: bike.city_id,
-            city_name: bike.city_name,
-            status: {
-                available: bike.available,
-                battery_level: bike.battery_level,
-                in_service: bike.in_service,
-            }
+        const newBikes = await Promise.all(bikeArray.map(async (bike) => {
+            // Generate a unique bike_id for each bike
+            const currentBikeId = await this.generateBikeId();
+
+            return {
+                bike_id: currentBikeId,
+                speed: bike.speed,
+                location: bike.location,
+                city_name: cityObject.name,
+                status: {
+                    available: bike.available,
+                    battery_level: bike.battery_level,
+                    in_service: bike.in_service,
+                },
+                red_light: false,
+                completed_trips: []
+            };
         }));
 
         try {
-            // Insert multiple bikes
-            let result = await bikeCollection.insertMany(newBikes);
-            // if (result.ok) {
-            //     // I am not sure bikes attribute in city is that useful
-            //     result = cityManager.addNewBikes(newBikes, data.city_id);
-            // }
+        // Insert the new bikes into the collection
+        const result = await bikeCollection.insertMany(newBikes);
+        const newBikeIds = newBikes.map((bike) => bike.bike_id);
 
-            return result;
+        // Update the city collection and add bike_ids to the city's bikes array
+        await cityCollection.updateOne(
+            { name: cityObject.name },
+            { $push: { bikes: { $each: newBikeIds } } }
+        );
+
+        return result;
         } catch (e) {
             console.error("Error creating multiple new bikes:", e.message || e);
             throw new Error("Failed to add many bikes to bike collection.");
@@ -72,7 +109,7 @@ const bikeManager = {
 
     getAllBikes: async function getAllBikes() {
         let collection = getCollection("bikes");
-    
+
         try {
             const result = await collection.find({}).toArray();
             return result;
@@ -99,16 +136,22 @@ const bikeManager = {
         const bikeCollection = getCollection("bikes");
         return await bikeCollection.countDocuments(filter);
       },
-    
-    // underlätta utveckling, kan behöva ses över innan
-    // användning i systemet, bara använts via url än så länge
+
     deleteBike: async function deleteBike(bikeId) {
         let bikeCollection = getCollection("bikes");
+        let cityCollection = getCollection("cities");
 
-        const filter = { bike_id: bikeId }
         try {
+            const bikeToDelete = await bike.reportState(bikeId);
+            const cityName = bikeToDelete.city_name;
+            console.log(cityName);
+            const filter = { bike_id: bikeId }
+            let result = await bikeCollection.deleteOne(filter);
+            result = await cityCollection.updateOne(
+                { name: cityName },
+                { $pull: { bikes: bikeId } }
+            );
 
-            const result = await bikeCollection.deleteOne(filter);
             console.log(`Bike with id ${bikeId} was deleted.`)
 
         return result;
@@ -118,64 +161,43 @@ const bikeManager = {
         }
     },
 
-    // Not yet refactored
     getAllBikesInCity: async function getAllBikesInCity(cityName) {
+        let bikeCollection = getCollection("bikes");
+
         try {
             const cities = await getCities();
             const city = cities.find(city => city.name.toLowerCase() === cityName.toLowerCase());
-
 
             if (!city) {
                 console.error(`City '${cityName}' not found.`);
                 throw new Error(`City '${cityName}' not found.`);
             }
-    
-            // Return the bikes for the found city
-            return city.bikes;
+
+            // Find all bikeobjects with the bike_ids and return
+            const bikes = await bikeCollection.find({ bike_id: { $in: city.bikes } }).toArray();
+
+            return bikes;
         } catch (e) {
             console.error(`Failed to retrive bikes from ${cityName}.`, e.message || e);
             throw new Error(`Failed to retrive bikes from ${cityName}.`);
         }
     },
 
-        // Not yet refactored
-    startBike: async function startBike(bikeId) {
-        // For now this only makes the bike unavailable 
-        const result = await bike.start(bikeId)
+    addUser: async function addUser(user) {
+        let userCollection = getCollection("users");
 
-        return result;
-    },
+        try {
+            // add bike
+            const userId = await this.generateUserId();
+            user.user_id = userId;
+            const result = await userCollection.insertOne(user); 
 
-    // Not yet refactored
-    stopBike: async function stopBike(bikeId) {
-        // For now this only makes the bike available and returns the location
-        // assuming the trip logic i handled elsewhere and just needs
-        // bike parking coordinates
-
-        const result = await bike.stop(bikeId)
-
-        // We should consider where to put the trip logic, ex:
-        // await trip.end(tripId)
-        return result;
-    },
-
-    bikeToService: async function bikeToService(bikeId) {
-        const result = await bike.startService(bikeId)
-        return result;
-    },
-
-    bikeEndService: async function bikeEndService(bikeId) {
-        const result = await bike.endService(bikeId)
-        return result;
-    },
-
-    //maybe this should be elsewhere?
-    findCityId: async function findCityId(cityName) {
-        let cities = await getCities();
-        const city = cities.find(city => city.name === cityName);
-        return city._id
+            return result;
+        } catch (e) {
+            console.error("Error creating new user:", e.message || e);
+            throw new Error(`Failed to add user ${user} to bike collection.`);
+        }
     }
-
 }
 
 export default bikeManager
