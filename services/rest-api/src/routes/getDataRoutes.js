@@ -19,18 +19,6 @@ router.get("/all/cities", async (req, res) => {
     res.json(result);
 });
 
-// GET /all/parking-zones
-router.get("/all/parking-zones", async (req, res) => {
-    const result = await getParking();
-    res.json(result);
-});
-
-// GET /city/:city/parking-zones
-router.get("/city/:city/parking-zones", async (req, res) => {
-    const city = req.params.city;
-    const result = await getParking(city);
-    res.json(result);
-});
 
 // GET /all/bikes
 router.get("/all/bikes", async (req, res) => {
