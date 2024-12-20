@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, JSX } from "react";
 import { useParams } from "react-router-dom";
-import { MapContainer, Marker, Popup, TileLayer, GeoJSON } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, GeoJSON, Polygon } from "react-leaflet";
 import L from "leaflet";
 import scooterIcon from "/src/assets/scooter-pin.png";
 import chargingIcon from "/src/assets/charging-station.png";
 import parkingIcon from "/src/assets/parking-spot.png";
 import "./index.css";
 
-
 const Map: React.FC = () => {
 	const { city } = useParams<{ city: string }>();
 	const [cityBorders, setCityBorders] = useState<any>(null);
 	const [cityCenter, setCityCenter] = useState<[number, number] | null>(null);
+	const [bikeMarkers, setBikeMarkers] = useState<JSX.Element[]>([]);
+	const [chargingStationMarkers, setChargingStationMarkers] = useState<JSX.Element[]>([]);
+	const [parkingZonePolygons, setParkingZonePolygons] = useState<JSX.Element[]>([]);
 
-	// ett sätt att bibehålla å, ä och ö när vi skriver ut stadens namn,
-	// nackdel: behöva lägga in städer manuellt, fördel: smidig lösning
-	// får fundera på bra lösning senare när db kommer in i bilden
+	// ett sätt att bibehålla å, ä och ö när vi skriver ut stadens namn
 	const cityNameDisplay: { [key: string]: string } = {
 		lund: "Lund",
 		solna: "Solna",
@@ -29,30 +29,29 @@ const Map: React.FC = () => {
 		popupAnchor: [0, -40],
 	});
 
-	// Ikoner för laddstationer och parkeringar att använda när vi är redo
 	const chargingStationMarker = L.icon({
 		iconUrl: chargingIcon,
-		iconSize: [30, 30],
-		iconAnchor: [15, 30],
+		iconSize: [24, 24],
+		iconAnchor: [12, 24],
 		popupAnchor: [1, -20],
 	});
 
 	const parkingSpotMarker = L.icon({
 		iconUrl: parkingIcon,
-		iconSize: [30, 30],
-		iconAnchor: [15, 30],
+		iconSize: [24, 24],
+		iconAnchor: [12, 12],
 		popupAnchor: [1, -20],
 	});
 
 	useEffect(() => {
-		document.title = city ? `Map ${cityNameDisplay[city]} - Avec` : 'Map - Avec';
+		document.title = city ? `Map ${cityNameDisplay[city]} - Avec` : "Map - Avec";
 
 		const fetchCityBorders = async (cityName: string) => {
 			try {
 				const response = await fetch(
 					`https://nominatim.openstreetmap.org/search.php?q=${cityName}&polygon_geojson=1&format=json`
 				);
-				console.log(response)
+				console.log(response);
 				if (!response.ok) {
 					throw new Error(`Error: ${response.statusText}`);
 				}
@@ -68,16 +67,130 @@ const Map: React.FC = () => {
 				console.error("Error fetching city data:", error);
 			}
 		};
-		
-		city ? fetchCityBorders(city) : "";
 
+		const fetchBikes = async (cityName: string) => {
+			try {
+				const response = await fetch("http://localhost:1337/get/all/bikes");
+				if (!response.ok) {
+					throw new Error(`Error: ${response.statusText}`);
+				}
+
+				const bikes = await response.json();
+				const markers = bikes
+					.filter((bike: any) => bike.city_name.toLowerCase() === cityName.toLowerCase())
+					.map((bike: any) => (
+						<Marker key={bike._id} position={bike.location} icon={scooterMarker}>
+							<Popup>
+								<div className="popup-content">
+									<h2>{bike.bike_id}</h2>
+									<p>Available: {bike.status.available}</p>
+									<p>Speed: {bike.speed}</p>
+									<p>Battery: {bike.status.battery_level}</p>
+								</div>
+							</Popup>
+						</Marker>
+					));
+				setBikeMarkers(markers);
+				console.log("Bikes fetched:", bikes);
+			} catch (error) {
+				console.error("Error fetching bikes:", error);
+			}
+		};
+
+		const fetchChargingStations = async (cityName: string) => {
+			try {
+				const response = await fetch(`http://localhost:1337/test/city/${cityName}/charging-stations`);
+				if (!response.ok) {
+					throw new Error(`Error: ${response.statusText}`);
+				}
+
+				const stations = await response.json();
+				console.log("Fetched stations:", stations); // Log fetched stations
+
+				const markers = stations
+					.filter((station: any) => station.city_name.toLowerCase() === cityName.toLowerCase())
+					.map((station: any) => (
+						<Marker key={station._id} position={station.location} icon={chargingStationMarker}>
+							<Popup>
+								<div className="popup-content">
+									<h2>{station.charging_id}</h2>
+								</div>
+							</Popup>
+						</Marker>
+					));
+				console.log("Generated markers:", markers); // Log generated markers
+
+				setChargingStationMarkers(markers);
+				console.log("stations fetched:", stations);
+			} catch (error) {
+				console.error("Error fetching stations:", error);
+			}
+		};
+
+    const calculateCentroid = (area: [number, number][]) => {
+			let x = 0, y = 0, n = area.length;
+			area.forEach(point => {
+					x += point[0];
+					y += point[1];
+			});
+			return [x / n, y / n] as [number, number];
+	};
+
+	const fetchParkingZones = async (cityName: string) => {
+			try {
+					const response = await fetch(`http://localhost:1337/test/city/${cityName}/parking-zones`);
+					if (!response.ok) {
+							throw new Error(`Error: ${response.statusText}`);
+					}
+
+					const zones = await response.json();
+					console.log("Fetched parking zones:", zones); // Log fetched parking zones
+
+					const polygons = zones
+							.filter((zone: any) => zone.city_name.toLowerCase() === cityName.toLowerCase())
+							.map((zone: any) => {
+									const centroid = calculateCentroid(zone.area);
+									return (
+											<React.Fragment key={zone._id}>
+													<Polygon positions={zone.area} color="green">
+															<Popup>
+																	<div className="popup-content">
+																			<h2>{zone.parking_id}</h2>
+																	</div>
+															</Popup>
+													</Polygon>
+													<Marker position={centroid} icon={parkingSpotMarker}>
+															<Popup>
+																	<div className="popup-content">
+																			<h2>{zone.parking_id}</h2>
+																	</div>
+															</Popup>
+													</Marker>
+											</React.Fragment>
+									);
+							});
+					console.log("Generated polygons and markers:", polygons); // Log generated polygons and markers
+
+					setParkingZonePolygons(polygons);
+					console.log("Parking zones fetched:", zones);
+			} catch (error) {
+					console.error("Error fetching parking zones:", error);
+			}
+	};
+
+	if (city) {
+			fetchCityBorders(city);
+			fetchBikes(city);
+			fetchChargingStations(cityNameDisplay[city]);
+			fetchParkingZones(cityNameDisplay[city]);
+	}
 	}, [city]);
 
 	// för att hinna hämta cityCenter och
 	// få kartan centrerad kring önskat område.
 	// tar egentligen bara någon ms men krävs för
 	// att kunna sköta kartritningen på smidigt sätt.
-  	if (!cityCenter) {
+	if (!cityCenter) {
 		return (
 			<div>
 				<h1>{city ? cityNameDisplay[city] : ""}</h1>
@@ -104,17 +217,12 @@ const Map: React.FC = () => {
 						}}
 					/>
 				)};
-				<Marker position={cityCenter} icon={scooterMarker}>
-					<Popup>
-						Vi kan använda popups som dessa för <br />
-						cyklar, laddstationer och parkeringar. <br />
-						Men med custom ikoner för vardera del.
-					</Popup>
-				</Marker>
+				{bikeMarkers}
+				{chargingStationMarkers}
+				{parkingZonePolygons}
 			</MapContainer>
 		</div>
 	);
-}
-
+};
 
 export default Map;
