@@ -13,6 +13,8 @@ import test from './routes/testRoutes.js';
 import service from './routes/serviceRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
+import trip from './routes/tripRoutes.js';
+
 
 dotenv.config();
 
@@ -32,6 +34,8 @@ app.use(helmet());
 app.use('/add', add);
 app.use('/get', get);
 app.use('/service', service);
+app.use('/trip', trip);
+
 
 app.use('/test', test);
 
