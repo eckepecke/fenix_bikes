@@ -12,10 +12,6 @@ router.get("/", async (req, res) => {
 router.post("/bike", async (req, res) => {
     let newBike = req.body.bike;
     
-    // city skulle vi kunna hämta via newBike
-    // i createBike, så skickar vi ett objekt
-    // och tar ut city den vägen
-
 
     // let city = req.body.city;
 
@@ -30,13 +26,8 @@ router.post("/bike", async (req, res) => {
     //         in_service: false
     //     },
     //     red_light: false,
+    //     active_trip: null,
     //     completed_trips: []
-    // }
-
-    // fake new test city object
-    // city =  {
-    //     _id: "674ec1e6d64b52c8cf519661",
-    //     name: "Lund",
     // }
 
     const result = await bikeManager.createBike(newBike);
@@ -103,6 +94,27 @@ router.post("/many/bikes", async (req, res) => {
     // }
 
     const result = await bikeManager.createManyBikes(bikes, city);
+
+    res.json(result);
+});
+
+// This needs to be adjusted later how id is generated
+router.post("/user", async (req, res) => {
+    let newUser = req.body.user;
+    // let city = req.body.city;
+
+    // fake new test user
+    // newUser =  {
+    //     name: "Test User",
+    //     payment_method: "prepaid",
+    //     password: "1234",
+    //     email: "test@email.se",
+    //     banned: false,
+    //     completed_trips: [],
+    //     user_id: null
+    // }
+
+    const result = await bikeManager.addUser(newUser);
 
     res.json(result);
 });

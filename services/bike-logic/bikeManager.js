@@ -16,6 +16,32 @@ const bikeManager = {
         return `B${counter.counter_value.toString().padStart(4, "0")}`;
     },
 
+    generateTripId: async function () {
+        const counterCollection = getCollection("counters");
+
+        // Increment and retrieve the updated counter
+        const counter = await counterCollection.findOneAndUpdate(
+            { _id: "trip_id" },
+            { $inc: { counter_value: 1 } },
+            { returnDocument: "after" }
+        );
+
+        return `T${counter.counter_value.toString().padStart(4, "0")}`;
+    },
+
+    generateUserId: async function () {
+        const counterCollection = getCollection("counters");
+
+        // Increment and retrieve the updated counter
+        const counter = await counterCollection.findOneAndUpdate(
+            { _id: "trip_id" },
+            { $inc: { counter_value: 1 } },
+            { returnDocument: "after" }
+        );
+
+        return `U${counter.counter_value.toString().padStart(4, "0")}`;
+    },
+
     createBike: async function createBike(bike) {
         let bikeCollection = getCollection("bikes");
         let cityCollection = getCollection("cities");
@@ -135,23 +161,41 @@ const bikeManager = {
         }
     },
 
-    // Not yet refactored
     getAllBikesInCity: async function getAllBikesInCity(cityName) {
+        let bikeCollection = getCollection("bikes");
+
         try {
             const cities = await getCities();
             const city = cities.find(city => city.name.toLowerCase() === cityName.toLowerCase());
-
 
             if (!city) {
                 console.error(`City '${cityName}' not found.`);
                 throw new Error(`City '${cityName}' not found.`);
             }
 
-            // Return the bikes for the found city
-            return city.bikes;
+            // Find all bikeobjects with the bike_ids and return
+            const bikes = await bikeCollection.find({ bike_id: { $in: city.bikes } }).toArray();
+
+            return bikes;
         } catch (e) {
             console.error(`Failed to retrive bikes from ${cityName}.`, e.message || e);
             throw new Error(`Failed to retrive bikes from ${cityName}.`);
+        }
+    },
+
+    addUser: async function addUser(user) {
+        let userCollection = getCollection("users");
+
+        try {
+            // add bike
+            const userId = await this.generateUserId();
+            user.user_id = userId;
+            const result = await userCollection.insertOne(user); 
+
+            return result;
+        } catch (e) {
+            console.error("Error creating new user:", e.message || e);
+            throw new Error(`Failed to add user ${user} to bike collection.`);
         }
     }
 }
