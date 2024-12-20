@@ -21,9 +21,7 @@ class _HireBikeState extends State<HireBike> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{
-        'bike_id': bikeID,
-      }),
+      body: jsonEncode(<String, String>{'bike_id': bikeID, 'user_id': 'U0011'}),
     );
     if (response.statusCode == 200) {
       print('success! Started bike');

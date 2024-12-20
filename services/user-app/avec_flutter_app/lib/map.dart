@@ -70,8 +70,8 @@ class _MapPageState extends State<MapPage> {
   // Fetches all the bikes and filters them on city and availabilty, only the available bikes in the right city are shown.
 
   Future<void> _fetchBikes() async {
-    final response =
-        await http.get(Uri.parse('http://localhost:1337/get/all/bikes'));
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/get/all/bikes/in/city/${widget.selectedCity}'));
     var bikes = <Bike>[];
     if (response.statusCode == 200) {
       var bikesData = json.decode(response.body);
@@ -82,13 +82,11 @@ class _MapPageState extends State<MapPage> {
 
       for (var bike in bikes) {
         print(bike);
-        if (bike.cityName == widget.selectedCity) {
-          if (bike.status.available == true) {
-            _markers.add(Marker(
-                key: Key(bike.bikeID),
-                point: LatLng(bike.location[0], bike.location[1]),
-                child: const Icon(Icons.place)));
-          }
+        if (bike.status.available == true) {
+          _markers.add(Marker(
+              key: Key(bike.bikeID),
+              point: LatLng(bike.location[0], bike.location[1]),
+              child: const Icon(Icons.place)));
         }
       }
     } else {
