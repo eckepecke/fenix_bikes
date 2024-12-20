@@ -17,7 +17,7 @@ class _HireBikeState extends State<HireBike> {
     var bikeID = _textFieldValue;
     print(bikeID);
     final response = await http.post(
-      Uri.parse('http://localhost:1337/test/start'),
+      Uri.parse('http://localhost:1337/trip/start'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
