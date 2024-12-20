@@ -2,14 +2,14 @@ import { getCollection } from "../db/collections.js"
 import { getCities } from "../db/cities.js"
 
 const bike = {
-    reportState : async function reportState(bikeId) {
+    reportState: async function reportState(bikeId) {
         let bikeCollection = getCollection("bikes");
         console.log(bikeId);
 
         try {
             const result = await bikeCollection.findOne({ bike_id: bikeId });
             //const warning = await this.checkForWarning(result)
-            
+
             // if (warning) {
             //     // do something
             // }
@@ -20,7 +20,7 @@ const bike = {
         }
     },
 
-    start : async function start(bikeId) {
+    start: async function start(bikeId) {
         let bikeCollection = getCollection("bikes");
         try {
             const result = await bikeCollection.updateOne(
@@ -42,7 +42,7 @@ const bike = {
         }
     },
 
-    stop : async function stop(bikeId) {
+    stop: async function stop(bikeId) {
         let bikeCollection = getCollection("bikes");
 
         try {
@@ -64,14 +64,14 @@ const bike = {
         }
     },
 
-    putToCharge : async function putToCharge(bikeId) {
+    putToCharge: async function putToCharge(bikeId) {
         let bikeCollection = getCollection("bikes");
 
         try {
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
                 {
-                    $set: { 
+                    $set: {
                         "status.available": false,
                         "status.in_service": true
                     }
@@ -87,14 +87,14 @@ const bike = {
         }
     },
 
-    stopCharging : async function stopCharging(bikeId) {
+    stopCharging: async function stopCharging(bikeId) {
         let bikeCollection = getCollection("bikes");
 
         try {
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
                 {
-                    $set: { 
+                    $set: {
                         "status.available": true,
                         "status.in_service": false
                     }
@@ -111,7 +111,7 @@ const bike = {
     },
 
     // Not yet refactored
-    checkForWarning : async function checkForWarning(bike) {
+    checkForWarning: async function checkForWarning(bike) {
         let db = await database.getDb();
         const city = await db.cityCollection.findOne(bike.city_id)
 
@@ -125,7 +125,7 @@ const bike = {
         let warning = false;
 
         if (!cityZone.includes(bike.location)) {
-            
+
             warning = true;
             // stop bike or something
         }
@@ -152,11 +152,11 @@ const bike = {
             // Then update `status.in_service`
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
-                { 
-                    $set: { 
+                {
+                    $set: {
                         "status.available": false,
                         "status.in_service": true
-                    } 
+                    }
                 },
                 { returnDocument: "after" }
             );
@@ -174,11 +174,11 @@ const bike = {
         try {
             const result = await bikeCollection.updateOne(
                 { bike_id: bikeId },
-                { 
-                    $set: { 
+                {
+                    $set: {
                         "status.available": true,
                         "status.in_service": false
-                    } 
+                    }
                 },
                 { returnDocument: "after" }
             );
