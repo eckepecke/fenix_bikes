@@ -15,20 +15,21 @@ import data from './trips/lund-trip.json' assert { type: "json" };
 // console.log(data[0].trip1.coords[0]);
 
 for (let coord in data[0].trip1.coords) {
-    setTimeout(async () => {
+    setTimeout(() => {
         console.log(data[0].trip1.coords[coord]);
-        await fetch("localhost:1337/test/update/location", {
+        let coordinates = data[0].trip1.coords[coord];
+        fetch("http://localhost:1337/test/location/update", {
             method: "POST",
             body: JSON.stringify({
                 bike_id: "B0024",
-                location: data[0].trip1.coords[coord]
+                location: coordinates
 
             }),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         });
-    }, coord * 2000);
+    }, coord * 5000);
     // console.log(data[0].trip1.coords[coord]);
 };
 
