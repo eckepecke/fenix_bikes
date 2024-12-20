@@ -10,16 +10,20 @@ router.get("/", async (req, res) => {
     res.json("hej tripRoutes");
 });
 
-router.post("/start/trip", async (req, res) => {
+router.post("/start", async (req, res) => {
     const bikeId = req.body.bike_id;
-    const result = await bike.start(bikeId);
+    const userId = req.body.user_id;
+
+    const tripId = await bikeManager.generateTripId();
+    const result = await bike.start(bikeId, tripId, userId);
     res.json(result);
 });
 
-
-router.post("/end/trip", async (req, res) => {
+router.post("/end", async (req, res) => {
     const bikeId = req.body.bike_id;
-    const result = await bike.stop(bikeId);
+    const userId = req.body.user_id;
+
+    const result = await bike.stop(bikeId, userId);
     res.json(result);
 });
 
