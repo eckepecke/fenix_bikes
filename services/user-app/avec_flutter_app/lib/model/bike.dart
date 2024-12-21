@@ -13,8 +13,14 @@ class Bike {
   @JsonKey(name: 'city_name', defaultValue: 'Okänd')
   final String cityName;
 
+  @JsonKey(name: 'bike_id', defaultValue: 'Okänt')
+  final String bikeID;
+
   const Bike(
-      {required this.location, required this.status, required this.cityName});
+      {required this.location,
+      required this.status,
+      required this.cityName,
+      required this.bikeID});
 
   factory Bike.fromJson(Map<String, dynamic> json) => _$BikeFromJson(json);
 
@@ -22,5 +28,5 @@ class Bike {
 
   @override
   String toString() =>
-      'Bike{location: $location, status: $status, cityName: $cityName}';
+      'Bike{location: $location, status: $status, cityName: $cityName, bikeID: $bikeID}';
 }

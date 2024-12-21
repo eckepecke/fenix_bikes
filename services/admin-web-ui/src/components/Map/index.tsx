@@ -1,4 +1,5 @@
-import React, { useEffect, useState, JSX } from "react";
+
+import React, { useEffect, useState, JSX, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON, Polygon } from "react-leaflet";
 import L from "leaflet";
@@ -6,14 +7,18 @@ import scooterIcon from "/src/assets/scooter-pin.png";
 import chargingIcon from "/src/assets/charging-station.png";
 import parkingIcon from "/src/assets/parking-spot.png";
 import "./index.css";
+import { io } from "socket.io-client";
+
 
 const Map: React.FC = () => {
 	const { city } = useParams<{ city: string }>();
 	const [cityBorders, setCityBorders] = useState<any>(null);
 	const [cityCenter, setCityCenter] = useState<[number, number] | null>(null);
+	const socket = useRef(io());
 	const [bikeMarkers, setBikeMarkers] = useState<JSX.Element[]>([]);
 	const [chargingStationMarkers, setChargingStationMarkers] = useState<JSX.Element[]>([]);
 	const [parkingZonePolygons, setParkingZonePolygons] = useState<JSX.Element[]>([]);
+
 
 	// ett sätt att bibehålla å, ä och ö när vi skriver ut stadens namn
 	const cityNameDisplay: { [key: string]: string } = {
@@ -44,7 +49,21 @@ const Map: React.FC = () => {
 	});
 
 	useEffect(() => {
-		document.title = city ? `Map ${cityNameDisplay[city]} - Avec` : "Map - Avec";
+
+		socket.current = io('localhost:1337');
+
+		socket.current.on("location_update", (data) => {
+			// Uppdatera cykelns postion på kartan
+		});
+
+		return () => {
+			socket.current.disconnect();
+		}
+	}, []);
+
+	useEffect(() => {
+		document.title = city ? `Map ${cityNameDisplay[city]} - Fenix` : 'Map - Fenix';
+
 
 		const fetchCityBorders = async (cityName: string) => {
 			try {
@@ -67,6 +86,10 @@ const Map: React.FC = () => {
 				console.error("Error fetching city data:", error);
 			}
 		};
+
+
+		city ? fetchCityBorders(city) : "";
+
 
 		const fetchBikes = async (cityName: string) => {
 			try {

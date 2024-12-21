@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_map_geojson/flutter_map_geojson.dart';
 import 'dart:convert';
 import 'model/bike.dart';
+import '/hire.dart';
 
 // Creates the map, locates the user and shows available bikes
 
@@ -69,7 +70,8 @@ class _MapPageState extends State<MapPage> {
   // Fetches all the bikes and filters them on city and availabilty, only the available bikes in the right city are shown.
 
   Future<void> _fetchBikes() async {
-    final response = await http.get(Uri.parse('http://localhost:1337/bikes'));
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/get/all/bikes/in/city/${widget.selectedCity}'));
     var bikes = <Bike>[];
     if (response.statusCode == 200) {
       var bikesData = json.decode(response.body);
@@ -80,12 +82,11 @@ class _MapPageState extends State<MapPage> {
 
       for (var bike in bikes) {
         print(bike);
-        if (bike.cityName == widget.selectedCity) {
-          if (bike.status.available == true) {
-            _markers.add(Marker(
-                point: LatLng(bike.location[0], bike.location[1]),
-                child: const Icon(Icons.place)));
-          }
+        if (bike.status.available == true) {
+          _markers.add(Marker(
+              key: Key(bike.bikeID),
+              point: LatLng(bike.location[0], bike.location[1]),
+              child: const Icon(Icons.place)));
         }
       }
     } else {
@@ -133,8 +134,8 @@ class _MapPageState extends State<MapPage> {
                   PolygonLayer(useAltRendering: true, polygons: [
                     Polygon(points: [
                       const LatLng(30, 40),
-                      LatLng(20, 50),
-                      LatLng(25, 45)
+                      const LatLng(20, 50),
+                      const LatLng(25, 45)
                     ], color: Colors.blue, label: 'Här är en polygon'),
                   ]),
                   RichAttributionWidget(
@@ -150,6 +151,20 @@ class _MapPageState extends State<MapPage> {
                   ),
                 ],
               ),
+              Expanded(
+                  child: Align(
+                      alignment: FractionalOffset.bottomCenter,
+                      child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const HireBike()),
+                                );
+                              },
+                              child: const Text('Hyr cykel')))))
             ],
           );
   }

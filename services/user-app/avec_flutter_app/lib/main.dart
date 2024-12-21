@@ -16,11 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return MaterialApp(
-      title: 'AVEC app',
+      title: 'Fenix app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromRGBO(46, 174, 99, 1)),
-        primaryColor: const Color.fromRGBO(46, 174, 99, 1),
+            seedColor: const Color.fromARGB(255, 211, 141, 76)),
+        primaryColor: const Color.fromARGB(255, 211, 141, 76),
         textTheme: GoogleFonts.fugazOneTextTheme(textTheme).copyWith(
           bodyMedium: GoogleFonts.oswald(textStyle: textTheme.bodyMedium),
           bodyLarge: GoogleFonts.fugazOne(textStyle: textTheme.bodyMedium),
@@ -29,15 +29,13 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'AVEC'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -51,8 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Image(
-              image: AssetImage('assets/avec-logo.png'), height: 50),
+          title: const Text('Fenix'),
         ),
         body: selectedCity == null
             ? Center(
