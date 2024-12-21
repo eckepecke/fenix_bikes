@@ -1,6 +1,8 @@
 import express from 'express';
 import { getCities } from '../../../db/cities.js';
 import { getBikes } from '../../../db/bikes.js';
+import { getParking, getAllParking } from '../../../db/parkingZones.js';
+import { getChargingStations, getAllChargingStations } from '../../../db/chargingStations.js';
 import { getUsers } from '../../../db/users.js';
 import { getTrips } from '../../../db/trips.js';
 
@@ -31,6 +33,7 @@ router.get("/generate", async (req, res) => {
     res.json([result1, result2]);
 });
 
+
 router.post("/location/update", async (req, res) => {
     let bikeId = req.body.bike_id;
     let location = req.body.location;
@@ -55,6 +58,33 @@ router.get("/location/report/:bikeId", async (req, res) => {
     res.json(result.location);
 
     // console.log(bikeId, coordinates);
+
+
+// GET /city/:city/parking-zones
+router.get("/city/:city/parking-zones", async (req, res) => {
+    const city = req.params.city;
+    const result = await getParking(city);
+    res.json(result);
+});
+
+// GET /all/parking-zones
+router.get("/all/parking-zones", async (req, res) => {
+    const result = await getAllParking();
+    res.json(result);
+});
+
+// GET /city/:city/charging-stations
+router.get("/city/:city/charging-stations", async (req, res) => {
+    const city = req.params.city;
+    const result = await getChargingStations(city);
+    res.json(result);
+});
+
+// GET /all/charging-stations
+router.get("/all/charging-stations", async (req, res) => {
+    const result = await getAllChargingStations();
+    res.json(result);
+
 });
 
 export default router;
