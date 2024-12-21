@@ -1,8 +1,5 @@
 # Secrets
 services/rest-api/.env
 services/admin-web-ui/.env
-<<<<<<< HEAD
 services/db/scripts/.env
-=======
-services/db/scripts/.env
->>>>>>> 4a344e8026312b3cde43f26ad64b90a466f5d59c
+services/user-web-ui/.env
