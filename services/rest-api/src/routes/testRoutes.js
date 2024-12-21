@@ -34,6 +34,32 @@ router.get("/generate", async (req, res) => {
 });
 
 
+router.post("/location/update", async (req, res) => {
+    let bikeId = req.body.bike_id;
+    let location = req.body.location;
+    // Fake bike id:
+    // bikeId = "B0010";
+    const result = await bike.updateLocation(bikeId, location);
+
+    res.json(result);
+    // console.log(bikeId, coordinates);
+});
+
+router.get("/location/report/:bikeId", async (req, res) => {
+    let bikeId = req.params.bikeId;
+    // Fake bike id:
+    // bikeId = "B0010";
+    // setTimeout(() => {
+    //     const result = bike.sendLocation(bikeId);
+    //     res.json(result);
+    // }, 10000)
+
+    const result = await bike.sendLocation(bikeId);
+    res.json(result.location);
+
+    // console.log(bikeId, coordinates);
+
+
 // GET /city/:city/parking-zones
 router.get("/city/:city/parking-zones", async (req, res) => {
     const city = req.params.city;
@@ -58,6 +84,7 @@ router.get("/city/:city/charging-stations", async (req, res) => {
 router.get("/all/charging-stations", async (req, res) => {
     const result = await getAllChargingStations();
     res.json(result);
+
 });
 
 export default router;
