@@ -48,17 +48,62 @@ const io = new Server(httpServer, {
     }
 });
 
+import simManager from '../../simulation/simulation.js';
 
 io.sockets.on('connection', function (socket) {
     console.log(socket.id); // Nått lång och slumpat
 
+    const simSetup = async () => {
 
-    // socket.timeout(5000).serverSideEmit("location_update", bike.sendLocation('B0013'), (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    // });
+        try {
+        // Generate 1000 bikes
+        const bikeArray = await simManager.generateBikes();
+    
+        // Generate 1000 customers (users)
+        const userArray = await simManager.generateUsers();
+    
+        // Create 1000 Trips
+        // Below is temporary for testing with only 2 trips
+        const tripObjects = await simManager.getSimCoordinates();
+
+        // Put them all together as a simulated trip
+        const simulatedTrips = {};
+
+        // Map all bikes to a trip and associate users with bikes and trips
+        bikeArray.forEach((bike, index) => {
+            const trip = tripObjects[index];
+            const user = userArray[index];
+
+            // Ensure that the trip and user exist
+            if (trip && user) {
+                simulatedTrips[bike.id] = {
+                    bike: bike.id,
+                    trip: trip.tripKey,
+                    coordinates: trip.coordinates,
+                    user: user.id,
+                    userName: user.name,
+                };
+            }
+        });
+        // console.log(simulatedTrips);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    };
+
+    simSetup();
+
+    setInterval(() => {
+        // At some Interval send the simulatedTrips with a counter telling Map
+        // what coordinate to render
+        if (simulatedTrips) {
+            socket.emit('location_update', simulatedTrips, coordinateCounter);
+        } else {
+            console.log("Data is not yet fetched, waiting...");
+        }
+    }, 5000);
 });
+
 
 
 app.get("/", (req, res) => {
