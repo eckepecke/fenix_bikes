@@ -20,7 +20,7 @@ const Cities: React.FC = () => {
 
 	return (
 	<div>
-		<h1>Citites</h1>
+		<h1>Cities</h1>
       	<ul className="city-list">
 			{cities.map((city, index) => (
 				<li 

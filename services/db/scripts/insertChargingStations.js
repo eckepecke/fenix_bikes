@@ -8,8 +8,8 @@ const DB_USER = process.env.DB_USER;
 const DB_PASS = process.env.DB_PASS;
 const uri = `mongodb+srv://${DB_USER}:${DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 
-const city = "skelleftea"; // The name of the city in the data file
-const cityName = "Skelleftea"; // The name of the city in the cities collection
+const city = "solna"; // The name of the city in the data file
+const cityName = "Solna"; // The name of the city in the cities collection
 
 async function main() {
 	const client = new MongoClient(uri);
@@ -48,6 +48,7 @@ async function main() {
 		for (const station of chargingStationsData) {
 			const nextId = await getNextChargingId();
 			station.charging_id = `C${nextId.toString().padStart(4, "0")}`;
+			station.city_name = cityName;
 			station.plugs = [
 				{ id: 1, available: true },
 				{ id: 2, available: true },
