@@ -51,7 +51,7 @@ const Map: React.FC = () => {
 		socket.current = io('localhost:1337');
 
 		socket.current.on("location_update", (data) => {
-			// Uppdatera cykelns postion på kartan
+			console.log(data);
 		});
 
 		return () => {
