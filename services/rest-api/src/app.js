@@ -11,6 +11,8 @@ import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
 import service from './routes/serviceRoutes.js';
+import { Server } from "socket.io";
+import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
 
 
@@ -37,9 +39,28 @@ app.use('/trip', trip);
 
 app.use('/test', test);
 
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+    cors: {
+        origin: ['http://localhost:5173']
+    }
+});
+
+
+io.sockets.on('connection', function (socket) {
+    console.log(socket.id); // Nått lång och slumpat
+
+    socket.on("location_update", function (data) {
+        socket.join(data["id"]);
+
+        io.in(data["id"]).emit("location_update", data);
+    })
+});
+
 
 app.get("/", (req, res) => {
-    res.send("Greetings, friend of AVEC!");
+    res.send("Greetings, friend of Fenix!");
 });
 
 // GET /users
@@ -59,7 +80,7 @@ const startServer = async () => {
 
         // Start the Express server
         const port = process.env.PORT || 1338;
-        app.listen(port, () => {
+        httpServer.listen(port, () => {
             console.log(`Server is running on port ${port}`);
         });
     } catch (error) {
