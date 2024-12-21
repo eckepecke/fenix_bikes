@@ -283,6 +283,19 @@ const bike = {
             throw new Error(`Failed to update location for bike with bike_id: ${bikeId}.`);
         }
     },
+
+    sendLocation: async function sendLocation(bikeId) {
+        let bikeCollection = getCollection("bikes");
+
+        try {
+            const result = await bikeCollection.findOne({ bike_id: bikeId });
+
+            return result.location;
+        } catch (e) {
+            console.error(e);
+            throw new Error(`Failed to update location for bike with bike_id: ${bikeId}.`);
+        }
+    },
 }
 
 export default bike;

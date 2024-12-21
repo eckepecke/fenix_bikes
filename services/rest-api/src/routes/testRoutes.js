@@ -42,4 +42,19 @@ router.post("/location/update", async (req, res) => {
     // console.log(bikeId, coordinates);
 });
 
+router.get("/location/report/:bikeId", async (req, res) => {
+    let bikeId = req.params.bikeId;
+    // Fake bike id:
+    // bikeId = "B0010";
+    // setTimeout(() => {
+    //     const result = bike.sendLocation(bikeId);
+    //     res.json(result);
+    // }, 10000)
+
+    const result = await bike.sendLocation(bikeId);
+    res.json(result.location);
+
+    // console.log(bikeId, coordinates);
+});
+
 export default router;
