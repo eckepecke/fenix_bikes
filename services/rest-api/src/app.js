@@ -14,6 +14,7 @@ import service from './routes/serviceRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
+import bike from '../../bike-logic/bike.js'
 
 
 dotenv.config();
@@ -51,11 +52,12 @@ const io = new Server(httpServer, {
 io.sockets.on('connection', function (socket) {
     console.log(socket.id); // Nått lång och slumpat
 
-    socket.on("location_update", function (data) {
-        socket.join(data["id"]);
 
-        io.in(data["id"]).emit("location_update", data);
-    })
+    // socket.timeout(5000).serverSideEmit("location_update", bike.sendLocation('B0013'), (err) => {
+    //     if (err) {
+    //         console.log(err);
+    //     }
+    // });
 });
 
 
