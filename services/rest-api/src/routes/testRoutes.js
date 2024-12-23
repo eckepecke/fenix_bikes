@@ -59,32 +59,6 @@ router.get("/location/report/:bikeId", async (req, res) => {
 
     // console.log(bikeId, coordinates);
 
-
-// GET /city/:city/parking-zones
-router.get("/city/:city/parking-zones", async (req, res) => {
-    const city = req.params.city;
-    const result = await getParking(city);
-    res.json(result);
-});
-
-// GET /all/parking-zones
-router.get("/all/parking-zones", async (req, res) => {
-    const result = await getAllParking();
-    res.json(result);
-});
-
-// GET /city/:city/charging-stations
-router.get("/city/:city/charging-stations", async (req, res) => {
-    const city = req.params.city;
-    const result = await getChargingStations(city);
-    res.json(result);
-});
-
-// GET /all/charging-stations
-router.get("/all/charging-stations", async (req, res) => {
-    const result = await getAllChargingStations();
-    res.json(result);
-
 });
 
 export default router;

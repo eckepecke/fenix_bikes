@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, JSX, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { MapContainer, Marker, Popup, TileLayer, GeoJSON, Polygon } from "react-leaflet";
@@ -106,9 +105,8 @@ const Map: React.FC = () => {
 							<Popup>
 								<div className="popup-content">
 									<h2>{bike.bike_id}</h2>
-									<p>Available: {bike.status.available}</p>
-									<p>Speed: {bike.speed}</p>
-									<p>Battery: {bike.status.battery_level}</p>
+									<p>Available: {bike.status.available !== false ? "True" : "False"}</p><p>Speed: {bike.speed}</p>
+									<p>Battery: {bike.status.battery_level !== null ? bike.status.battery_level : "null"}</p>
 								</div>
 							</Popup>
 						</Marker>
@@ -122,13 +120,13 @@ const Map: React.FC = () => {
 
 		const fetchChargingStations = async (cityName: string) => {
 			try {
-				const response = await fetch(`http://localhost:1337/test/city/${cityName}/charging-stations`);
+				const response = await fetch(`http://localhost:1337/get/city/${cityName}/charging-stations`);
 				if (!response.ok) {
 					throw new Error(`Error: ${response.statusText}`);
 				}
 
 				const stations = await response.json();
-				console.log("Fetched stations:", stations); // Log fetched stations
+				console.log("Fetched stations:", stations);
 
 				const markers = stations
 					.filter((station: any) => station.city_name.toLowerCase() === cityName.toLowerCase())
@@ -137,11 +135,14 @@ const Map: React.FC = () => {
 							<Popup>
 								<div className="popup-content">
 									<h2>{station.charging_id}</h2>
+									{station.plugs.map((plug: any) => (
+										<p key={plug.id}>Plug {plug.id}: {plug.available ? "Available" : "Occupied"}</p>
+									))}
 								</div>
 							</Popup>
 						</Marker>
 					));
-				console.log("Generated markers:", markers); // Log generated markers
+				console.log("Generated markers:", markers);
 
 				setChargingStationMarkers(markers);
 				console.log("stations fetched:", stations);
@@ -161,13 +162,13 @@ const Map: React.FC = () => {
 
 	const fetchParkingZones = async (cityName: string) => {
 			try {
-					const response = await fetch(`http://localhost:1337/test/city/${cityName}/parking-zones`);
+					const response = await fetch(`http://localhost:1337/get/city/${cityName}/parking-zones`);
 					if (!response.ok) {
 							throw new Error(`Error: ${response.statusText}`);
 					}
 
 					const zones = await response.json();
-					console.log("Fetched parking zones:", zones); // Log fetched parking zones
+					console.log("Fetched parking zones:", zones);
 
 					const polygons = zones
 							.filter((zone: any) => zone.city_name.toLowerCase() === cityName.toLowerCase())
@@ -192,7 +193,7 @@ const Map: React.FC = () => {
 											</React.Fragment>
 									);
 							});
-					console.log("Generated polygons and markers:", polygons); // Log generated polygons and markers
+					console.log("Generated polygons and markers:", polygons);
 
 					setParkingZonePolygons(polygons);
 					console.log("Parking zones fetched:", zones);
@@ -209,10 +210,7 @@ const Map: React.FC = () => {
 	}
 	}, [city]);
 
-	// för att hinna hämta cityCenter och
-	// få kartan centrerad kring önskat område.
-	// tar egentligen bara någon ms men krävs för
-	// att kunna sköta kartritningen på smidigt sätt.
+// Loading message if cityCenter is not set
 	if (!cityCenter) {
 		return (
 			<div>
@@ -225,10 +223,11 @@ const Map: React.FC = () => {
 	return (
 		<div>
 			<h1>{city ? cityNameDisplay[city] : ""}</h1>
-			<MapContainer center={cityCenter} zoom={12}>
+			<MapContainer center={cityCenter} zoom={12} maxZoom={20}>
 				<TileLayer
 					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					maxZoom={20}
 				/>
 				{cityBorders && (
 					<GeoJSON
