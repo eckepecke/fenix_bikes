@@ -63,14 +63,14 @@ const Map: React.FC = () => {
   });
 
   useEffect(() => {
-    socket.current = io("http://localhost:1337"); // Add "http://"
+    socket.current = io("http://localhost:1337");
 
     socket.current.on("connect", () => {
       console.log("Connected to server with ID: ", socket.current?.id);
     });
 
     socket.current.on("location_update", (data: LocationUpdateData) => {
-      console.log("Received location update: ", data);
+      console.log("Received bike data: ", data);
     });
   }, []);
 

@@ -6,7 +6,7 @@ import { connectToDatabase } from "../../db/db.js";
 import { getUsers } from '../../db/users.js';
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
-// import bikeManager from "../../bike-logic/bikeManager.js"
+import simManager from "../../simulation/simManager.js"
 import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
@@ -15,6 +15,8 @@ import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
 import bike from '../../bike-logic/bike.js'
+
+
 
 
 dotenv.config();
@@ -48,27 +50,24 @@ const io = new Server(httpServer, {
     }
 });
 
-import simManager from '../../simulation/simulation.js';
-
 io.sockets.on('connection', function (socket) {
     console.log(socket.id); // Nått lång och slumpat
+    let simulatedTrips = {}; // Define at a higher scope
 
     const simSetup = async () => {
 
         try {
         // Generate 1000 bikes
-        const bikeArray = await simManager.generateBikes();
+        const bikeArray = await simManager.generateBikes(2);
     
         // Generate 1000 customers (users)
-        const userArray = await simManager.generateUsers();
+        const userArray = await simManager.generateUsers(2);
     
         // Create 1000 Trips
         // Below is temporary for testing with only 2 trips
         const tripObjects = await simManager.getSimCoordinates();
 
         // Put them all together as a simulated trip
-        const simulatedTrips = {};
-
         // Map all bikes to a trip and associate users with bikes and trips
         bikeArray.forEach((bike, index) => {
             const trip = tripObjects[index];
@@ -76,16 +75,18 @@ io.sockets.on('connection', function (socket) {
 
             // Ensure that the trip and user exist
             if (trip && user) {
-                simulatedTrips[bike.id] = {
-                    bike: bike.id,
+                simulatedTrips[index] = {
+                    bike: bike,
                     trip: trip.tripKey,
                     coordinates: trip.coordinates,
-                    user: user.id,
-                    userName: user.name,
+                    user: user.user_id,
+                    start_location: trip.coordinates[0],
+                    end_location: trip.coordinates[1],
+                    current_location: trip.coordinates[0]
                 };
             }
         });
-        // console.log(simulatedTrips);
+        console.log(simulatedTrips);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -94,10 +95,23 @@ io.sockets.on('connection', function (socket) {
     simSetup();
 
     setInterval(() => {
+        Object.values(simulatedTrips).forEach((simTrip) => {
+            simManager.updateLocation(simTrip);
+            console.log("hej1");
+
+            console.log(simTrip);
+            console.log(simTrip.bike.location);
+
+            console.log("hej2");
+
+        });
+  
+        // Pop top coord
         // At some Interval send the simulatedTrips with a counter telling Map
         // what coordinate to render
         if (simulatedTrips) {
-            socket.emit('location_update', simulatedTrips, coordinateCounter);
+            console.log("emitting!!")
+            socket.emit('location_update', simulatedTrips);
         } else {
             console.log("Data is not yet fetched, waiting...");
         }
