@@ -62,6 +62,32 @@ const Map: React.FC = () => {
     popupAnchor: [1, -20],
   });
 
+  const updateBikeMarkers = (updateObject: LocationUpdateData) => {
+    console.log("Object in updatemethod: ", updateObject);
+    const bikeObjects = Object.values(updateObject).map(
+      (item: any) => item.bike
+    );
+    console.log(bikeObjects);
+
+    const markers = bikeObjects
+      //   .filter(
+      //     (bike: any) => bike.city_name.toLowerCase() === cityName.toLowerCase()
+      //   )
+      .map((bike: any) => (
+        <Marker key={bike._id} position={bike.location} icon={scooterMarker}>
+          <Popup>
+            <div className="popup-content">
+              <h2>{bike.bike_id}</h2>
+              <p>Available: {bike.status.available ? "Yes" : "No"}</p>
+              <p>Speed: {bike.speed}</p>
+              <p>Battery: {bike.status.battery_level ?? "N/A"}</p>
+            </div>
+          </Popup>
+        </Marker>
+      ));
+    setBikeMarkers(markers);
+  };
+
   useEffect(() => {
     socket.current = io("http://localhost:1337");
 
@@ -71,6 +97,7 @@ const Map: React.FC = () => {
 
     socket.current.on("location_update", (data: LocationUpdateData) => {
       console.log("Received bike data: ", data);
+      updateBikeMarkers(data);
     });
   }, []);
 
