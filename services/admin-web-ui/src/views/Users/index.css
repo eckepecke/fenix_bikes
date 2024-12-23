@@ -1,0 +1,28 @@
+.user-list {
+	list-style: none;
+    font-size: 1.4em;
+}
+
+.user-list li {
+	margin: 0.5em 0;
+}
+
+.user-list li {
+	color: var(--color-black);
+}
+
+.user-list li:hover {
+    cursor: pointer;
+    
+    /* om vi vill följa hover-mönstret i menyn */
+    width: fit-content;
+    margin-bottom: -4px;
+	border-bottom: 4px solid var(--color-green-primary);
+    
+    /* alternativ hover-effekt */
+    /* color: var(--color-green-primary); */
+}
+
+.user-list li.li-last-user:hover {
+    margin-bottom: 7px;
+}
