@@ -15,6 +15,7 @@ const simManager = {
                     battery_level: null,
                     in_service: null,
                 },
+                active_trip: null,
                 red_light: false,
                 completed_trips: [],
             };
@@ -50,7 +51,7 @@ const simManager = {
     },
 
     updateLocation: function updateLocation(simulatedTrip) {
-        if (simulatedTrip.coordinates && simulatedTrip.coordinates.length > 0) {
+        if (simulatedTrip.coordinates && simulatedTrip.coordinates.length > 1) {
             simulatedTrip.coordinates.shift();
             simulatedTrip.bike.location = simulatedTrip.coordinates[0];
         }

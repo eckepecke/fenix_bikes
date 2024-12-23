@@ -75,6 +75,9 @@ io.sockets.on('connection', function (socket) {
 
             // Ensure that the trip and user exist
             if (trip && user) {
+
+                bike.location = trip.coordinates[0];
+                bike.active_trip = trip.tripKey;
                 simulatedTrips[index] = {
                     bike: bike,
                     trip: trip.tripKey,
@@ -82,10 +85,12 @@ io.sockets.on('connection', function (socket) {
                     user: user.user_id,
                     start_location: trip.coordinates[0],
                     end_location: trip.coordinates[1],
-                    current_location: trip.coordinates[0]
+                    current_location: trip.coordinates[0],
+                    city: bike.city_name
                 };
             }
         });
+
         console.log(simulatedTrips);
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -95,23 +100,20 @@ io.sockets.on('connection', function (socket) {
     simSetup();
 
     setInterval(() => {
+        if (simulatedTrips) {
+
         Object.values(simulatedTrips).forEach((simTrip) => {
+            console.log("updating location..");
             simManager.updateLocation(simTrip);
-            console.log("hej1");
 
             console.log(simTrip);
-            console.log(simTrip.bike.location);
 
-            console.log("hej2");
 
         });
-  
-        // Pop top coord
-        // At some Interval send the simulatedTrips with a counter telling Map
-        // what coordinate to render
-        if (simulatedTrips) {
-            console.log("emitting!!")
-            socket.emit('location_update', simulatedTrips);
+        console.log("emitting!!")
+
+        socket.emit('location_update', simulatedTrips);
+
         } else {
             console.log("Data is not yet fetched, waiting...");
         }
