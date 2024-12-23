@@ -1,10 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Users: React.FC = () => {
+	const [fetchedUsers, setFetchedUsers] = useState<any[]>([]);
+
 	useEffect(() => {
 		document.title = "Users - Avec";
+
+		const fetchUsers = async () => {
+			try {
+				const response = await fetch("http://localhost:1337/get/all/users");
+				const data = await response.json();
+				setFetchedUsers(data);
+			} catch (error) {
+				console.error("Error fetching users:", error);
+			}
+		};
+
+		fetchUsers();
 	}, []);
 
 	const navigate = useNavigate();
@@ -12,28 +26,6 @@ const Users: React.FC = () => {
 	const displayUser = (user: string) => {
 		navigate(`/user/${user}`);
 	};
-
-	const fetchedUsers = [
-		{
-			_id: "676529d83fcc9576927e5c74",
-			name: "August Levinson",
-			payment_method: "prepaid",
-			password: "1234",
-			email: "augustlevinson@gmail.com",
-			banned: false,
-			completed_trips: [],
-		},
-		{
-			_id: "6765617d4cd3ac975e5ca6fd",
-			name: "Test User",
-			payment_method: "prepaid",
-			password: "1234",
-			email: "test@email.se",
-			banned: false,
-			completed_trips: ["T0013", "T0016", "T0017"],
-			user_id: "U0011",
-		},
-	];
 
 	return (
 		<div>
