@@ -76,7 +76,13 @@ app.get("/users", async (req, res) => {
 const startServer = async () => {
     try {
         // Connect to the database
-        const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+
+        let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+
+        if (process.env.NODE_ENV === 'test') {
+            // We can even use MongoDB Atlas for testing
+            mongoUri = "mongodb://localhost:27017/test";
+        }
 
         await connectToDatabase(mongoUri);
 
@@ -86,9 +92,11 @@ const startServer = async () => {
             console.log(`Server is running on port ${port}`);
         });
     } catch (error) {
-        console.error('Error starting server:', error);
+        console.log('Error starting server:', error);
     }
 };
 
 // Start the server
 startServer();
+
+export default app;
