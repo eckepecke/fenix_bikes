@@ -1,0 +1,179 @@
+[
+    {
+        "_id": "6762eefe311a733d682d9911",
+        "bike_id": "B0012",
+        "speed": 0,
+        "location": [
+            64.7491,
+            20.9543
+        ],
+        "city_name": "Skellefteå",
+        "status": {
+            "available": false,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762eefe311a733d682d9912",
+        "bike_id": "B0013",
+        "speed": 0,
+        "location": [
+            64.7484,
+            20.9577
+        ],
+        "city_name": "Skelleftea",
+        "status": {
+            "available": true,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": [
+            "T0016",
+            "T0017"
+        ],
+        "active_trip": null
+    },
+    {
+        "_id": "6762eefe311a733d682d9913",
+        "bike_id": "B0014",
+        "speed": 0,
+        "location": [
+            64.7505,
+            20.9512
+        ],
+        "city_name": "Skelleftea",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762ef81875a55fea3b11561",
+        "bike_id": "B0015",
+        "speed": 0,
+        "location": [
+            55.70466,
+            13.191007
+        ],
+        "city_name": "Lund",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762ef81875a55fea3b11562",
+        "bike_id": "B0017",
+        "speed": 0,
+        "location": [
+            55.70584,
+            13.1877
+        ],
+        "city_name": "Lund",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762ef81875a55fea3b11563",
+        "bike_id": "B0016",
+        "speed": 0,
+        "location": [
+            55.703201,
+            13.193693
+        ],
+        "city_name": "Lund",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762eff5c1381036e6700a37",
+        "bike_id": "B0018",
+        "speed": 0,
+        "location": [
+            59.3588,
+            18.0287
+        ],
+        "city_name": "Solna",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762eff5c1381036e6700a38",
+        "bike_id": "B0020",
+        "speed": 0,
+        "location": [
+            59.3595,
+            18.0295
+        ],
+        "city_name": "Solna",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "6762eff5c1381036e6700a39",
+        "bike_id": "B0019",
+        "speed": 0,
+        "location": [
+            59.356,
+            18.028
+        ],
+        "city_name": "Solna",
+        "status": {
+            "available": null,
+            "battery_level": null,
+            "in_service": null
+        },
+        "red_light": false,
+        "completed_trips": []
+    },
+    {
+        "_id": "676561794cd3ac975e5ca6fc",
+        "location": [
+            55.70142,
+            13.19706
+        ],
+        "city_name": "Lund",
+        "speed": 0,
+        "status": {
+            "available": false,
+            "battery_level": 100,
+            "in_service": false
+        },
+        "red_light": false,
+        "active_trip": "T0014",
+        "completed_trips": [
+            "T0013"
+        ],
+        "bike_id": "B0024"
+    }
+]

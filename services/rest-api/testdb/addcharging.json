@@ -1,0 +1,462 @@
+[
+    {
+        "_id": "6765759134e86f829a8bf7e8",
+        "location": [
+            55.702401,
+            13.193124
+        ],
+        "charging_id": "C0032",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759134e86f829a8bf7e9",
+        "location": [
+            55.700136,
+            13.19771
+        ],
+        "charging_id": "C0033",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759134e86f829a8bf7ea",
+        "location": [
+            55.724272,
+            13.204762
+        ],
+        "charging_id": "C0034",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759134e86f829a8bf7eb",
+        "location": [
+            55.720742,
+            13.158875
+        ],
+        "charging_id": "C0035",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759134e86f829a8bf7ec",
+        "location": [
+            55.699379,
+            13.181963
+        ],
+        "charging_id": "C0036",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759134e86f829a8bf7ed",
+        "location": [
+            55.717583,
+            13.225983
+        ],
+        "charging_id": "C0037",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759234e86f829a8bf7ee",
+        "location": [
+            55.714799,
+            13.223816
+        ],
+        "charging_id": "C0038",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759234e86f829a8bf7ef",
+        "location": [
+            55.694847,
+            13.227083
+        ],
+        "charging_id": "C0039",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "6765759234e86f829a8bf7f0",
+        "location": [
+            55.706532,
+            13.190913
+        ],
+        "charging_id": "C0040",
+        "city_name": "Lund",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676577db6c10ea1ec5a2be50",
+        "location": [
+            64.756973,
+            20.944941
+        ],
+        "charging_id": "C0041",
+        "city_name": "Skellefteå",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676577db6c10ea1ec5a2be51",
+        "location": [
+            64.758574,
+            20.95552
+        ],
+        "charging_id": "C0042",
+        "city_name": "Skellefteå",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676577db6c10ea1ec5a2be52",
+        "location": [
+            64.751592,
+            20.944179
+        ],
+        "charging_id": "C0043",
+        "city_name": "Skellefteå",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676577db6c10ea1ec5a2be53",
+        "location": [
+            64.743756,
+            20.954854
+        ],
+        "charging_id": "C0044",
+        "city_name": "Skellefteå",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676577dc6c10ea1ec5a2be54",
+        "location": [
+            64.755747,
+            20.972128
+        ],
+        "charging_id": "C0045",
+        "city_name": "Skellefteå",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578451c3bdc14d35ccf87",
+        "location": [
+            59.35074,
+            18.020539
+        ],
+        "charging_id": "C0046",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578451c3bdc14d35ccf88",
+        "location": [
+            59.353507,
+            18.034133
+        ],
+        "charging_id": "C0047",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578461c3bdc14d35ccf89",
+        "location": [
+            59.361075,
+            17.998347
+        ],
+        "charging_id": "C0048",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578461c3bdc14d35ccf8b",
+        "location": [
+            59.358716,
+            18.000026
+        ],
+        "charging_id": "C0050",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578461c3bdc14d35ccf8c",
+        "location": [
+            59.378862,
+            17.996678
+        ],
+        "charging_id": "C0051",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    },
+    {
+        "_id": "676578461c3bdc14d35ccf8d",
+        "location": [
+            59.359216,
+            17.984147
+        ],
+        "charging_id": "C0052",
+        "city_name": "Solna",
+        "plugs": [
+            {
+                "id": 1,
+                "available": true
+            },
+            {
+                "id": 2,
+                "available": true
+            },
+            {
+                "id": 3,
+                "available": true
+            }
+        ]
+    }
+]

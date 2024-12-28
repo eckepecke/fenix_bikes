@@ -1,8 +1,8 @@
 import express from 'express';
 import { getCities } from '../../../db/cities.js';
 import { getBikes } from '../../../db/bikes.js';
-import bikeManager from "../../../bike-logic/bikeManager.js"
-import bike from "../../../bike-logic/bike.js"
+import bikeManager from "../../../bike-logic/bikeManager.js";
+import bike from "../../../bike-logic/bike.js";
 
 const router = express.Router();
 
@@ -16,6 +16,7 @@ router.post("/start", async (req, res) => {
 
     const tripId = await bikeManager.generateTripId();
     const result = await bike.start(bikeId, tripId, userId);
+
     res.json(result);
 });
 
@@ -24,6 +25,7 @@ router.post("/end", async (req, res) => {
     const userId = req.body.user_id;
 
     const result = await bike.stop(bikeId, userId);
+
     res.json(result);
 });
 
