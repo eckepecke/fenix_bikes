@@ -24,3 +24,14 @@ describe("GET /get/all/bikes", () => {
         expect(res.body).toHaveLength(10);
     });
 });
+
+describe("GET /get/all/cities", () => {
+    it("should return all cities in database", async () => {
+        const res = await request(app)
+            .get("/get/all/cities")
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.body).toHaveLength(3);
+    });
+});

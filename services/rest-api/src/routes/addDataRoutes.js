@@ -1,5 +1,5 @@
 import express from 'express';
-import bikeManager from "../../../bike-logic/bikeManager.js"
+import bikeManager from "../../../bike-logic/bikeManager.js";
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 // och vice versa
 router.post("/bike", async (req, res) => {
     let newBike = req.body.bike;
-    
+
 
     // let city = req.body.city;
 

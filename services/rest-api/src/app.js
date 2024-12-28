@@ -14,7 +14,7 @@ import service from './routes/serviceRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
-import bike from '../../bike-logic/bike.js'
+import bike from '../../bike-logic/bike.js';
 
 
 dotenv.config();
@@ -68,6 +68,7 @@ app.get("/", (req, res) => {
 // GET /users
 app.get("/users", async (req, res) => {
     const result = await getUsers();
+
     res.json(result);
 });
 
@@ -88,6 +89,7 @@ const startServer = async () => {
 
         // Start the Express server
         const port = process.env.PORT || 1338;
+
         httpServer.listen(port, () => {
             console.log(`Server is running on port ${port}`);
         });
