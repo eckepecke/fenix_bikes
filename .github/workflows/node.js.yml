@@ -30,5 +30,8 @@ jobs:
         mongodb-version: ${{ matrix.mongodb-version }}
 
     - run: npm install
-    - run: npm buildtests 
+      working-directory: services/rest-api
+    - run: npm buildtests
+      working-directory: services/rest-api
     - run: npm test
+      working-directory: services/rest-api
