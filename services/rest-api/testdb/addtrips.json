@@ -1,0 +1,59 @@
+[
+    {
+        "_id": "676561ea2c7ab4cc9a5416cc",
+        "trip_id": "T0013",
+        "start_time": "2024-12-20T12:24:10.795Z",
+        "end_time": "2024-12-20T12:24:55.936Z",
+        "start_location": [
+            55.7047,
+            13.191
+        ],
+        "end_location": [
+            55.7047,
+            13.191
+        ],
+        "user_id": "U0011"
+    },
+    {
+        "_id": "6765851ba7e19bfaf4163323",
+        "trip_id": "T0014",
+        "start_time": "2024-12-20T14:54:19.756Z",
+        "end_time": null,
+        "start_location": [
+            55.7047,
+            13.191
+        ],
+        "end_location": null,
+        "user_id": "U0011"
+    },
+    {
+        "_id": "676585ecb54b2c6b9b64913d",
+        "trip_id": "T0016",
+        "start_time": "2024-12-20T14:57:48.869Z",
+        "end_time": "2024-12-20T14:57:53.077Z",
+        "start_location": [
+            64.7484,
+            20.9577
+        ],
+        "end_location": [
+            64.7484,
+            20.9577
+        ],
+        "user_id": "U0011"
+    },
+    {
+        "_id": "6766c367cc9203c0b38e8e51",
+        "trip_id": "T0017",
+        "start_time": "2024-12-21T13:32:23.531Z",
+        "end_time": "2024-12-21T13:32:35.851Z",
+        "start_location": [
+            64.7484,
+            20.9577
+        ],
+        "end_location": [
+            64.7484,
+            20.9577
+        ],
+        "user_id": "U0011"
+    }
+]
