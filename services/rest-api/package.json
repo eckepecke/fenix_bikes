@@ -7,7 +7,7 @@
     "dev": "node src/app.js",
     "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
     "buildtests": "mongosh test --eval 'db.dropDatabase()' && mongosh use test",
-    "testimport": "mongoimport --db test -c bikes --jsonArray testdb.json"
+    "testimport": "cd testdb && mongoimport --db test -c bikes --jsonArray addbikes.json"
   },
   "keywords": [],
   "author": "",
