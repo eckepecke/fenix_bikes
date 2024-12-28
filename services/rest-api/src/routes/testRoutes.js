@@ -6,8 +6,8 @@ import { getChargingStations, getAllChargingStations } from '../../../db/chargin
 import { getUsers } from '../../../db/users.js';
 import { getTrips } from '../../../db/trips.js';
 
-import bikeManager from "../../../bike-logic/bikeManager.js"
-import bike from "../../../bike-logic/bike.js"
+import bikeManager from "../../../bike-logic/bikeManager.js";
+import bike from "../../../bike-logic/bike.js";
 
 
 const router = express.Router();
@@ -55,10 +55,10 @@ router.get("/location/report/:bikeId", async (req, res) => {
     // }, 10000)
 
     const result = await bike.sendLocation(bikeId);
+
     res.json(result.location);
 
     // console.log(bikeId, coordinates);
-
 });
 
 export default router;
