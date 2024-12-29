@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import UserDetails from "../../components/UserDetails";
 
 const RideHistory: React.FC = () => {
 	useEffect(() => {
@@ -7,6 +8,7 @@ const RideHistory: React.FC = () => {
 	return (
 		<div>
 			<h1>Profile</h1>
+			<UserDetails />
 		</div>
 	);
 };

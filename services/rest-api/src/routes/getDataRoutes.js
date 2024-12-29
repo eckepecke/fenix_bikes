@@ -4,7 +4,7 @@ import { getBikes } from "../../../db/bikes.js";
 import { getParking, getAllParking } from "../../../db/parkingZones.js";
 import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
 import { getUsers } from "../../../db/users.js";
-import { getTrips } from "../../../db/trips.js";
+import { getTrip, getTrips } from "../../../db/trips.js";
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
@@ -102,6 +102,14 @@ router.get("/city/:city/charging-stations", async (req, res) => {
 // GET /all/charging-stations
 router.get("/all/charging-stations", async (req, res) => {
     const result = await getAllChargingStations();
+
+    res.json(result);
+});
+
+// GET /trip/:id
+router.get("/trip/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await getTrip(id);
 
     res.json(result);
 });
