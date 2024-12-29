@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import Receipts from '../../components/Receipts';
+import CompletedRides from '../../components/CompletedTrips';
 
 const RideHistory: React.FC = () => {
 	useEffect(() => {
@@ -8,8 +8,8 @@ const RideHistory: React.FC = () => {
 	return (
 		<div>
 			<h1>Ride History</h1>
-            <p>Overview of your past rides.</p>
-			{/* <Receipts /> */}
+      <p>Overview of your past rides.</p>
+			<CompletedRides />
 		</div>
 	);
 };
