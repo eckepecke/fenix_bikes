@@ -10,17 +10,14 @@ interface User {
   user_id?: string;
 }
 
-// Fetch user data
-const FetchUser = async (userId: string): Promise<User | null> => {
+const FetchUser = async (userEmail: string): Promise<User | null> => {
   try {
-    const response = await fetch(`http://localhost:1337/get/all/users`);
+    const response = await fetch(`http://localhost:1337/get/user/${userEmail}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const users: User[] = await response.json();
-
-    // Find the user with the matching ID
-    return users.find(user => user._id === userId) || null;
+    const user: User = await response.json();
+    return user;
   } catch (error) {
     console.error("Error fetching user data:", error);
     return null;

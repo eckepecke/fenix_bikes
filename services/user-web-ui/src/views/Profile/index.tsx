@@ -1,16 +1,27 @@
 import React, { useEffect } from "react";
 import UserDetails from "../../components/UserDetails";
+import { User } from "../../components/FetchUser";
 
-const RideHistory: React.FC = () => {
-	useEffect(() => {
-		document.title = "Profile - Avec";
-}, []);
-	return (
-		<div>
-			<h1>Profile</h1>
-			<UserDetails />
-		</div>
-	);
+interface ProfileProps {
+  user: User | null;
+}
+
+const Profile: React.FC<ProfileProps> = ({ user }) => {
+  useEffect(() => {
+    document.title = "Profile - Avec";
+  }, []);
+
+  if (!user) {
+    return <p>Log in to view your profile.</p>;
+  }
+
+  console.log(user);
+  return (
+    <div>
+      <h1>Profile</h1>
+      <UserDetails user={user} />
+    </div>
+  );
 };
 
-export default RideHistory;
+export default Profile;
