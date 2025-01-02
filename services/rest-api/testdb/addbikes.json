@@ -11,10 +11,11 @@
         "status": {
             "available": false,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762eefe311a733d682d9912",
@@ -28,7 +29,7 @@
         "status": {
             "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
         "completed_trips": [
@@ -47,12 +48,13 @@
         ],
         "city_name": "Skelleftea",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762ef81875a55fea3b11561",
@@ -64,12 +66,13 @@
         ],
         "city_name": "Lund",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762ef81875a55fea3b11562",
@@ -81,12 +84,13 @@
         ],
         "city_name": "Lund",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762ef81875a55fea3b11563",
@@ -98,12 +102,13 @@
         ],
         "city_name": "Lund",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762eff5c1381036e6700a37",
@@ -115,12 +120,13 @@
         ],
         "city_name": "Solna",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762eff5c1381036e6700a38",
@@ -132,12 +138,13 @@
         ],
         "city_name": "Solna",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "6762eff5c1381036e6700a39",
@@ -149,12 +156,13 @@
         ],
         "city_name": "Solna",
         "status": {
-            "available": null,
+            "available": true,
             "battery_level": null,
-            "in_service": null
+            "in_service": false
         },
         "red_light": false,
-        "completed_trips": []
+        "completed_trips": [],
+        "active_trip": null
     },
     {
         "_id": "676561794cd3ac975e5ca6fc",
