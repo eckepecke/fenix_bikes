@@ -29,16 +29,9 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
         
-    - name: action-mongo-tools
-      uses: boly38/action-mongo-tools@v1.0.1
-      with:
-        mongo-shell: true
-        mongo-tools: true
 
 
     - run: npm install
-      working-directory: services/rest-api
-    - run: npm run buildtests
       working-directory: services/rest-api
     - run: npm run test
       working-directory: services/rest-api
