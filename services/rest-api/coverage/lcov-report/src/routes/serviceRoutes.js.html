@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">31.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/19</span>
+                <span class='fraction'>19/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -116,42 +116,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -164,40 +164,40 @@ import bike from "../../../bike-logic/bike.js";
 &nbsp;
 const router = express.Router();
 &nbsp;
-router.get("/", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >    res.json("hej service routes");</span>
+router.get("/", async (req, res) =&gt; {
+    res.json("hej service routes");
 });
 &nbsp;
-router.post("/bike", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    let bikeId = <span class="cstat-no" title="statement not covered" >req.body.bike_id;</span>
+router.post("/bike", async (req, res) =&gt; {
+    let bikeId = req.body.bike_id;
     // Fake bike id:
     // bikeId = "B001";
-    const result = <span class="cstat-no" title="statement not covered" >await bike.startService(bikeId);</span>
+    const result = await bike.startService(bikeId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json(result);</span>
+    res.json(result);
 });
 &nbsp;
-router.post("/complete/bike", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    let bikeId = <span class="cstat-no" title="statement not covered" >req.body.bike_id;</span>
+router.post("/complete/bike", async (req, res) =&gt; {
+    let bikeId = req.body.bike_id;
     // Fake bike id:
     // bikeId = "B001";
-    const result = <span class="cstat-no" title="statement not covered" >await bike.endService(bikeId);</span>
+    const result = await bike.endService(bikeId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json(result);</span>
+    res.json(result);
 });
 &nbsp;
-router.post("/charge", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const bikeId = <span class="cstat-no" title="statement not covered" >req.body.bike_id;</span>
-    const result = <span class="cstat-no" title="statement not covered" >await bike.charge(bikeId);</span>
+router.post("/charge", async (req, res) =&gt; {
+    const bikeId = req.body.bike_id;
+    const result = await bike.charge(bikeId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json(result);</span>
+    res.json(result);
 });
 &nbsp;
-router.post("/stop_charge", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-    const bikeId = <span class="cstat-no" title="statement not covered" >req.body.bike_id;</span>
-    const result = <span class="cstat-no" title="statement not covered" >await bike.stopCharge(bikeId);</span>
+router.post("/stop_charge", async (req, res) =&gt; {
+    const bikeId = req.body.bike_id;
+    const result = await bike.stopCharge(bikeId);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    res.json(result);</span>
+    res.json(result);
 });
 &nbsp;
 export default router;
@@ -208,7 +208,7 @@ export default router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-02T13:10:58.760Z
+                at 2025-01-02T16:08:38.466Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
