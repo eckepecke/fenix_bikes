@@ -3,8 +3,8 @@ import { getCities } from "../../../db/cities.js";
 import { getBikes } from "../../../db/bikes.js";
 import { getParking, getAllParking } from "../../../db/parkingZones.js";
 import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
-import { getUsers } from "../../../db/users.js";
-import { getTrips } from "../../../db/trips.js";
+import { getUsers, getUserByEmail } from "../../../db/users.js";
+import { getTrip, getTrips } from "../../../db/trips.js";
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
@@ -30,6 +30,14 @@ router.get("/all/bikes", async (req, res) => {
 
 router.get("/all/users", async (req, res) => {
     const result = await getUsers();
+
+    res.json(result);
+});
+
+// GET /user/:email
+router.get("/user/:email", async (req, res) => {
+    const email = req.params.email;
+    const result = await getUserByEmail(email);
 
     res.json(result);
 });
@@ -102,6 +110,14 @@ router.get("/city/:city/charging-stations", async (req, res) => {
 // GET /all/charging-stations
 router.get("/all/charging-stations", async (req, res) => {
     const result = await getAllChargingStations();
+
+    res.json(result);
+});
+
+// GET /trip/:id
+router.get("/trip/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await getTrip(id);
 
     res.json(result);
 });
