@@ -4,7 +4,7 @@ import { getBikes } from '../../../db/bikes.js';
 import { getParking, getAllParking } from '../../../db/parkingZones.js';
 import { getChargingStations, getAllChargingStations } from '../../../db/chargingStations.js';
 import { getUsers } from '../../../db/users.js';
-import { getTrips } from '../../../db/trips.js';
+import { getTrips, getTrip } from '../../../db/trips.js';
 
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
@@ -60,5 +60,6 @@ router.get("/location/report/:bikeId", async (req, res) => {
 
     // console.log(bikeId, coordinates);
 });
+
 
 export default router;

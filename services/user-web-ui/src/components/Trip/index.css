@@ -1,0 +1,25 @@
+.trip-details {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border-left: 8px solid var(--color-green-primary);
+  background-color: var(--color-green-lightest);
+}
+
+.trip-heading {
+  font-size: 1.5em;
+  color: var(--color-green-primary);
+  text-shadow: 1px 1px #000;
+}
+
+.trip-p {
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.trip-link {
+  margin-top: 0.5em;
+  font-size: 1em;
+  font-weight: 400;
+  color: var(--color-green-darker);
+}
