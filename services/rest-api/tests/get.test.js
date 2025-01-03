@@ -52,6 +52,7 @@ afterAll(async () => {
     await connection.close();
 });
 
+
 describe("GET /", () => {
     it("should print greeting", async () => {
         const res = await request(app)
