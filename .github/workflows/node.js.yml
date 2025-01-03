@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "tests" ]
+    branches: [ "main", "tests", "test-aug" ]
   pull_request:
     branches: [ "main" ]
 
@@ -28,7 +28,6 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
-        mongodb-replica-set: test
         
 
     - run: npm install
