@@ -2,12 +2,13 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "tests" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,27 +28,10 @@ jobs:
       uses: supercharge/mongodb-github-action@1.7.0
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
+        
 
-    - name: Install MongoDB tools
-      run: |
-        curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
-        echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-        sudo apt-get update
-        sudo apt-get install -y mongodb-org-tools
-
-    - name: Install MongoDB Shell (mongosh)
-      run: |
-        curl -fsSL https://pgp.mongodb.com/server-6.0.asc | gpg --batch --no-tty -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
-        echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-        sudo apt-get update
-        sudo apt-get install -y mongodb-mongosh
 
     - run: npm install
       working-directory: services/rest-api
-
-    - run: npm run buildtests
-      working-directory: services/rest-api
-
     - run: npm run test
       working-directory: services/rest-api
-
