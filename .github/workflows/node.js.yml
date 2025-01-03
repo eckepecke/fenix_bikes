@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "tests", "tests-aug" ]
   pull_request:
     branches: [ "main" ]
 
@@ -29,7 +29,6 @@ jobs:
       with:
         mongodb-version: ${{ matrix.mongodb-version }}
         
-
 
     - run: npm install
       working-directory: services/rest-api
