@@ -92,9 +92,12 @@ const startServer = async () => {
         // Start the Express server
         const port = process.env.PORT || 1338;
 
-        httpServer.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
-        });
+        if (process.env.NODE_ENV !== 'test') {
+
+            httpServer.listen(port, () => {
+                console.log(`Server is running on port ${port}`);
+            });
+        }
     } catch (error) {
         console.log('Error starting server:', error);
     }
