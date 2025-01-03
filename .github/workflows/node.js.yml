@@ -33,7 +33,18 @@ jobs:
 
     - run: npm install
       working-directory: services/rest-api
-    - run: npm run buildtests
+    
+    - name: Drop database and import test data
+      run: |
+        mongo test --eval 'db.dropDatabase()'
+        cd testdb
+        mongoimport --db test -c bikes --jsonArray addbikes.json
+        mongoimport --db test -c users --jsonArray addusers.json
+        mongoimport --db test -c cities --jsonArray addcities.json
+        mongoimport --db test -c parking_zones --jsonArray addparking.json
+        mongoimport --db test -c charging_stations --jsonArray addcharging.json
+        mongoimport --db test -c trips --jsonArray addtrips.json
       working-directory: services/rest-api
+    
     - run: npm run test
       working-directory: services/rest-api
