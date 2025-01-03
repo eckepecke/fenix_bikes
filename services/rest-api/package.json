@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node src/app.js",
     "eslint": "eslint --fix .",
-    "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
+    "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --coverage --forceExit",
     "buildtests": "mongosh test --eval 'db.dropDatabase()' && npm run testimport",
     "testimport": "cd testdb && mongoimport --db test -c bikes --jsonArray addbikes.json && mongoimport --db test -c users --jsonArray addusers.json && mongoimport --db test -c cities --jsonArray addcities.json && mongoimport --db test -c parking_zones --jsonArray addparking.json && mongoimport --db test -c charging_stations --jsonArray addcharging.json && mongoimport --db test -c trips --jsonArray addtrips.json"
   },
@@ -29,10 +29,7 @@
     "utf-8-validate": "^6.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-env": "^7.26.0",
     "@types/react": "^19.0.2",
-    "babel-jest": "^29.7.0",
     "eslint": "^8.57.1",
     "javascript-style-guide": "^1.0.1",
     "jest": "^29.7.0"
