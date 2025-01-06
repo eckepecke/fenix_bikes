@@ -30,6 +30,7 @@ beforeAll(async () => {
     await db.collection('parking_zones').deleteMany({});
     await db.collection('cities').deleteMany({});
     await db.collection('charging_stations').deleteMany({});
+    await db.collection('counters').deleteMany({});
 
     // Read and parse JSON files
     const bikes = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../testdb/addbikes.json'), 'utf8'));
@@ -38,6 +39,7 @@ beforeAll(async () => {
     const parkingZones = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../testdb/addparking.json'), 'utf8'));
     const cities = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../testdb/addcities.json'), 'utf8'));
     const chargingStations = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../testdb/addcharging.json'), 'utf8'));
+    const counters = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../testdb/addcounter.json'), 'utf8'));
 
     // Populate the test database
     await db.collection('bikes').insertMany(bikes);
@@ -46,6 +48,7 @@ beforeAll(async () => {
     await db.collection('parking_zones').insertMany(parkingZones);
     await db.collection('cities').insertMany(cities);
     await db.collection('charging_stations').insertMany(chargingStations);
+    await db.collection('counters').insertMany(counters);
 });
 
 afterAll(async () => {

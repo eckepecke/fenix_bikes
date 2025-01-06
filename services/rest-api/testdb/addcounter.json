@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "bike_id",
+        "seq": {
+            "$numberLong": "0"
+        },
+        "counter_value": {
+            "$numberInt": "24"
+        }
+    },
+    {
+        "_id": "trip_id",
+        "seq": {
+            "$numberLong": "0"
+        },
+        "counter_value": {
+            "$numberInt": "17"
+        }
+    },
+    {
+        "_id": "user_id",
+        "seq": {
+            "$numberInt": "12"
+        }
+    },
+    {
+        "_id": "parking_id",
+        "seq": {
+            "$numberInt": "46"
+        }
+    },
+    {
+        "_id": "charging_id",
+        "seq": {
+            "$numberInt": "52"
+        }
+    }
+]

@@ -20,7 +20,7 @@ describe('POST /service/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
@@ -46,7 +46,7 @@ describe('POST /service/complete/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
@@ -72,7 +72,7 @@ describe('POST /service/charge', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
@@ -98,7 +98,7 @@ describe('POST /service/stop_charge', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
