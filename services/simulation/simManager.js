@@ -1,4 +1,4 @@
-import data from './trips/test-data.json' with { type: 'json' };
+import data from './trips/all_trips.json' with { type: 'json' };
 
 const simManager = {
     generateBikes: function generateBikes(count) {
@@ -43,11 +43,26 @@ const simManager = {
     },
 
     getSimCoordinates: async function getSimCoordinates() {
-        return data.map((trip) => {
-            const tripKey = Object.keys(trip)[0];
-            const coordinates = trip[tripKey].coords;
-            return { tripKey, coordinates };
-        });
+        // return data.map((trip) => {
+        //     const tripKey = Object.keys(trip)[0];
+        //     let coordinates = trip[tripKey].coords;
+        //     coordinates = await this.rearrange(coordinates);
+        //     //console.log(coordinates[0])
+
+        //     return { tripKey, coordinates };
+        // });
+
+        return Promise.all(
+            data.map(async (trip) => {
+                const tripKey = Object.keys(trip)[0];
+                let coordinates = trip[tripKey].coords;
+                console.log("coordinates before flip: ", coordinates);
+
+                coordinates = await this.rearrange(coordinates); // now 'await' works
+                console.log("coordinates after flip: ", coordinates);
+                return { tripKey, coordinates };
+            })
+        );
     },
 
     updateLocation: function updateLocation(simulatedTrip) {
@@ -55,6 +70,18 @@ const simManager = {
             simulatedTrip.coordinates.shift();
             simulatedTrip.bike.location = simulatedTrip.coordinates[0];
         }
+    },
+
+    rearrange: async function rearrange(coordinates) {
+        //console.log(coordinates[0])
+
+        coordinates.forEach((pair, index) => {
+            // Swap the values at index 0 and 1 in the pair
+            coordinates[index] = [pair[1], pair[0]];
+        });
+        // console.log(coordinates[0])
+
+        return coordinates;
     }
 };
 
