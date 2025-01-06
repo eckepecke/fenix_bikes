@@ -154,3 +154,14 @@ describe("GET /get/trip/:id", () => {
         expect(res.text).toMatch("T0016");
     });
 });
+
+describe("GET /get/all/bikes/pagination", () => {
+    it("should return 5 bikes", async () => {
+        const res = await request(app)
+            .get("/get/all/bikes/pagination")
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.body.bikes).toHaveLength(5);
+    });
+});

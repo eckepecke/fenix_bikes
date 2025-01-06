@@ -20,14 +20,14 @@ describe('POST /trip/start', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
 });
 
 describe("GET /get/certain/bike/:id", () => {
-    it("should return a bike with service false", async () => {
+    it("should return a bike with available false", async () => {
         const res = await request(app)
             .get("/get/certain/bike/B0017")
             .expect('Content-Type', /json/)
@@ -46,14 +46,14 @@ describe('POST /trip/end', function () {
             .set('Accept', 'application/json')
             .expect(200)
             .end(function (err, res) {
-                if (err) return done(err);
+                if (err) {return done(err);}
                 return done();
             });
     });
 });
 
 describe("GET /get/certain/bike/:id", () => {
-    it("should return a bike with service false", async () => {
+    it("should return a bike with available true", async () => {
         const res = await request(app)
             .get("/get/certain/bike/B0017")
             .expect('Content-Type', /json/)
