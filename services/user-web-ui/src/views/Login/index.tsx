@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faFacebook } from "@fortawesome/free-brands-svg-icons";
+import "./index.css";
 
 const Login: React.FC = () => {
 	const uri = "http://localhost:1337/auth/user";
@@ -9,12 +12,19 @@ const Login: React.FC = () => {
 		document.title = "Login - Avec";
 	}, []);
 	return (
-		<div>
-			<a
-				href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${uri}?path=${path}&scope=user:email`}>
-				Login with GitHub
-			</a>
-		</div>
+		<>
+			<div className="login-container">
+				<h1 className="heading">Sign in</h1>
+				<a
+					className="login-btn"
+					href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${uri}?path=${path}&scope=user:email`}>
+					<FontAwesomeIcon icon={faGithub} /> Sign in with GitHub
+				</a>
+				<a className="login-btn" href="#">
+					<FontAwesomeIcon icon={faFacebook} /> Sign in with Facebook
+				</a>
+			</div>
+		</>
 	);
 };
 
