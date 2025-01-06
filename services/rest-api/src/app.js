@@ -15,7 +15,6 @@ import auth from './routes/authRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
-import bike from '../../bike-logic/bike.js';
 
 
 dotenv.config();
@@ -24,7 +23,6 @@ if (!process.env.PORT) {
     console.log(`No port value specified...`);
 }
 
-const PORT = parseInt(process.env.PORT, 10) || 1338;
 
 const app = express();
 
@@ -80,7 +78,9 @@ const startServer = async () => {
     try {
         // Connect to the database
 
-        let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+        let mongoUri =
+            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@
+            // cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 
         if (process.env.NODE_ENV === 'test') {
             // We can even use MongoDB Atlas for testing

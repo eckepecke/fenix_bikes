@@ -1,6 +1,5 @@
 import express from "express";
 import { getCities } from "../../../db/cities.js";
-import { getBikes } from "../../../db/bikes.js";
 import { getParking, getAllParking } from "../../../db/parkingZones.js";
 import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
 import { getUsers, getUserByEmail } from "../../../db/users.js";
@@ -60,7 +59,8 @@ router.get("/all/bikes/pagination", async (req, res) => {
 
     try {
         const bikes = await bikeManager.getBikesPagination(filter, skip, limit);
-        const totalBikes = await bikeManager.countBikesPagination(filter); // totala antal cyklar baserat på sökning
+        // totala antal cyklar baserat på sökning
+        const totalBikes = await bikeManager.countBikesPagination(filter);
         const totalPages = Math.ceil(totalBikes / limit);
 
         res.json({ bikes, totalPages });
