@@ -3,25 +3,25 @@ import UserDetails from "../../components/UserDetails";
 import { User } from "../../components/FetchUser";
 
 interface ProfileProps {
-  user: User | null;
+	user: User | null;
 }
 
 const Profile: React.FC<ProfileProps> = ({ user }) => {
-  useEffect(() => {
-    document.title = "Profile - Avec";
-  }, []);
+	useEffect(() => {
+		document.title = "Profile - Avec";
+	}, []);
 
-  if (!user) {
-    return <p>Log in to view your profile.</p>;
-  }
+	if (!user) {
+		return <p>Sign in to view your profile.</p>;
+	}
 
-  console.log(user);
-  return (
-    <div>
-      <h1>Profile</h1>
-      <UserDetails user={user} />
-    </div>
-  );
+	console.log(user);
+	return (
+		<div>
+			<h1>Profile</h1>
+			<UserDetails user={user} />
+		</div>
+	);
 };
 
 export default Profile;
