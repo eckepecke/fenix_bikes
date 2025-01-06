@@ -1,6 +1,6 @@
 import React from "react";
 import { User } from "../FetchUser";
-import TripDetails from "../Trip";
+import TripDetails from "../TripDetails";
 import "./index.css";
 
 interface CompletedTripsProps {

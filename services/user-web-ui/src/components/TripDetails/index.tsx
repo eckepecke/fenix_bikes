@@ -29,7 +29,7 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
 
   return (
     <div className="trip-details">
-      <h1 className="trip-heading">Ride on {formattedDate}</h1>
+      <h1 className="trip-heading">{formattedDate}</h1>
       <p className="trip-p">Trip ID: {tripId}</p>
       <p className="trip-p">Duration: {formattedDuration}</p>
       <p className="trip-p">Total: 0 SEK</p> {/* Placeholder för kostnad */}

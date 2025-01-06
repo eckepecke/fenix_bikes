@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Header: React.FC = () => {
-  const [cookies, , removeCookie] = useCookies(["user"]);
-  const navigate = useNavigate();
+	const [cookies, , removeCookie] = useCookies(["user"]);
+	const navigate = useNavigate();
 
-  const handleLogout = () => {
-    removeCookie("user"); // Clear the user cookie
-    navigate("/"); // Redirect to the login page
-  };
+	const handleLogout = () => {
+		removeCookie("user"); // Clear the user cookie
+		navigate("/"); // Redirect to the login page
+	};
 
 	return (
 		<header className="header">
@@ -39,7 +39,7 @@ const Header: React.FC = () => {
 							</>
 						) : (
 							<li>
-								<a href="login">Log in</a>
+								<a href="login">Sign in</a>
 							</li>
 						)}
 					</ul>
