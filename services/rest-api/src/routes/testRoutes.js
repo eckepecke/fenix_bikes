@@ -1,11 +1,4 @@
 import express from 'express';
-import { getCities } from '../../../db/cities.js';
-import { getBikes } from '../../../db/bikes.js';
-import { getParking, getAllParking } from '../../../db/parkingZones.js';
-import { getChargingStations, getAllChargingStations } from '../../../db/chargingStations.js';
-import { getUsers } from '../../../db/users.js';
-import { getTrips, getTrip } from '../../../db/trips.js';
-
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
