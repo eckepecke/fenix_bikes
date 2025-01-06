@@ -16,11 +16,21 @@ router.get("/", async (req, res) => {
     res.json("hej test routes");
 });
 
-router.post("/delete", async (req, res) => {
+// Needed for tests
+router.post("/delete/bike", async (req, res) => {
     let bikeId = req.body.bike_id;
     // Fake bike id:
     // bikeId = "B0010";
     const result = await bikeManager.deleteBike(bikeId);
+
+    res.json(result);
+});
+// Needed for tests
+router.post("/delete/user", async (req, res) => {
+    let userId = req.body.user_id;
+    // Fake bike id:
+    // bikeId = "B0010";
+    const result = await bikeManager.deleteUser(userId);
 
     res.json(result);
 });
