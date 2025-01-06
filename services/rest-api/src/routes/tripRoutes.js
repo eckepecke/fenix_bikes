@@ -1,6 +1,4 @@
 import express from 'express';
-import { getCities } from '../../../db/cities.js';
-import { getBikes } from '../../../db/bikes.js';
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
