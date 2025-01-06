@@ -50,7 +50,7 @@ const bikeManager = {
             // add bike
             const bike_id = await this.generateBikeId();
             bike.bike_id = bike_id;
-            const bikeResult = await bikeCollection.insertOne(bike); 
+            const bikeResult = await bikeCollection.insertOne(bike);
 
             // // add bike to given city
             await cityCollection.updateOne(
@@ -90,17 +90,17 @@ const bikeManager = {
         }));
 
         try {
-        // Insert the new bikes into the collection
-        const result = await bikeCollection.insertMany(newBikes);
-        const newBikeIds = newBikes.map((bike) => bike.bike_id);
+            // Insert the new bikes into the collection
+            const result = await bikeCollection.insertMany(newBikes);
+            const newBikeIds = newBikes.map((bike) => bike.bike_id);
 
-        // Update the city collection and add bike_ids to the city's bikes array
-        await cityCollection.updateOne(
-            { name: cityObject.name },
-            { $push: { bikes: { $each: newBikeIds } } }
-        );
+            // Update the city collection and add bike_ids to the city's bikes array
+            await cityCollection.updateOne(
+                { name: cityObject.name },
+                { $push: { bikes: { $each: newBikeIds } } }
+            );
 
-        return result;
+            return result;
         } catch (e) {
             console.error("Error creating multiple new bikes:", e.message || e);
             throw new Error("Failed to add many bikes to bike collection.");
@@ -122,12 +122,12 @@ const bikeManager = {
     // för /bikes-vyn i admin
     getBikesPagination: async (filter = {}, skip = 0, limit = 5) => {
         const bikeCollection = getCollection("bikes");
-      
+
         return await bikeCollection
-          .find(filter)
-          .skip(skip)
-          .limit(Number(limit))
-          .toArray();
+            .find(filter)
+            .skip(skip)
+            .limit(Number(limit))
+            .toArray();
     },
 
     // för /bikes-vyn i admin, returnerar antal cyklar
@@ -135,7 +135,7 @@ const bikeManager = {
     countBikesPagination: async (filter = {}) => {
         const bikeCollection = getCollection("bikes");
         return await bikeCollection.countDocuments(filter);
-      },
+    },
 
     deleteBike: async function deleteBike(bikeId) {
         let bikeCollection = getCollection("bikes");
@@ -154,7 +154,7 @@ const bikeManager = {
 
             console.log(`Bike with id ${bikeId} was deleted.`)
 
-        return result;
+            return result;
         } catch (e) {
             console.error("Error deleting bike:", e.message || e);
             throw new Error("Failed to delete bike from bike collection.");
@@ -190,14 +190,30 @@ const bikeManager = {
             // add bike
             const userId = await this.generateUserId();
             user.user_id = userId;
-            const result = await userCollection.insertOne(user); 
+            const result = await userCollection.insertOne(user);
 
             return result;
         } catch (e) {
             console.error("Error creating new user:", e.message || e);
             throw new Error(`Failed to add user ${user} to bike collection.`);
         }
-    }
+    },
+
+    deleteUser: async function deleteUser(user) {
+        let userCollection = getCollection("users");
+        try {
+
+            const filter = { user_id: user }
+            let result = await userCollection.deleteOne(filter);
+
+            console.log(`User with id ${user} was deleted.`)
+
+            return result;
+        } catch (e) {
+            console.error("Error deleting user:", e.message || e);
+            throw new Error("Failed to delete user from user collection.");
+        }
+    },
 }
 
 export default bikeManager

@@ -1,11 +1,4 @@
 import express from 'express';
-import { getCities } from '../../../db/cities.js';
-import { getBikes } from '../../../db/bikes.js';
-import { getParking, getAllParking } from '../../../db/parkingZones.js';
-import { getChargingStations, getAllChargingStations } from '../../../db/chargingStations.js';
-import { getUsers } from '../../../db/users.js';
-import { getTrips, getTrip } from '../../../db/trips.js';
-
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
@@ -16,11 +9,21 @@ router.get("/", async (req, res) => {
     res.json("hej test routes");
 });
 
-router.post("/delete", async (req, res) => {
+// Needed for tests
+router.post("/delete/bike", async (req, res) => {
     let bikeId = req.body.bike_id;
     // Fake bike id:
     // bikeId = "B0010";
     const result = await bikeManager.deleteBike(bikeId);
+
+    res.json(result);
+});
+// Needed for tests
+router.post("/delete/user", async (req, res) => {
+    let userId = req.body.user_id;
+    // Fake bike id:
+    // bikeId = "B0010";
+    const result = await bikeManager.deleteUser(userId);
 
     res.json(result);
 });
