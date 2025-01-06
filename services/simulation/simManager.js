@@ -55,7 +55,6 @@ const simManager = {
             simulatedTrip.coordinates.shift();
             simulatedTrip.bike.location = simulatedTrip.coordinates[0];
         }
-
     }
 };
 
