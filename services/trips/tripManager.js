@@ -69,9 +69,11 @@ const tripManager = {
             // console.log(parkingZones[key].area);
             let answer = pointInPolygon(location, parkingZones[key].area);
             if (answer) {
+                console.log("På parkering");
                 return true;
             }
         }
+        console.log("Ej på parkering");
         return false;
     }
 }
