@@ -15,6 +15,7 @@ import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
 import bike from '../../bike-logic/bike.js'
+import simSetup from "../../simulation/simSetup.js";
 
 
 
@@ -50,54 +51,16 @@ const io = new Server(httpServer, {
     }
 });
 
+// if env.process = "simulation" {}
+let simulatedTrips = {}; // Define at a higher scope
+
+simSetup(simManager).then((data) => {
+    simulatedTrips = data;
+    console.log(simulatedTrips); // Log the trips once they are set up
+});
+
 io.sockets.on('connection', function (socket) {
     console.log(socket.id); // Nått lång och slumpat
-    let simulatedTrips = {}; // Define at a higher scope
-
-    const simSetup = async () => {
-
-        try {
-        // Generate 1000 bikes
-        const bikeArray = await simManager.generateBikes(2);
-    
-        // Generate 1000 customers (users)
-        const userArray = await simManager.generateUsers(2);
-    
-        // Create 1000 Trips
-        // Below is temporary for testing with only 2 trips
-        const tripObjects = await simManager.getSimCoordinates();
-
-        // Put them all together as a simulated trip
-        // Map all bikes to a trip and associate users with bikes and trips
-        bikeArray.forEach((bike, index) => {
-            const trip = tripObjects[index];
-            const user = userArray[index];
-
-            // Ensure that the trip and user exist
-            if (trip && user) {
-
-                bike.location = trip.coordinates[0];
-                bike.active_trip = trip.tripKey;
-                simulatedTrips[index] = {
-                    bike: bike,
-                    trip: trip.tripKey,
-                    coordinates: trip.coordinates,
-                    user: user.user_id,
-                    start_location: trip.coordinates[0],
-                    end_location: trip.coordinates[1],
-                    current_location: trip.coordinates[0],
-                    city: bike.city_name
-                };
-            }
-        });
-
-        console.log(simulatedTrips);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
-    };
-
-    simSetup();
 
     setInterval(() => {
         if (simulatedTrips) {

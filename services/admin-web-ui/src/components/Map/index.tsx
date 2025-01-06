@@ -67,14 +67,19 @@ const Map: React.FC = () => {
     const bikeObjects = Object.values(updateObject).map(
       (item: any) => item.bike
     );
-    console.log(bikeObjects);
+    console.log("BikeObjects before loop:", bikeObjects);
 
     const markers = bikeObjects
       //   .filter(
       //     (bike: any) => bike.city_name.toLowerCase() === cityName.toLowerCase()
       //   )
       .map((bike: any) => (
-        <Marker key={bike._id} position={bike.location} icon={scooterMarker}>
+        // <Marker key={bike._id} position={bike.location} icon={scooterMarker}>
+        <Marker
+          key={bike.bike_id}
+          position={bike.location}
+          icon={scooterMarker}
+        >
           <Popup>
             <div className="popup-content">
               <h2>{bike.bike_id}</h2>
