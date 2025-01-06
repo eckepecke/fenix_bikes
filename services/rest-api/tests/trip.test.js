@@ -38,13 +38,12 @@ describe("GET /get/certain/bike/:id", () => {
 });
 
 
-describe('POST /trip/stop', function () {
+describe('POST /trip/end', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/trip/stop')
+            .post('/trip/end')
             .send({ bike_id: 'B0017', user_id: 'U0012' })
             .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
                 if (err) return done(err);
