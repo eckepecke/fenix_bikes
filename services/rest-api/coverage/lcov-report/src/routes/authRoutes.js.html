@@ -314,118 +314,118 @@ import { getUserByEmail, createUser } from "../../../db/users.js";
 const router = express.Router();
 &nbsp;
 router.get("/", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >	res.json("hej authRoutes");</span>
+<span class="cstat-no" title="statement not covered" >    res.json("hej authRoutes");</span>
 });
 &nbsp;
 router.get("/env", <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
-<span class="cstat-no" title="statement not covered" >	res.json({</span>
-		GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
-		GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
-	});
+<span class="cstat-no" title="statement not covered" >    res.json({</span>
+        GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
+        GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+    });
 });
 &nbsp;
 router.get("/user", <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
-	const code = <span class="cstat-no" title="statement not covered" >req.query.code;</span>
-	const path = <span class="cstat-no" title="statement not covered" >req.query.path || "/";</span>
+    const code = <span class="cstat-no" title="statement not covered" >req.query.code;</span>
+    const path = <span class="cstat-no" title="statement not covered" >req.query.path || "/";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	if (!code) {</span>
-<span class="cstat-no" title="statement not covered" >		return res.status(400).json({ error: "No code provided" });</span>
-	}
+<span class="cstat-no" title="statement not covered" >    if (!code) {</span>
+<span class="cstat-no" title="statement not covered" >        return res.status(400).json({ error: "No code provided" });</span>
+    }
 &nbsp;
-	const clientId = <span class="cstat-no" title="statement not covered" >process.env.GITHUB_CLIENT_ID;</span>
-	const clientSecret = <span class="cstat-no" title="statement not covered" >process.env.GITHUB_CLIENT_SECRET;</span>
+    const clientId = <span class="cstat-no" title="statement not covered" >process.env.GITHUB_CLIENT_ID;</span>
+    const clientSecret = <span class="cstat-no" title="statement not covered" >process.env.GITHUB_CLIENT_SECRET;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	try {</span>
-		const tokenResponse = <span class="cstat-no" title="statement not covered" >await axios.post(</span>
-			"https://github.com/login/oauth/access_token",
-			{
-				client_id: clientId,
-				client_secret: clientSecret,
-				code: code,
-			},
-			{
-				headers: {
-					accept: "application/json",
-				},
-			}
-		);
+<span class="cstat-no" title="statement not covered" >    try {</span>
+        const tokenResponse = <span class="cstat-no" title="statement not covered" >await axios.post(</span>
+            "https://github.com/login/oauth/access_token",
+            {
+                client_id: clientId,
+                client_secret: clientSecret,
+                code: code,
+            },
+            {
+                headers: {
+                    accept: "application/json",
+                },
+            }
+        );
 &nbsp;
-		const accessToken = <span class="cstat-no" title="statement not covered" >tokenResponse.data.access_token;</span>
+        const accessToken = <span class="cstat-no" title="statement not covered" >tokenResponse.data.access_token;</span>
 &nbsp;
-		const userResponse = <span class="cstat-no" title="statement not covered" >await axios.get("https://api.github.com/user", {</span>
-			headers: {
-				Authorization: `token ${accessToken}`,
-			},
-		});
+        const userResponse = <span class="cstat-no" title="statement not covered" >await axios.get("https://api.github.com/user", {</span>
+            headers: {
+                Authorization: `token ${accessToken}`,
+            },
+        });
 &nbsp;
-		const githubUser = <span class="cstat-no" title="statement not covered" >userResponse.data;</span>
+        const githubUser = <span class="cstat-no" title="statement not covered" >userResponse.data;</span>
 &nbsp;
-		const user = <span class="cstat-no" title="statement not covered" >await getUserByEmail(githubUser.email);</span>
+        const user = <span class="cstat-no" title="statement not covered" >await getUserByEmail(githubUser.email);</span>
 &nbsp;
-		// Create a new user if it doesn't exist
-<span class="cstat-no" title="statement not covered" >		if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >			console.log("Creating new user:", githubUser);</span>
-			const newUser = <span class="cstat-no" title="statement not covered" >{</span>
-				name: githubUser.name || githubUser.login,
-				email: githubUser.email,
-				payment_method: "prepaid",
-				password: "",
-				banned: false,
-				completed_trips: [],
-			};
+        // Create a new user if it doesn't exist
+<span class="cstat-no" title="statement not covered" >        if (!user) {</span>
+<span class="cstat-no" title="statement not covered" >            console.log("Creating new user:", githubUser);</span>
+            const newUser = <span class="cstat-no" title="statement not covered" >{</span>
+                name: githubUser.name || githubUser.login,
+                email: githubUser.email,
+                payment_method: "prepaid",
+                password: "",
+                banned: false,
+                completed_trips: [],
+            };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			await createUser(newUser);</span>
-		}
+<span class="cstat-no" title="statement not covered" >            await createUser(newUser);</span>
+        }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		try {</span>
-			const user = <span class="cstat-no" title="statement not covered" >await getUserByEmail(githubUser.email);</span>
+<span class="cstat-no" title="statement not covered" >        try {</span>
+            const user = <span class="cstat-no" title="statement not covered" >await getUserByEmail(githubUser.email);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >				console.log("Creating new user:", githubUser);</span>
-				const newUser = <span class="cstat-no" title="statement not covered" >{</span>
-					name: githubUser.name || githubUser.login,
-					email: githubUser.email,
-					payment_method: "prepaid",
-					password: "",
-					banned: false,
-					completed_trips: [],
-				};
+<span class="cstat-no" title="statement not covered" >            if (!user) {</span>
+<span class="cstat-no" title="statement not covered" >                console.log("Creating new user:", githubUser);</span>
+                const newUser = <span class="cstat-no" title="statement not covered" >{</span>
+                    name: githubUser.name || githubUser.login,
+                    email: githubUser.email,
+                    payment_method: "prepaid",
+                    password: "",
+                    banned: false,
+                    completed_trips: [],
+                };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >				await createUser(newUser);</span>
-			}
+<span class="cstat-no" title="statement not covered" >                await createUser(newUser);</span>
+            }
 &nbsp;
-			// Check if response has already been sent
-<span class="cstat-no" title="statement not covered" >			if (!res.headersSent) {</span>
-<span class="cstat-no" title="statement not covered" >				res.cookie(</span>
-					"user",
-					JSON.stringify({
-						name: githubUser.name || githubUser.login,
-						email: githubUser.email,
-					}),
-					{
-						httpOnly: false,
-						secure: process.env.NODE_ENV === "production",
-						sameSite: "Lax",
-						maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-					}
-				);
+            // Check if response has already been sent
+<span class="cstat-no" title="statement not covered" >            if (!res.headersSent) {</span>
+<span class="cstat-no" title="statement not covered" >                res.cookie(</span>
+                    "user",
+                    JSON.stringify({
+                        name: githubUser.name || githubUser.login,
+                        email: githubUser.email,
+                    }),
+                    {
+                        httpOnly: false,
+                        secure: process.env.NODE_ENV === "production",
+                        sameSite: "Lax",
+                        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+                    }
+                );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >				res.redirect(`http://localhost:5174${path}`);</span>
-			}
-		} catch (error) {
-<span class="cstat-no" title="statement not covered" >			console.error("Error during GitHub OAuth:", error);</span>
+<span class="cstat-no" title="statement not covered" >                res.redirect(`http://localhost:5174${path}`);</span>
+            }
+        } catch (error) {
+<span class="cstat-no" title="statement not covered" >            console.error("Error during GitHub OAuth:", error);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >			if (!res.headersSent) {</span>
-<span class="cstat-no" title="statement not covered" >				res.status(500).json({ error: "Internal Server Error" });</span>
-			}
-		}
-	} catch (error) {
-<span class="cstat-no" title="statement not covered" >		console.error("Error during GitHub OAuth:", error);</span>
+<span class="cstat-no" title="statement not covered" >            if (!res.headersSent) {</span>
+<span class="cstat-no" title="statement not covered" >                res.status(500).json({ error: "Internal Server Error" });</span>
+            }
+        }
+    } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.error("Error during GitHub OAuth:", error);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >		if (!res.headersSent) {</span>
-<span class="cstat-no" title="statement not covered" >			res.status(500).json({ error: "Internal Server Error" });</span>
-		}
-	}
+<span class="cstat-no" title="statement not covered" >        if (!res.headersSent) {</span>
+<span class="cstat-no" title="statement not covered" >            res.status(500).json({ error: "Internal Server Error" });</span>
+        }
+    }
 });
 &nbsp;
 export default router;
@@ -436,7 +436,7 @@ export default router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-03T10:24:10.666Z
+                at 2025-01-06T08:49:03.194Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
