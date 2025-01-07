@@ -44,17 +44,25 @@ const tripManager = {
             let penalty = 0;
             const cost = (minutes * runningFee) + startFee;
 
-            if (!this.checkParking(startLocation, "Lund")) {
-                if (this.checkParking(stopLocation, "Lund")) {
+            if (await this.checkParking(startLocation, "Lund") === false) {
+                if (await this.checkParking(stopLocation, "Lund") === true) {
                     discount = -5;
                 }
             }
 
-            if (!this.checkParking(stopLocation, "Lund")) {
+            if (await this.checkParking(stopLocation, "Lund") === false) {
                 penalty = 5;
             }
 
-            return cost + penalty + discount;
+            console.log("kostnad", cost);
+            console.log("straffavgift", penalty);
+            console.log("rabatt", discount);
+
+            let total = cost + penalty + discount;
+
+            let roundCost = Math.round(total * 100) / 100
+
+            return roundCost;
 
         } catch (e) {
             console.error(e);
@@ -65,16 +73,17 @@ const tripManager = {
     checkParking: async function checkParking(location, city) {
         const parkingZones = await getParking(city);
         // console.log(parkingZones);
+        let flag = false
         for (var key in parkingZones) {
             // console.log(parkingZones[key].area);
             let answer = pointInPolygon(location, parkingZones[key].area);
             if (answer) {
                 console.log("På parkering");
-                return true;
+                flag = true;
             }
         }
         console.log("Ej på parkering");
-        return false;
+        return flag;
     }
 }
 
