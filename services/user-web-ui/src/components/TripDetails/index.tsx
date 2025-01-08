@@ -26,15 +26,16 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
   const startTime = new Date(trip.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const endTime = new Date(trip.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const formattedDuration = `${durationMin} minutes (${startTime}-${endTime})`;
+  const cost = durationMin * 3; // Placeholder för kostnad
 
   return (
     <div className="trip-details">
       <h1 className="trip-heading">{formattedDate}</h1>
       <p className="trip-p">Trip ID: {tripId}</p>
       <p className="trip-p">Duration: {formattedDuration}</p>
-      <p className="trip-p">Total: 0 SEK</p> {/* Placeholder för kostnad */}
+      <p className="trip-p">Total: {cost} SEK</p>
 
-      <a href={`/pay/${tripId}`} className="trip-link">Payment &gt;</a> {/* Placeholder för betalning */}
+      <a href={`/pay/${tripId}`} className="trip-link">Payment &gt;</a>
     </div>
   );
 }
