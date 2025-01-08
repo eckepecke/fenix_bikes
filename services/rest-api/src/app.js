@@ -15,6 +15,7 @@ import auth from './routes/authRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
+import stripe from "./routes/stripe.js";
 
 
 dotenv.config();
@@ -36,6 +37,7 @@ app.use('/get', get);
 app.use('/service', service);
 app.use('/trip', trip);
 app.use('/auth', auth);
+app.use('/stripe', stripe);
 
 
 app.use('/test', test);
@@ -78,9 +80,8 @@ const startServer = async () => {
     try {
         // Connect to the database
 
-        let mongoUri =
-            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@
-            // cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+        let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+
 
         if (process.env.NODE_ENV === 'test') {
             // We can even use MongoDB Atlas for testing
