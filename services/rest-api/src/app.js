@@ -16,6 +16,7 @@ import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
 import bike from '../../bike-logic/bike.js'
 import simSetup from "../../simulation/simSetup.js";
+import { group } from "console";
 
 
 
@@ -52,30 +53,51 @@ const io = new Server(httpServer, {
 });
 
 // if env.process = "simulation" {}
-let simulatedTrips = {}; // Define at a higher scope
+let simulatedTrips = [];
+let flatSimulatedTrips = {};
 
 simSetup(simManager).then((data) => {
+    // Some of this should move simulation model
     simulatedTrips = data;
-    console.log(simulatedTrips); // Log the trips once they are set up
-});
+    console.log("Object amount: ", simulatedTrips.length);
+    console.log(simulatedTrips[6].length)
+
+    const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
+
+    // Loop over each batch progressively
+    for (let i = 0; i < totalBatches; i++) {
+        console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
+    
+        // Loop through the batches up to the current batch `i`
+        for (let j = 0; j <= i; j++) {
+            console.log(`Updating batch ${j + 1}`);
+            for (const trip of simulatedTrips[j]) {
+                simManager.updateLocation(trip);
+            }
+        }
+        console.log(`Finished updating batches 1 to ${i + 1}`);
+        flatSimulatedTrips = simulatedTrips.flat();
+    }
+})
 
 io.sockets.on('connection', function (socket) {
-    console.log(socket.id); // Nått lång och slumpat
+    console.log(socket.id);
 
     setInterval(() => {
         if (simulatedTrips) {
 
-        Object.values(simulatedTrips).forEach((simTrip) => {
-            console.log("updating location..");
-            simManager.updateLocation(simTrip);
+        for (const batch of simulatedTrips) {
+            batch.forEach((simTrip) => {
+                simManager.updateLocation(simTrip);
+                // Potentially write to db here
+            });
+        }
 
-            console.log(simTrip);
-
-
-        });
         console.log("emitting!!")
 
-        socket.emit('location_update', simulatedTrips);
+        // const flatSimulatedTrips = simulatedTrips.flat();
+
+        socket.emit('location_update', flatSimulatedTrips);
 
         } else {
             console.log("Data is not yet fetched, waiting...");

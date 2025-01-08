@@ -1,4 +1,4 @@
-import data from './trips/all_trips.json' with { type: 'json' };
+import data from './trips/all_trips_new.json' with { type: 'json' };
 
 const simManager = {
     generateBikes: function generateBikes(count) {
@@ -56,10 +56,7 @@ const simManager = {
             data.map(async (trip) => {
                 const tripKey = Object.keys(trip)[0];
                 let coordinates = trip[tripKey].coords;
-                console.log("coordinates before flip: ", coordinates);
-
                 coordinates = await this.rearrange(coordinates); // now 'await' works
-                console.log("coordinates after flip: ", coordinates);
                 return { tripKey, coordinates };
             })
         );
@@ -82,6 +79,57 @@ const simManager = {
         // console.log(coordinates[0])
 
         return coordinates;
+    },
+
+    group: async function group(trips, batchSize) {
+        let groupedTrips = {};
+        let group = {};
+        let batchIndex = 0;
+    
+        console.log("group");
+        console.log(trips[0]);
+        console.log(typeof trips);
+    
+        Object.keys(trips).forEach((tripKey, index) => {
+            group[tripKey] = trips[tripKey];
+    
+            // If the group reaches the batch size, add it to groupedTrips
+            if ((index + 1) % batchSize === 0 || index === Object.keys(trips).length - 1) {
+                groupedTrips[`batch_${batchIndex}`] = group;
+                group = {}; // Reset group for the next batch
+                batchIndex++;
+            }
+        });
+    
+        console.log(groupedTrips); // Check the grouped trips
+        return groupedTrips;
+    },
+
+    renameTripKeys: function renameTripKeys(tripObjects) {
+        let renamedTrips = [];
+        let tripCounter = {}; // To track duplicate trip names
+    
+        tripObjects.forEach((trip, index) => {
+            let newTripKey = trip.tripKey;
+    
+            // Check if this tripKey already exists, and make it unique
+            if (tripCounter[newTripKey]) {
+                tripCounter[newTripKey] += 1;
+                newTripKey = `${newTripKey}_${tripCounter[newTripKey]}`;
+            } else {
+                tripCounter[newTripKey] = 1;
+            }
+    
+            // Create a new trip object with the renamed key
+            const renamedTrip = {
+                ...trip,
+                tripKey: newTripKey, // Assign new unique key
+            };
+    
+            renamedTrips.push(renamedTrip);
+        });
+    
+        return renamedTrips;
     }
 };
 
