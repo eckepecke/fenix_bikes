@@ -63,33 +63,24 @@ const Map: React.FC = () => {
   });
 
   const updateBikeMarkers = (updateObject: LocationUpdateData) => {
-    console.log("Object in updatemethod: ", updateObject);
+    console.log("Array in updatemethod: ", updateObject);
     const bikeObjects = Object.values(updateObject).map(
       (item: any) => item.bike
     );
     console.log("BikeObjects before loop:", bikeObjects);
 
-    const markers = bikeObjects
-      //   .filter(
-      //     (bike: any) => bike.city_name.toLowerCase() === cityName.toLowerCase()
-      //   )
-      .map((bike: any) => (
-        // <Marker key={bike._id} position={bike.location} icon={scooterMarker}>
-        <Marker
-          key={bike.bike_id}
-          position={bike.location}
-          icon={scooterMarker}
-        >
-          <Popup>
-            <div className="popup-content">
-              <h2>{bike.bike_id}</h2>
-              <p>Available: {bike.status.available ? "Yes" : "No"}</p>
-              <p>Speed: {bike.speed}</p>
-              <p>Battery: {bike.status.battery_level ?? "N/A"}</p>
-            </div>
-          </Popup>
-        </Marker>
-      ));
+    const markers = bikeObjects.map((bike: any) => (
+      <Marker key={bike.bike_id} position={bike.location} icon={scooterMarker}>
+        <Popup>
+          <div className="popup-content">
+            <h2>{bike.bike_id}</h2>
+            <p>Available: {bike.status.available ? "Yes" : "No"}</p>
+            <p>Speed: {bike.speed}</p>
+            <p>Battery: {bike.status.battery_level ?? "N/A"}</p>
+          </div>
+        </Popup>
+      </Marker>
+    ));
     setBikeMarkers(markers);
   };
 
