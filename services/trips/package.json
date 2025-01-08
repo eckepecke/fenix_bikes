@@ -1,0 +1,15 @@
+{
+  "name": "trips",
+  "version": "1.0.0",
+  "description": "*Manages the trips*",
+  "main": "tripManager.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "point-in-polygon": "^1.1.0"
+  }
+}
