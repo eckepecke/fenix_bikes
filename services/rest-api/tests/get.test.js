@@ -125,7 +125,7 @@ describe("GET /get/certain/bike/:id", () => {
 describe("GET /city/:city/parking-zones", () => {
     it("should return all parkingzones in lund", async () => {
         const res = await request(app)
-            .get("/get//city/lund/parking-zones")
+            .get("/get/city/lund/parking-zones")
             .expect('Content-Type', /json/)
             .expect(200);
 

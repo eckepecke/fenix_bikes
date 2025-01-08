@@ -79,8 +79,7 @@ const startServer = async () => {
         // Connect to the database
 
         let mongoUri =
-            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@
-            // cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+            `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
 
         if (process.env.NODE_ENV === 'test') {
             // We can even use MongoDB Atlas for testing
