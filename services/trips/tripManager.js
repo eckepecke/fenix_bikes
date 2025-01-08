@@ -44,13 +44,13 @@ const tripManager = {
             let penalty = 0;
             const cost = (minutes * runningFee) + startFee;
 
-            if (await this.checkParking(startLocation, "Lund") === false) {
-                if (await this.checkParking(stopLocation, "Lund") === true) {
+            if (await this.checkParking(startLocation) === false) {
+                if (await this.checkParking(stopLocation) === true) {
                     discount = -5;
                 }
             }
 
-            if (await this.checkParking(stopLocation, "Lund") === false) {
+            if (await this.checkParking(stopLocation) === false) {
                 penalty = 5;
             }
 
@@ -70,8 +70,8 @@ const tripManager = {
         }
     },
 
-    checkParking: async function checkParking(location, city) {
-        const parkingZones = await getParking(city);
+    checkParking: async function checkParking(location) {
+        const parkingZones = await getAllParking();
         // console.log(parkingZones);
         let flag = false
         for (var key in parkingZones) {
