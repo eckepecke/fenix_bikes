@@ -135,8 +135,8 @@ const Map: React.FC = () => {
 							<Popup>
 								<div className="popup-content">
 									<h2>{station.charging_id}</h2>
-									{station.plugs.map((plug: any) => (
-										<p key={plug.id}>Plug {plug.id}: {plug.available ? "Available" : "Occupied"}</p>
+									{station.charging_bikes.map((plug: any) => (
+										<p>{plug}</p>
 									))}
 								</div>
 							</Popup>
