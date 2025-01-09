@@ -1,0 +1,9 @@
+{
+    "bail": 1,
+    "verbose": true,
+    "transformIgnorePatterns": [
+        "/node_modules/",
+        "(?!(foo|bar)/)",
+        "/bar/"
+    ]
+}

@@ -1,0 +1,31 @@
+.login-container {
+  margin: 2em auto;
+  padding: 4em;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  background-color: var(--color-green-primary);
+  border: solid 2px #000;
+  border-radius: 10px;
+}
+
+.heading {
+  color: #fff;
+  text-align: center;
+}
+
+.login-btn {
+  margin-top: 20px;
+  background-color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border: solid 2px #000;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.login-btn:hover {
+  background-color: var(--color-green-lightest);
+}
