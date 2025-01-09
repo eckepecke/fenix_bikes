@@ -29,7 +29,9 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:5173', 'http://localhost:5174'],
+}));
 app.use(helmet());
 
 app.use('/add', add);
@@ -46,7 +48,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        origin: ['http://localhost:5173']
+        origin: ['http://localhost:5173', 'http://localhost:5174'],
     }
 });
 
