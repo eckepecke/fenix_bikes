@@ -210,7 +210,7 @@ const Map: React.FC = () => {
     const fetchParkingZones = async (cityName: string) => {
       try {
         const response = await fetch(
-          `http://localhost:1337/test/city/${cityName}/parking-zones`
+          `http://localhost:1337/get/city/${cityName}/parking-zones`
         );
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
