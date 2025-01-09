@@ -6,7 +6,7 @@ import { connectToDatabase } from "../../db/db.js";
 import { getUsers } from '../../db/users.js';
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
-// import bikeManager from "../../bike-logic/bikeManager.js"
+import simManager from "../../simulation/simManager.js"
 import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
@@ -15,7 +15,13 @@ import auth from './routes/authRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
+import bike from '../../bike-logic/bike.js'
+import simSetup from "../../simulation/simSetup.js";
+import { group } from "console";
+
+
 import stripe from "./routes/stripe.js";
+
 
 
 dotenv.config();
@@ -50,17 +56,59 @@ const io = new Server(httpServer, {
     }
 });
 
+// if env.process = "simulation" {}
+let simulatedTrips = [];
+let flatSimulatedTrips = {};
+
+simSetup(simManager).then((data) => {
+    // Some of this should move simulation model
+    simulatedTrips = data;
+    console.log("Object amount: ", simulatedTrips.length);
+    console.log(simulatedTrips[6].length)
+
+    const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
+
+    // Loop over each batch progressively
+    for (let i = 0; i < totalBatches; i++) {
+        console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
+    
+        // Loop through the batches up to the current batch `i`
+        for (let j = 0; j <= i; j++) {
+            console.log(`Updating batch ${j + 1}`);
+            for (const trip of simulatedTrips[j]) {
+                simManager.updateLocation(trip);
+            }
+        }
+        console.log(`Finished updating batches 1 to ${i + 1}`);
+        flatSimulatedTrips = simulatedTrips.flat();
+    }
+})
 
 io.sockets.on('connection', function (socket) {
-    console.log(socket.id); // Nått lång och slumpat
+    console.log(socket.id);
 
+    setInterval(() => {
+        if (simulatedTrips) {
 
-    // socket.timeout(5000).serverSideEmit("location_update", bike.sendLocation('B0013'), (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     }
-    // });
+        for (const batch of simulatedTrips) {
+            batch.forEach((simTrip) => {
+                simManager.updateLocation(simTrip);
+                // Potentially write to db here
+            });
+        }
+
+        console.log("emitting!!")
+
+        // const flatSimulatedTrips = simulatedTrips.flat();
+
+        socket.emit('location_update', flatSimulatedTrips);
+
+        } else {
+            console.log("Data is not yet fetched, waiting...");
+        }
+    }, 5000);
 });
+
 
 
 app.get("/", (req, res) => {
