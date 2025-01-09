@@ -57,57 +57,57 @@ const io = new Server(httpServer, {
 });
 
 // if env.process = "simulation" {}
-let simulatedTrips = [];
-let flatSimulatedTrips = {};
+// let simulatedTrips = [];
+// let flatSimulatedTrips = {};
 
-simSetup(simManager).then((data) => {
-    // Some of this should move simulation model
-    simulatedTrips = data;
-    console.log("Object amount: ", simulatedTrips.length);
-    console.log(simulatedTrips[6].length)
+// simSetup(simManager).then((data) => {
+//     // Some of this should move simulation model
+//     simulatedTrips = data;
+//     console.log("Object amount: ", simulatedTrips.length);
+//     console.log(simulatedTrips[6].length)
 
-    const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
+//     const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
 
-    // Loop over each batch progressively
-    for (let i = 0; i < totalBatches; i++) {
-        console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
+//     // Loop over each batch progressively
+//     for (let i = 0; i < totalBatches; i++) {
+//         console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
     
-        // Loop through the batches up to the current batch `i`
-        for (let j = 0; j <= i; j++) {
-            console.log(`Updating batch ${j + 1}`);
-            for (const trip of simulatedTrips[j]) {
-                simManager.updateLocation(trip);
-            }
-        }
-        console.log(`Finished updating batches 1 to ${i + 1}`);
-        flatSimulatedTrips = simulatedTrips.flat();
-    }
-})
+//         // Loop through the batches up to the current batch `i`
+//         for (let j = 0; j <= i; j++) {
+//             console.log(`Updating batch ${j + 1}`);
+//             for (const trip of simulatedTrips[j]) {
+//                 simManager.updateLocation(trip);
+//             }
+//         }
+//         console.log(`Finished updating batches 1 to ${i + 1}`);
+//         flatSimulatedTrips = simulatedTrips.flat();
+//     }
+// })
 
-io.sockets.on('connection', function (socket) {
-    console.log(socket.id);
+// io.sockets.on('connection', function (socket) {
+//     console.log(socket.id);
 
-    setInterval(() => {
-        if (simulatedTrips) {
+//     setInterval(() => {
+//         if (simulatedTrips) {
 
-        for (const batch of simulatedTrips) {
-            batch.forEach((simTrip) => {
-                simManager.updateLocation(simTrip);
-                // Potentially write to db here
-            });
-        }
+//         for (const batch of simulatedTrips) {
+//             batch.forEach((simTrip) => {
+//                 simManager.updateLocation(simTrip);
+//                 // Potentially write to db here
+//             });
+//         }
 
-        console.log("emitting!!")
+//         console.log("emitting!!")
 
-        // const flatSimulatedTrips = simulatedTrips.flat();
+//         // const flatSimulatedTrips = simulatedTrips.flat();
 
-        socket.emit('location_update', flatSimulatedTrips);
+//         socket.emit('location_update', flatSimulatedTrips);
 
-        } else {
-            console.log("Data is not yet fetched, waiting...");
-        }
-    }, 5000);
-});
+//         } else {
+//             console.log("Data is not yet fetched, waiting...");
+//         }
+//     }, 5000);
+// });
 
 
 
