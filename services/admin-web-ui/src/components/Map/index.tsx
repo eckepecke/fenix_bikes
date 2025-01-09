@@ -22,6 +22,7 @@ interface LocationUpdateData {
 }
 
 const Map: React.FC = () => {
+
   const { city } = useParams<{ city: string }>();
   const [cityBorders, setCityBorders] = useState<any>(null);
   const [cityCenter, setCityCenter] = useState<[number, number] | null>(null);
@@ -162,44 +163,38 @@ const Map: React.FC = () => {
       }
     };
 
-    const fetchChargingStations = async (cityName: string) => {
-      try {
-        const response = await fetch(
-          `http://localhost:1337/test/city/${cityName}/charging-stations`
-        );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
+		const fetchChargingStations = async (cityName: string) => {
+			try {
+				const response = await fetch(`http://localhost:1337/get/city/${cityName}/charging-stations`);
+				if (!response.ok) {
+					throw new Error(`Error: ${response.statusText}`);
+				}
 
-        const stations = await response.json();
-        console.log("Fetched stations:", stations); // Log fetched stations
+				const stations = await response.json();
+				console.log("Fetched stations:", stations);
 
-        const markers = stations
-          .filter(
-            (station: any) =>
-              station.city_name.toLowerCase() === cityName.toLowerCase()
-          )
-          .map((station: any) => (
-            <Marker
-              key={station._id}
-              position={station.location}
-              icon={chargingStationMarker}
-            >
-              <Popup>
-                <div className="popup-content">
-                  <h2>{station.charging_id}</h2>
-                </div>
-              </Popup>
-            </Marker>
-          ));
-        console.log("Generated markers:", markers); // Log generated markers
+				const markers = stations
+					.filter((station: any) => station.city_name.toLowerCase() === cityName.toLowerCase())
+					.map((station: any) => (
+						<Marker key={station._id} position={station.location} icon={chargingStationMarker}>
+							<Popup>
+								<div className="popup-content">
+									<h2>{station.charging_id}</h2>
+									{station.charging_bikes.map((plug: any) => (
+										<p>{plug}</p>
+									))}
+								</div>
+							</Popup>
+						</Marker>
+					));
+				console.log("Generated markers:", markers);
 
-        setChargingStationMarkers(markers);
-        console.log("stations fetched:", stations);
-      } catch (error) {
-        console.error("Error fetching stations:", error);
-      }
-    };
+				setChargingStationMarkers(markers);
+				console.log("stations fetched:", stations);
+			} catch (error) {
+				console.error("Error fetching stations:", error);
+			}
+		};
 
     const calculateCentroid = (area: [number, number][]) => {
       let x = 0,
