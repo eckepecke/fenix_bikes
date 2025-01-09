@@ -1,0 +1,24 @@
+[
+    {
+        "_id": "bike_id",
+        "seq": 0,
+        "counter_value": 24
+    },
+    {
+        "_id": "trip_id",
+        "seq": 0,
+        "counter_value": 17
+    },
+    {
+        "_id": "user_id",
+        "seq": 12
+    },
+    {
+        "_id": "parking_id",
+        "seq": 46
+    },
+    {
+        "_id": "charging_id",
+        "seq": 52
+    }
+]
