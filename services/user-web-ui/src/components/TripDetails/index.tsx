@@ -36,7 +36,7 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
       <p className="trip-p">Duration: {formattedDuration}</p>
       <p className="trip-p">Total: {formattedCost} SEK</p>
 
-      <a href={`/pay/${tripId}`} className="trip-link">Payment &gt;</a>
+      <a href={`/pay-trip/${tripId}`} className="trip-link">Payment &gt;</a>
     </div>
   );
 }
