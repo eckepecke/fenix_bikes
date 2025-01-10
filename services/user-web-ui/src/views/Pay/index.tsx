@@ -39,7 +39,8 @@ const Pay: React.FC<PayProps> = () => {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 
-			const { clientSecret } = await response.json();
+			const clientSecretResponse = await response.json();
+      const clientSecret = clientSecretResponse.client_secret;
 
 			setPayment((pre) => ({ ...pre, clientSecret, show: false }));
 		} catch (error) {
@@ -62,9 +63,11 @@ const Pay: React.FC<PayProps> = () => {
 						</button>
 					</form>
 				) : (
-          <Elements stripe={stripePromise} options={{ clientSecret: payment.clientSecret }}>
-            <CheckoutForm />
-          </Elements>
+          payment.clientSecret && (
+            <Elements stripe={stripePromise} options={{ clientSecret: payment.clientSecret }}>
+              <CheckoutForm />
+            </Elements>
+          )
 				)}
 			</div>
 		);
