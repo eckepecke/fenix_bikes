@@ -28,7 +28,6 @@ router.post('/payment-intent', async (req, res) => {
 router.post('/create-checkout-session', async (req, res) => {
   const { tripId, amount } = req.body;
 
-  console.log(`stripeApiKey: ${stripeApiKey}`);
   console.log(`tripId: ${tripId}, amount: ${amount}`);
 
   const session = await stripe.checkout.sessions.create({
