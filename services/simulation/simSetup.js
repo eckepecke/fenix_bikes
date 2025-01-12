@@ -19,7 +19,7 @@ function renameTripKeys(tripObjects) {
 }
 
 const simSetup = async (simManager) => {
-    let simulatedTrips = []; // Initialize the simulatedTrips object
+    let simulatedTrips = [];
 
     try {
         // Generate 1000 bikes
@@ -64,20 +64,6 @@ const simSetup = async (simManager) => {
                 });
             }
 
-            // if (trip && user) {
-            //     bike.location = trip.coordinates[0]; // Starting location
-            //     bike.active_trip = trip.tripKey; // Active trip ID
-            //     simulatedTrips[index] = {
-            //         bike: bike,
-            //         trip: trip.tripKey,
-            //         coordinates: trip.coordinates,
-            //         user: user.user_id,
-            //         start_location: trip.coordinates[0],
-            //         end_location: lastCoordinate,
-            //         city: bike.city_name
-            //     };
-            // }
-
             tripIndex++;
             if (tripIndex >= tripObjects.length || index === lastBike) {
                 tripIndex = 0; // Reset trip index
@@ -87,8 +73,8 @@ const simSetup = async (simManager) => {
             }
         });
         // const groupedTrips = await simManager.group(simulatedTrips, 40);
-
-        return simulatedTrips; // Return the simulatedTrips object
+        // console.log(JSON.stringify(simulatedTrips, null, 2));
+        return simulatedTrips; // Return the simulatedTrips array
 
     } catch (error) {
         console.error("Error fetching data:", error);
