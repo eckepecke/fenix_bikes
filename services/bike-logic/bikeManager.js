@@ -76,16 +76,18 @@ const bikeManager = {
 
             return {
                 bike_id: currentBikeId,
-                speed: bike.speed,
+                speed: 0,
                 location: bike.location,
                 city_name: cityObject.name,
                 status: {
                     available: bike.available,
-                    battery_level: bike.battery_level,
-                    in_service: bike.in_service,
+                    battery_level: 100,
+                    in_service: false,
                 },
                 red_light: false,
-                completed_trips: []
+                active_trip: null,
+                completed_trips: [],
+                // plugged_in: false
             };
         }));
 
@@ -135,17 +137,18 @@ const bikeManager = {
         }
     },
 
-    getAllActiveSimBikes: async function getAllBikes() {
+    getAllBikesWithRedLight: async function getAllBikesWithRedLight() {
         let collection = getCollection("bikes");
-    
+
         try {
-            // Find bikes where activeTrip is not null
-            // This will only work for sim
-            const result = await collection.find({ active_trip: { $ne: null } }).toArray();
+            // Needs to be tested
+            //const result = await collection.find({}).toArray();
+            const result = await collection.find({ red_light: true }).toArray();
+
             return result;
         } catch (e) {
-            console.error("Error retrieving active bikes:", e.message || e);
-            throw new Error("Failed to retrieve active bikes from the database.");
+            console.error("Error retrieving bikes:", e.message || e);
+            throw new Error("Failed to retrieve bikes from the database.");
         }
     },
 
@@ -264,7 +267,22 @@ const bikeManager = {
                 throw new Error("Failed to retrieve active bikes from the database.");
             }
         }
+    },
+
+    checkBikesForWarning: async function checkBikesForWarning(bikeArray) {
+        console.log("Checking!");
+        console.log(bikeArray);
+    
+        const bikesNeedingWarning = [];
+    
+        for (const bikeObj of bikeArray) {
+            if (bikeObj.status.battery_level < 15) {
+                console.log("passing to bike!");
+                bikesNeedingWarning.push(bikeObj);
+            }
+        }
+    
+        return bikesNeedingWarning;
     }
 }
-
 export default bikeManager
