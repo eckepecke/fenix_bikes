@@ -120,7 +120,7 @@ const bikeManager = {
         }
     },
 
-    getAllActiveBikes: async function getAllBikes() {
+    getAllActiveBikes: async function getAllActiveBikes() {
         let collection = getCollection("bikes");
 
         try {
@@ -141,7 +141,7 @@ const bikeManager = {
         try {
             // Find bikes where activeTrip is not null
             // This will only work for sim
-            const result = await collection.find({ "bike.active_trip": { $ne: null } }).toArray();
+            const result = await collection.find({ active_trip: { $ne: null } }).toArray();
             return result;
         } catch (e) {
             console.error("Error retrieving active bikes:", e.message || e);
@@ -251,10 +251,10 @@ const bikeManager = {
     
         for (const bike of bikeObjects) {
             try {
-                console.log("Bike object:", bike);
+                // console.log("Bike object:", bike);
                 // Find bikes where activeTrip is not null, and insert if not found
                 const result = await collection.updateOne(
-                    { bike_id: bike.bike.bike_id }, // Access bike_id from the nested bike object
+                    { bike_id: bike.bike_id }, // Access bike_id from the nested bike object
                     { $set: bike },
                     { upsert: true }
                 );

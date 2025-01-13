@@ -66,7 +66,7 @@ const simManager = {
     updateLocation: function updateLocation(simulatedTrip) {
         if (simulatedTrip.coordinates && simulatedTrip.coordinates.length > 1) {
             simulatedTrip.coordinates.shift();
-            simulatedTrip.bike.location = simulatedTrip.coordinates[0];
+            simulatedTrip.location = simulatedTrip.coordinates[0];
         }
     },
 
