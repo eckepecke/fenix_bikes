@@ -36,7 +36,6 @@ router.get("/generate", async (req, res) => {
     res.json([result1, result2]);
 });
 
-
 router.post("/location/update", async (req, res) => {
     let bikeId = req.body.bike_id;
     let location = req.body.location;
