@@ -122,4 +122,11 @@ router.get("/trip/:id", async (req, res) => {
     res.json(result);
 });
 
+// GET /bikes/with/warning
+router.get("/bikes/with/warning", async (req, res) => {
+    const result = await bikeManager.getAllBikesWithRedLight();
+
+    res.json(result);
+});
+
 export default router;
