@@ -188,7 +188,7 @@ if (process.env.NODE_ENV === 'simulation') {
 
         setInterval(async () => {
             console.log("getting bikes");
-            let activeSimBikes = await bikeManager.getAllActiveSimBikes();
+            let activeSimBikes = await bikeManager.getAllActiveBikes();
 
             if (activeSimBikes) {
                 console.log("simManager updating locations")
@@ -200,29 +200,37 @@ if (process.env.NODE_ENV === 'simulation') {
             console.log("bikeManager saving to db");
             await bikeManager.saveBikesToDb(activeSimBikes);
             }
-            let activeBikes = await bikeManager.getAllActiveSimBikes();
+
+            activeSimBikes = await bikeManager.getAllActiveBikes();
             console.log("emitting sim bikes");
-            console.log(`Number of active bikes: ${activeBikes.length}`);
-            socket.emit('location_update', activeBikes);
+            console.log(`Number of active bikes: ${activeSimBikes.length}`);
+            socket.emit('location_update', activeSimBikes);
 
         }, 5000);
     
     });
+
 } else {
-    // This always run to update active bikes location
-    // something should happen when it is not a sim
 
-    // io.sockets.on('connection', function (socket) {
-    //     console.log(socket.id);
+    io.sockets.on('connection', async function (socket) {
+        console.log(socket.id);
 
-    //     setInterval(async () => {
-    //         try {
-    //             let activeBikes = await bikeManager.getAllActiveBikes();
-    //         } catch (error) {
-    //             console.error("Error updating active bikes:", error);
-    //         }
-    //     }, 5000);
-    // });
+        setInterval(async () => {
+            console.log("getting bikes");
+            let bikes = await bikeManager.getAllBikes();
+
+
+            if (bikes) {
+                console.log("emitting real bikes");
+                console.log(`Number of fetched bikes: ${bikes.length}`);
+                socket.emit('location_update', bikes);
+            }
+
+
+
+        }, 5000);
+    
+    });
 }
 
 
