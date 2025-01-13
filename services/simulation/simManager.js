@@ -1,4 +1,5 @@
 import data from './trips/all_trips_new.json' with { type: 'json' };
+import { getCollection } from "../db/collections.js";
 
 const simManager = {
     generateBikes: function generateBikes(count) {
@@ -65,7 +66,7 @@ const simManager = {
     updateLocation: function updateLocation(simulatedTrip) {
         if (simulatedTrip.coordinates && simulatedTrip.coordinates.length > 1) {
             simulatedTrip.coordinates.shift();
-            simulatedTrip.bike.location = simulatedTrip.coordinates[0];
+            simulatedTrip.location = simulatedTrip.coordinates[0];
         }
     },
 
@@ -86,9 +87,9 @@ const simManager = {
         let group = {};
         let batchIndex = 0;
     
-        console.log("group");
-        console.log(trips[0]);
-        console.log(typeof trips);
+        // console.log("group");
+        // console.log(trips[0]);
+        // console.log(typeof trips);
     
         Object.keys(trips).forEach((tripKey, index) => {
             group[tripKey] = trips[tripKey];
@@ -125,11 +126,21 @@ const simManager = {
                 ...trip,
                 tripKey: newTripKey, // Assign new unique key
             };
-    
+
             renamedTrips.push(renamedTrip);
         });
     
         return renamedTrips;
+    },
+
+    emptyBikeCollection: async function emptyBikeCollection() {
+        let collection = getCollection("bikes");
+
+        try {
+            await collection.deleteMany({}); // Removes all documents from the bike collection
+        } catch (error) {
+            console.error('Error clearing bike collection:', error);
+        }
     }
 };
 

@@ -19,14 +19,14 @@ function renameTripKeys(tripObjects) {
 }
 
 const simSetup = async (simManager) => {
-    let simulatedTrips = []; // Initialize the simulatedTrips object
+    let simulatedTrips = [];
 
     try {
         // Generate 1000 bikes
-        const bikeArray = await simManager.generateBikes(1000);
+        const bikeArray = await simManager.generateBikes(3000);
     
         // Generate 1000 customers (users)
-        const userArray = await simManager.generateUsers(1000);
+        const userArray = await simManager.generateUsers(3000);
     
         // Create 1000 Trips
         let tripObjects = await simManager.getSimCoordinates();
@@ -54,7 +54,7 @@ const simSetup = async (simManager) => {
                 bike.location = trip.coordinates[0]; // Starting location
                 bike.active_trip = trip.tripKey; // Active trip ID
                 batch.push({
-                    bike: bike,
+                    ...bike, // Spread bike attributes directly
                     trip: trip.tripKey,
                     coordinates: trip.coordinates,
                     user: user.user_id,
@@ -64,20 +64,6 @@ const simSetup = async (simManager) => {
                 });
             }
 
-            // if (trip && user) {
-            //     bike.location = trip.coordinates[0]; // Starting location
-            //     bike.active_trip = trip.tripKey; // Active trip ID
-            //     simulatedTrips[index] = {
-            //         bike: bike,
-            //         trip: trip.tripKey,
-            //         coordinates: trip.coordinates,
-            //         user: user.user_id,
-            //         start_location: trip.coordinates[0],
-            //         end_location: lastCoordinate,
-            //         city: bike.city_name
-            //     };
-            // }
-
             tripIndex++;
             if (tripIndex >= tripObjects.length || index === lastBike) {
                 tripIndex = 0; // Reset trip index
@@ -86,9 +72,9 @@ const simSetup = async (simManager) => {
                 batch = []; // Properly reset batch to a new array
             }
         });
-        // const groupedTrips = await simManager.group(simulatedTrips, 40);
 
-        return simulatedTrips; // Return the simulatedTrips object
+        return simulatedTrips; // Return the simulatedTrips array
+
 
     } catch (error) {
         console.error("Error fetching data:", error);
