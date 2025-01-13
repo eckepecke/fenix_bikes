@@ -1,6 +1,6 @@
-import { getCollection } from "../db/collections.js"
-import { getCities } from "../db/cities.js"
-import bike from "./bike.js"
+import { getCollection } from "../db/collections.js";
+import { getCities } from "../db/cities.js";
+import bike from "./bike.js";
 
 const bikeManager = {
     generateBikeId: async function () {
@@ -112,10 +112,40 @@ const bikeManager = {
 
         try {
             const result = await collection.find({}).toArray();
+
             return result;
         } catch (e) {
             console.error("Error retrieving bikes:", e.message || e);
             throw new Error("Failed to retrieve bikes from the database.");
+        }
+    },
+
+    getAllActiveBikes: async function getAllActiveBikes() {
+        let collection = getCollection("bikes");
+
+        try {
+            // Needs to be tested
+            //const result = await collection.find({}).toArray();
+            const result = await collection.find({ active_trip: { $ne: null } }).toArray();
+
+            return result;
+        } catch (e) {
+            console.error("Error retrieving bikes:", e.message || e);
+            throw new Error("Failed to retrieve bikes from the database.");
+        }
+    },
+
+    getAllActiveSimBikes: async function getAllBikes() {
+        let collection = getCollection("bikes");
+    
+        try {
+            // Find bikes where activeTrip is not null
+            // This will only work for sim
+            const result = await collection.find({ active_trip: { $ne: null } }).toArray();
+            return result;
+        } catch (e) {
+            console.error("Error retrieving active bikes:", e.message || e);
+            throw new Error("Failed to retrieve active bikes from the database.");
         }
     },
 
@@ -214,6 +244,27 @@ const bikeManager = {
             throw new Error("Failed to delete user from user collection.");
         }
     },
+
+    saveBikesToDb: async function saveBikesToDb(bikeObjects) {
+        console.log("Saving bikes..")
+        let collection = getCollection("bikes");
+    
+        for (const bike of bikeObjects) {
+            try {
+                // console.log("Bike object:", bike);
+                // Find bikes where activeTrip is not null, and insert if not found
+                const result = await collection.updateOne(
+                    { bike_id: bike.bike_id }, // Access bike_id from the nested bike object
+                    { $set: bike },
+                    { upsert: true }
+                );
+
+            } catch (e) {
+                console.error("Error saving bikes to db: ", e.message || e);
+                throw new Error("Failed to retrieve active bikes from the database.");
+            }
+        }
+    }
 }
 
 export default bikeManager
