@@ -19,6 +19,7 @@ import bike from '../../bike-logic/bike.js'
 import simSetup from "../../simulation/simSetup.js";
 import { group } from "console";
 import bikeManager from '../../bike-logic/bikeManager.js'
+import { startSimulation } from "../../simulation/runSim.js";
 
 
 
@@ -136,102 +137,123 @@ const startServer = async () => {
 // Start the server
 await startServer();
 
-let simulatedTrips = [];
-let flatSimulatedTrips = {};
+// let simulatedTrips = [];
+// let flatSimulatedTrips = {};
 
-if (process.env.NODE_ENV === 'simulation') {
-    simManager.emptyBikeCollection()
-        .then(() => {
-            console.log('Bike collection emptied');
-        })
-        .catch((error) => {
-            console.error('Error emptying bike collection:', error);
-        });
+// if (process.env.NODE_ENV === 'simulation') {
+//     simManager.runSimScript();
+//     simManager.emptyBikeCollection()
+//         .then(() => {
+//             console.log('Bike collection emptied');
+//         })
+//         .catch((error) => {
+//             console.error('Error emptying bike collection:', error);
+//         });
 
-        simSetup(simManager).then(async (data) => {
-            console.log("setting up sim..")
-        // Some of this should move simulation model
-            simulatedTrips = data;
+//         simSetup(simManager).then(async (data) => {
+//             console.log("setting up sim..")
+//         // Some of this should move simulation model
+//             simulatedTrips = data;
 
 
-            const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
+//             const totalBatches = simulatedTrips.length;  // Assuming there are 7 batches
 
-            // Loop over each batch progressively
-            for (let i = 0; i < totalBatches; i++) {
-                console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
+//             // Loop over each batch progressively
+//             for (let i = 0; i < totalBatches; i++) {
+//                 console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
             
-                // Loop through the batches up to the current batch `i`
-                for (let j = 0; j <= i; j++) {
-                    console.log(`Updating batch ${j + 1}`);
-                    for (const trip of simulatedTrips[j]) {
-                        simManager.updateLocation(trip);
-                    }
-                }
-                console.log(`Finished updating batches 1 to ${i + 1}`);
-                flatSimulatedTrips = simulatedTrips.flat();
-                await bikeManager.saveBikesToDb(flatSimulatedTrips);
-            }
-        })
-}
+//                 // Loop through the batches up to the current batch `i`
+//                 for (let j = 0; j <= i; j++) {
+//                     console.log(`Updating batch ${j + 1}`);
+//                     for (const trip of simulatedTrips[j]) {
+//                         simManager.updateLocation(trip);
+//                     }
+//                 }
+//                 console.log(`Finished updating batches 1 to ${i + 1}`);
+//                 flatSimulatedTrips = simulatedTrips.flat();
+//                 await bikeManager.saveBikesToDb(flatSimulatedTrips);
+//             }
+//         })
+// }
 
 console.log(process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === 'simulation') {
-    console.log("simulating..")
+    console.log("Simulation environment detected, starting simulation...");
+    await startSimulation(io);  // Pass io to startSimulation
+}
+
+if (process.env.NODE_ENV === 'production') {
+    io.sockets.on('connection', async function (socket) {
+    console.log(socket.id);
+
+    setInterval(async () => {
+        console.log("getting bikes");
+        let allBikes = await bikeManager.getAllBikes();
+
+        console.log(`Number of bikes: ${allBikes.length}`);
+        socket.emit('location_update', allBikes);
+
+    }, 5000);
+
+});
+
+}
+
     // console.log("Is it an array?", Array.isArray(flatSimulatedTrips));
 
     // await bikeManager.saveBikesToDb(flatSimulatedTrips);
 
 
-    io.sockets.on('connection', async function (socket) {
-        console.log(socket.id);
+//     io.sockets.on('connection', async function (socket) {
+//         console.log(socket.id);
 
-        setInterval(async () => {
-            console.log("getting bikes");
-            let activeSimBikes = await bikeManager.getAllActiveBikes();
+//         setInterval(async () => {
+//             console.log("getting bikes");
+//             let activeSimBikes = await bikeManager.getAllActiveBikes();
 
-            if (activeSimBikes) {
-                console.log("simManager updating locations")
-                for (const bike of activeSimBikes) {
-                    simManager.updateLocation(bike);
-                    // Potentially write to db here
+//             if (activeSimBikes) {
+//                 console.log("simManager updating locations")
+//                 for (const bike of activeSimBikes) {
+//                     simManager.updateLocation(bike);
+//                     // Potentially write to db here
 
-                }
-            console.log("bikeManager saving to db");
-            await bikeManager.saveBikesToDb(activeSimBikes);
-            }
+//                 }
+//             console.log("bikeManager saving to db");
+//             await bikeManager.saveBikesToDb(activeSimBikes);
+//             }
 
-            activeSimBikes = await bikeManager.getAllActiveBikes();
-            console.log("emitting sim bikes");
-            console.log(`Number of active bikes: ${activeSimBikes.length}`);
-            socket.emit('location_update', activeSimBikes);
+//             activeSimBikes = await bikeManager.getAllActiveBikes();
+//             console.log("emitting sim bikes");
+//             console.log(`Number of active bikes: ${activeSimBikes.length}`);
+//             socket.emit('location_update', activeSimBikes);
 
-        }, 5000);
+//         }, 5000);
     
-    });
+//     });
 
-} else {
+// } else {
 
-    io.sockets.on('connection', async function (socket) {
-        console.log(socket.id);
+    // io.sockets.on('connection', async function (socket) {
+    //     console.log(socket.id);
 
-        setInterval(async () => {
-            console.log("getting bikes");
-            let bikes = await bikeManager.getAllBikes();
-
-
-            if (bikes) {
-                console.log("emitting real bikes");
-                console.log(`Number of fetched bikes: ${bikes.length}`);
-                socket.emit('location_update', bikes);
-            }
+    //     setInterval(async () => {
+    //         console.log("getting bikes");
+    //         let bikes = await bikeManager.getAllBikes();
 
 
+    //         if (bikes) {
+    //             console.log("emitting real bikes");
+    //             console.log(`Number of fetched bikes: ${bikes.length}`);
+    //             socket.emit('location_update', bikes);
+    //         }
 
-        }, 5000);
+
+
+    //     }, 5000);
     
-    });
-}
+    // });
+//}
 
 
 export default app;
