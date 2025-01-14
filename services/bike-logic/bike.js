@@ -179,38 +179,26 @@ const bike = {
         }
     },
 
-    // Not yet refactored
-    checkForWarning: async function checkForWarning(bike) {
-        let db = await database.getDb();
-        const city = await db.cityCollection.findOne(bike.city_id)
+    warning: async function warning(bike) {
+        console.log("warning");
+        console.log(bike);
 
-        if (!city) {
-            throw new Error(`City not found for city_id: ${bike.city_id}`);
+        let bikeCollection = getCollection("bikes");
+
+        try {
+            const result = await bikeCollection.updateOne(
+                { bike_id: bike.bike_id },
+                {
+                    $set: {
+                        red_light: true,
+                    }
+                });
+
+            return result;
+        } catch (e) {
+            console.error(e)
+            throw new Error(`Failed to start service for bike with bike_id: ${bikeId}.`);
         }
-
-        const cityZone = city.area
-        const citySpeedLimit = city.speedLimit
-
-        let warning = false;
-
-        if (!cityZone.includes(bike.location)) {
-
-            warning = true;
-            // stop bike or something
-        }
-
-        // I guess bike speed is already capped?
-
-        // if (bike.speed > citySpeedLimit) {
-        //     // stop bike or something
-        //     warning = true;
-        // }
-
-        if (bike.status.battery_level < 15) {
-            warning = true;
-        }
-
-        return warning
     },
 
     startService: async function startService(bikeId) {

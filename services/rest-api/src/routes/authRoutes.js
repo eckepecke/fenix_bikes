@@ -23,8 +23,8 @@ router.get("/user", async (req, res) => {
         return res.status(400).json({ error: "No code provided" });
     }
 
-    const clientId = process.env.GITHUB_CLIENT_ID;
-    const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+    const clientId = process.env.UI_GITHUB_CLIENT_ID;
+    const clientSecret = process.env.UI_GITHUB_CLIENT_SECRET;
 
     try {
         const tokenResponse = await axios.post(
