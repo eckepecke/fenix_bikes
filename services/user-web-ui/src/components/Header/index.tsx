@@ -8,8 +8,8 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    removeCookie("user"); // Clear the user cookie
-    navigate("/"); // Redirect to the login page
+    removeCookie("user");
+    navigate("/");
   };
 
 	return (
@@ -34,12 +34,12 @@ const Header: React.FC = () => {
 									<a href="payments">Payments</a>
 								</li>
 								<li>
-									<button onClick={handleLogout}>Log out</button>
+									<button onClick={handleLogout}>Sign out</button>
 								</li>
 							</>
 						) : (
 							<li>
-								<a href="login">Log in</a>
+								<a href="login">Sign in</a>
 							</li>
 						)}
 					</ul>

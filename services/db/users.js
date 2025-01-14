@@ -71,6 +71,7 @@ export const unbanUser = async (id) => {
 }
 
 export const deleteUser = async (id) => {
-	const result = await getCollection("users").deleteOne({ id });
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").deleteOne({ _id });
 	return result;
 };
