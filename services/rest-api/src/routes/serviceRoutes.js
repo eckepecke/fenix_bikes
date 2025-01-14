@@ -1,8 +1,6 @@
 import express from 'express';
-// import bikeManager from "../../../bike-logic/bikeManager.js"
 import bike from "../../../bike-logic/bike.js";
-
-
+import bikeManager from "../../../bike-logic/bikeManager.js";
 
 
 const router = express.Router();
@@ -41,6 +39,22 @@ router.post("/stop_charge", async (req, res) => {
     const result = await bike.stopCharge(bikeId);
 
     res.json(result);
+});
+
+router.get("/update/red_light", async (req, res) => {
+    try {
+        const allBikes = await bikeManager.getAllBikes();
+        const bikesWithLowBattery = await bikeManager.checkBikesForWarning(allBikes);
+
+        for (const bikeObj of bikesWithLowBattery) {
+            await bike.warning(bikesWithLowBattery);
+        }
+
+        res.json({ message: "Updated bikes" });
+    } catch (error) {
+        console.error("Error updating bikes:", error);
+        res.status(500).json({ error: "An error occurred while updating bikes" });
+    }
 });
 
 export default router;

@@ -19,6 +19,14 @@
   background-color: #fff;
 }
 
+.green {
+  background-color: var(--color-green-primary);
+}
+
+.btn {
+  border-radius: 0.5em;
+}
+
 h1 {
   font-family: var(--h1-font);
   font-size: 2.5em;

@@ -26,6 +26,11 @@ export const getUserByEmail = async (email) => {
 	return user;
 };
 
+export const getUserByUserId = async (userId) => {
+	const user = await getCollection("users").findOne({ user_id: userId });
+	return user;
+}
+
 export const createUser = async (user) => {
 	const userExists = await getUserByEmail(user.email);
 	if (userExists) {
@@ -42,5 +47,16 @@ export const createUser = async (user) => {
 
 	console.log(result);
 
+	return result;
+};
+
+export const updateUser = async (user) => {
+	const id = user.id;
+	const result = await getCollection("users").updateOne({ id }, { $set: user });
+	return result;
+}
+
+export const deleteUser = async (id) => {
+	const result = await getCollection("users").deleteOne({ id });
 	return result;
 };
