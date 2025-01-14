@@ -1,9 +1,11 @@
 import React from "react";
 import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-interface CheckoutFormProps {}
+interface CheckoutFormProps {
+	type: string;
+}
 
-const CheckoutForm: React.FC<CheckoutFormProps> = ({}) => {
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ type }) => {
 	const stripe = useStripe();
 	const elements = useElements();
 
@@ -16,7 +18,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({}) => {
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {
-				return_url: `${window.location.origin}/payment-success`,
+				return_url: `${window.location.origin}/payment-success/${type}`,
 			},
 		});
 

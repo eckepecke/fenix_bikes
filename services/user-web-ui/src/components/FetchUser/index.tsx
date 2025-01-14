@@ -8,6 +8,7 @@ interface User {
   banned: boolean;
   completed_trips: string[];
   user_id?: string;
+  balance: number;
 }
 
 const FetchUser = async (userEmail: string): Promise<User | null> => {

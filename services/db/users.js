@@ -75,3 +75,10 @@ export const deleteUser = async (id) => {
 	const result = await getCollection("users").deleteOne({ _id });
 	return result;
 };
+
+export const addToBalance = async (id, amount) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $inc: { balance: amount } });
+	console.log("hej från addToBalance");
+	return result;
+}

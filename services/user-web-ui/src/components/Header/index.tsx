@@ -30,11 +30,11 @@ const Header: React.FC = () => {
 								<li>
 									<a href="profile">Profile</a>
 								</li>
+								{/* <li>
+									<a href="wallet">Wallet</a>
+								</li> */}
 								<li>
-									<a href="payments">Payments</a>
-								</li>
-								<li>
-									<button onClick={handleLogout}>Sign out</button>
+									<button className="green-btn" onClick={handleLogout}>Sign out</button>
 								</li>
 							</>
 						) : (
