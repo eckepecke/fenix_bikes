@@ -4,10 +4,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class Ride extends StatefulWidget {
-  Ride({super.key, required this.bikeID});
+  Ride({super.key, required this.bikeID, required this.userID});
 
   String bikeID;
-
+  String userID;
   @override
   State<Ride> createState() => _RideState();
 }
@@ -23,17 +23,18 @@ class _RideState extends State<Ride> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'bike_id': bikeID, 'user_id': 'U0011'}),
+      body: jsonEncode(
+          <String, String>{'bike_id': bikeID, 'user_id': widget.userID}),
     );
     if (response.statusCode == 200) {
       print('success! Stopped bike');
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MyHomePage()));
+          context, MaterialPageRoute(builder: (context) => const SignInPage()));
     } else {
       // If the server returns an error response, throw an exception
       throw Exception('Failed to post data');
     }
-    MaterialPageRoute(builder: (context) => const MyHomePage());
+    MaterialPageRoute(builder: (context) => const SignInPage());
   }
 
   @override

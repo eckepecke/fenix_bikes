@@ -119,4 +119,36 @@ router.get("/user", async (req, res) => {
     }
 });
 
+router.post("/app/user", async (req, res) => {
+    let email = req.body.userEmail;
+    let name = req.body.userName;
+    // Create a new user if it doesn't exist
+
+    try {
+        const user = await getUserByEmail(email);
+
+        if (!user) {
+            console.log("Creating new user:", name);
+            const newUser = {
+                name: name,
+                email: email,
+                payment_method: "prepaid",
+                password: "",
+                banned: false,
+                completed_trips: [],
+            };
+
+            await createUser(newUser);
+        }
+
+    } catch (error) {
+        console.error("Error during Google OAuth:", error);
+
+        if (!res.headersSent) {
+            res.status(500).json({ error: "Internal Server Error" });
+        }
+    }
+
+});
+
 export default router;
