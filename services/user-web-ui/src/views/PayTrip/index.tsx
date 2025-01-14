@@ -72,7 +72,7 @@ const PayTrip: React.FC<PayTripProps> = () => {
             <h1>Payment</h1>
             {payment.clientSecret && (
                 <Elements stripe={stripePromise} options={{ clientSecret: payment.clientSecret }}>
-                    <CheckoutForm />
+                    <CheckoutForm type="trip" />
                 </Elements>
             )}
         </div>
