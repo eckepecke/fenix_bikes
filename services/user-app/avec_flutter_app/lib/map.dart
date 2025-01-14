@@ -14,9 +14,10 @@ import '/hire.dart';
 // Creates the map, locates the user and shows available bikes
 
 class MapPage extends StatefulWidget {
-  MapPage({super.key, required this.selectedCity});
+  MapPage({super.key, required this.selectedCity, required this.userEmail});
 
   String selectedCity;
+  String userEmail;
 
   @override
   State<MapPage> createState() => _MapPageState();
@@ -161,7 +162,8 @@ class _MapPageState extends State<MapPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const HireBike()),
+                                      builder: (context) => HireBike(
+                                          userEmail: widget.userEmail)),
                                 );
                               },
                               child: const Text('Hyr cykel')))))

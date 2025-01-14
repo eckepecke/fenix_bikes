@@ -1,10 +1,14 @@
+import 'package:avec_flutter_app/home.dart';
+import 'package:avec_flutter_app/model/google_signin_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'map.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Main
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 
@@ -29,87 +33,40 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(),
+      home: SignInPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<SignInPage> createState() => _SignInState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController cityController = TextEditingController();
-  City? selectedCity;
+class _SignInState extends State<SignInPage> {
+  Future signIn() async {
+    final user = await GoogleSigninApi.login();
+    if (user == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Sign in Failed')));
+    } else {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => MyHomePage(user: user)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Fenix'),
+      appBar: AppBar(title: Text('Fenix')),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: signIn,
+          child: Text('Sign in with Google'),
         ),
-        body: selectedCity == null
-            ? Center(
-                child: DropdownMenu<City>(
-                  initialSelection: City.undecided,
-                  controller: cityController,
-                  requestFocusOnTap: true,
-                  label: const Text('Stad'),
-                  onSelected: (City? label) {
-                    setState(() {
-                      selectedCity = label;
-                    });
-                  },
-                  dropdownMenuEntries:
-                      City.values.map<DropdownMenuEntry<City>>((City label) {
-                    return DropdownMenuEntry<City>(
-                      value: label,
-                      enabled: label.label != 'Välj stad...',
-                      label: label.label,
-                    );
-                  }).toList(),
-                ),
-              )
-            : MapPage(
-                selectedCity: selectedCity!.label,
-              ),
-        endDrawer: const Drawer(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              'Här kommer mer information',
-              textAlign: TextAlign.left,
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text('Användare'),
-            SizedBox(
-              height: 30,
-            ),
-            Text('Tidigare resor'),
-            SizedBox(
-              height: 30,
-            ),
-            Text('Byt stad'),
-          ],
-        )));
+      ),
+    );
   }
-}
-
-enum City {
-  undecided('Välj stad...'),
-  lund('Lund'),
-  skelleftea('Skellefteå'),
-  solna('Solna');
-
-  const City(this.label);
-  final String label;
 }
