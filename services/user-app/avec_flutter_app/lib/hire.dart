@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '/ride.dart';
+import 'model/user.dart';
 
 class HireBike extends StatefulWidget {
-  const HireBike({super.key});
+  HireBike({super.key, required this.userEmail});
+  String userEmail;
   @override
   State<HireBike> createState() => _HireBikeState();
 }
@@ -12,6 +14,25 @@ class HireBike extends StatefulWidget {
 class _HireBikeState extends State<HireBike> {
   final myController = TextEditingController();
   String _textFieldValue = '';
+  User? fetchedUser;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUser();
+  }
+
+  Future<void> _fetchUser() async {
+    final response = await http
+        .get(Uri.parse('http://localhost:1337/get/user/${widget.userEmail}'));
+    if (response.statusCode == 200) {
+      var userData = json.decode(response.body);
+      print(userData);
+      fetchedUser = User.fromJson(userData);
+    } else {
+      throw Exception('Failed to load JSON data');
+    }
+  }
 
   void _startBike() async {
     var bikeID = _textFieldValue;
@@ -21,13 +42,16 @@ class _HireBikeState extends State<HireBike> {
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(<String, String>{'bike_id': bikeID, 'user_id': 'U0011'}),
+      body: jsonEncode(
+          <String, String>{'bike_id': bikeID, 'user_id': fetchedUser!.userId}),
     );
     if (response.statusCode == 200) {
       print('success! Started bike');
       Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => Ride(bikeID: bikeID)),
+          MaterialPageRoute(
+              builder: (context) =>
+                  Ride(bikeID: bikeID, userID: fetchedUser!.userId)),
           (_) => false);
     } else {
       // If the server returns an error response, throw an exception

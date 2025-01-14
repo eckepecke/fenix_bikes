@@ -1,9 +1,9 @@
 import 'package:avec_flutter_app/home.dart';
+import 'package:avec_flutter_app/model/google_signin_api.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'map.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:github_oauth/github_oauth.dart';
 
 // Main
 
@@ -33,51 +33,38 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const MyLoginPage(),
+      home: SignInPage(),
     );
   }
 }
 
-class MyLoginPage extends StatefulWidget {
-  const MyLoginPage({super.key});
+class SignInPage extends StatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
+  State<SignInPage> createState() => _SignInState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
-  final gitHubSignIn = GitHubSignIn(
-    clientId: dotenv.env['GITHUB_CLIENT_ID']!,
-    clientSecret: dotenv.env['GITHUB_CLIENT_SECRET']!,
-    redirectUrl: dotenv.env['GITHUB_REDIRECT_URL']!,
-  );
+class _SignInState extends State<SignInPage> {
+  Future signIn() async {
+    final user = await GoogleSigninApi.login();
+    if (user == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Sign in Failed')));
+    } else {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => MyHomePage(user: user)));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Fenix Login')),
+      appBar: AppBar(title: Text('Fenix')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () async {
-            final result = await gitHubSignIn.signIn(context);
-
-            if (result.status == GitHubSignInResultStatus.ok) {
-              // Successfully signed in
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const MyHomePage()),
-              // );
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Token: ${result.token}')),
-              );
-            } else {
-              // Error handling
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Error: ${result.errorMessage}')),
-              );
-            }
-          },
-          child: Text('Sign in with GitHub'),
+          onPressed: signIn,
+          child: Text('Sign in with Google'),
         ),
       ),
     );
