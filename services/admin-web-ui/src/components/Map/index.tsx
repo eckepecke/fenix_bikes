@@ -287,7 +287,7 @@ const Map: React.FC = () => {
           <GeoJSON
             data={cityBorders}
             style={{
-              color: "#1A4D30", // --color-green-darker
+              color: "#1E7743", // --color-green-darker
               weight: 1.5,
               fillOpacity: 0.0,
             }}

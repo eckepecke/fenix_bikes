@@ -12,6 +12,8 @@ import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
 import service from './routes/serviceRoutes.js';
 import auth from './routes/authRoutes.js';
+import edit from './routes/updateRoutes.js';
+import deleteRoutes from './routes/deleteRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
@@ -46,6 +48,8 @@ app.use('/service', service);
 app.use('/trip', trip);
 app.use('/auth', auth);
 app.use('/stripe', stripe);
+app.use('/edit', edit);
+app.use('/delete', deleteRoutes);
 
 
 app.use('/test', test);
