@@ -1,4 +1,5 @@
 import { getCollection } from "./collections.js";
+import { ObjectId } from "mongodb";
 
 async function getNextUserId() {
 	const counters = getCollection("counters");
@@ -17,7 +18,8 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (id) => {
-	const user = await getCollection("users").findOne({ id });
+	const _id = new ObjectId(id);
+	const user = await getCollection("users").findOne({ _id });
 	return user;
 };
 
@@ -53,6 +55,18 @@ export const createUser = async (user) => {
 export const updateUser = async (user) => {
 	const id = user.id;
 	const result = await getCollection("users").updateOne({ id }, { $set: user });
+	return result;
+}
+
+export const banUser = async (id) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $set: { banned: true } });
+	return result;
+};
+
+export const unbanUser = async (id) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $set: { banned: false } });
 	return result;
 }
 

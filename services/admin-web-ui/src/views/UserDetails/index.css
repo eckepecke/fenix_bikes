@@ -1,0 +1,22 @@
+.ban-user, .delete-user {
+  font-size: 0.6em;
+  padding: 0.2em;
+  background-color: #ffa9a9;
+  color: var(--color-black);
+  border: 1px solid #980000;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #dc4343;
+  }
+}
+
+.ban-status {
+  margin-top: 1em;
+  font-size: 1.2em;
+}
+
+.delete-p {
+  margin-top: 1em;
+}
