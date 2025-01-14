@@ -60,6 +60,7 @@ router.get("/user", async (req, res) => {
                 name: githubUser.name || githubUser.login,
                 email: githubUser.email,
                 payment_method: "prepaid",
+                balance: 0,
                 password: "",
                 banned: false,
                 completed_trips: [],

@@ -29,3 +29,10 @@
 .login-btn:hover {
   background-color: var(--color-green-lightest);
 }
+
+.signup-description {
+  margin-top: 1em;
+  color: #fff;
+  text-align: center;
+  font-size: 1em;
+}

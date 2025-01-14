@@ -20,9 +20,7 @@ const Login: React.FC = () => {
 					href={`https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${uri}?path=${path}&scope=user:email`}>
 					<FontAwesomeIcon icon={faGithub} /> Sign in with GitHub
 				</a>
-				<a className="login-btn" href="#">
-					<FontAwesomeIcon icon={faFacebook} /> Sign in with Facebook
-				</a>
+				<p className="signup-description">If you're not already a member, you'll be signed up automatically.</p>
 			</div>
 		</>
 	);
