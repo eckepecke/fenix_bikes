@@ -13,6 +13,9 @@ import Cities from "./views/Cities";
 import Maps from "./views/Maps";
 import Users from "./views/Users";
 import UserDetails from "./views/UserDetails";
+import Login from "./views/Login";
+import Signup from "./views/Signup";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -20,19 +23,20 @@ function App() {
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bikes" element={<Bikes />} />
-          <Route path="/bikes/add" element={<AddBike />} />
-          <Route path="/bike/:bike" element={<Bike />} />
-          <Route path="/cities" element={<Cities />} />
-          <Route path="/city/:city" element={<City />} />
-          <Route path="/maps" element={<Maps />} />
-          <Route path="/map/:city" element={<Map />} />
-          <Route path="/trip/:trip" element={<Trip />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/user/:userId" element={<UserDetails />} />
-
-          <Route path="*" element={<Home />} />
+          <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+          <Route path="/bikes" element={<PrivateRoute><Bikes /></PrivateRoute>} />
+          <Route path="/bikes/add" element={<PrivateRoute><AddBike /></PrivateRoute>} />
+          <Route path="/bike/:bike" element={<PrivateRoute><Bike /></PrivateRoute>} />
+          <Route path="/cities" element={<PrivateRoute><Cities /></PrivateRoute>} />
+          <Route path="/city/:city" element={<PrivateRoute><City /></PrivateRoute>} />
+          <Route path="/maps" element={<PrivateRoute><Maps /></PrivateRoute>} />
+          <Route path="/map/:city" element={<PrivateRoute><Map /></PrivateRoute>} />
+          <Route path="/trip/:trip" element={<PrivateRoute><Trip /></PrivateRoute>} />
+          <Route path="/users" element={<PrivateRoute><Users /></PrivateRoute>} />
+          <Route path="/user/:userId" element={<PrivateRoute><UserDetails /></PrivateRoute>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="*" element={<PrivateRoute><Home /></PrivateRoute>} />
         </Routes>
       </main>
       <Footer />
