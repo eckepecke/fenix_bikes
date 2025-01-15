@@ -1,6 +1,9 @@
 import express from "express";
 import axios from "axios";
 import { getUserByEmail, createUser } from "../../../db/users.js";
+import { getAdminByEmail, createAdmin } from "../../../db/admin.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -12,6 +15,7 @@ router.get("/env", (req, res) => {
     res.json({
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
         GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+        JWT_SECRET: process.env.JWT_SECRET,
     });
 });
 
@@ -23,8 +27,8 @@ router.get("/user", async (req, res) => {
         return res.status(400).json({ error: "No code provided" });
     }
 
-    const clientId = process.env.GITHUB_CLIENT_ID;
-    const clientSecret = process.env.GITHUB_CLIENT_SECRET;
+    const clientId = process.env.UI_GITHUB_CLIENT_ID;
+    const clientSecret = process.env.UI_GITHUB_CLIENT_SECRET;
 
     try {
         const tokenResponse = await axios.post(
@@ -60,6 +64,7 @@ router.get("/user", async (req, res) => {
                 name: githubUser.name || githubUser.login,
                 email: githubUser.email,
                 payment_method: "prepaid",
+                balance: 0,
                 password: "",
                 banned: false,
                 completed_trips: [],
@@ -150,5 +155,69 @@ router.post("/app/user", async (req, res) => {
     }
 
 });
+
+// Jason Webtoken login with email and password in admin app
+router.post("/admin/login", async (req, res) => {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await getAdminByEmail(email);
+
+    if (!user) {
+        return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
+        expiresIn: "1h",
+    });
+
+    res.json({
+        user: {
+            name: user.name,
+            email: user.email,
+        },
+        token,
+    });
+});
+
+// Jason Webtoken signup with email and password in admin app
+router.post("/admin/signup", async (req, res) => {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await getAdminByEmail(email);
+
+    if (user) {
+        return res.status(400).json({ error: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = {
+        email,
+        password: hashedPassword,
+    };
+
+    await createAdmin(newUser);
+
+    const token = jwt.sign({ id: newUser._id, email: newUser.email }, JWT_SECRET, {
+        expiresIn: "1h",
+    });
+
+    res.json({
+        user: {
+            email: newUser.email,
+        },
+        token,
+    });
+});
+
 
 export default router;

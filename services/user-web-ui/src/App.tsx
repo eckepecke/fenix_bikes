@@ -10,6 +10,10 @@ import RideHistory from "./views/RideHistory";
 import Profile from "./views/Profile";
 import Payments from "./views/Payments";
 import Login from "./views/Login";
+import AddToWallet from "./views/AddToWallet";
+import PayTrip from "./views/PayTrip";
+import PaymentSuccess from "./views/PaymentSuccess";
+import NotFound from "./views/NotFound";
 
 function App() {
   const [cookies] = useCookies(["user"]);
@@ -39,6 +43,11 @@ function App() {
           <Route path="/profile" element={<Profile user={user} />} />
           <Route path="/payments" element={<Payments />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/wallet" element={<AddToWallet />} /> */}
+          <Route path="/pay-trip/:tripId" element={<PayTrip />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

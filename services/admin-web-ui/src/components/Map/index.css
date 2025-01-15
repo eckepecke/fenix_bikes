@@ -1,30 +1,29 @@
 /* MAP */
 .leaflet-container {
-    height: 49vh;
-    margin-top: 1em;
+	height: 49vh;
+	margin-top: 1em;
+	border: 1px solid var(--color-green-dark);
+	outline-style: none;
+	border-radius: 10px;
 }
 
 p.map-loading-msg {
-    text-align: center;
-    margin-top: 12vh;
+	text-align: center;
+	margin-top: 12vh;
 }
 
 .popup-content {
+	h2 {
+		font-size: 1.2em;
+		margin: 0.3em 0;
+	}
 
-    h2 {
-        font-size: 1.2em;
-        margin: 0.3em 0;
-    }
-
-    p {
-        font-size: 1em;
-        margin: 0.3em 0;
-    }
-
-
-
+	p {
+		font-size: 1em;
+		margin: 0.3em 0;
+	}
 }
 
 .bold {
-    font-weight: 400;
+	font-weight: 400;
 }

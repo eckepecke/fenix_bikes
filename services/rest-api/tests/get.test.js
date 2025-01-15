@@ -100,10 +100,10 @@ describe("GET /get/all/bikes/in/city/lund", () => {
     });
 });
 
-describe("GET /get/user/:email", () => {
+describe("GET /get/user/email/:email", () => {
     it("should return a user identified by email", async () => {
         const res = await request(app)
-            .get("/get/user/test@test.se")
+            .get("/get/user/email/test@test.se")
             .expect('Content-Type', /json/)
             .expect(200);
 

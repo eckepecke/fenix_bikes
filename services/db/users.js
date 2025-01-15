@@ -1,4 +1,5 @@
 import { getCollection } from "./collections.js";
+import { ObjectId } from "mongodb";
 
 async function getNextUserId() {
 	const counters = getCollection("counters");
@@ -17,7 +18,8 @@ export const getUsers = async () => {
 };
 
 export const getUser = async (id) => {
-	const user = await getCollection("users").findOne({ id });
+	const _id = new ObjectId(id);
+	const user = await getCollection("users").findOne({ _id });
 	return user;
 };
 
@@ -25,6 +27,11 @@ export const getUserByEmail = async (email) => {
 	const user = await getCollection("users").findOne({ email: email });
 	return user;
 };
+
+export const getUserByUserId = async (userId) => {
+	const user = await getCollection("users").findOne({ user_id: userId });
+	return user;
+}
 
 export const createUser = async (user) => {
 	const userExists = await getUserByEmail(user.email);
@@ -44,3 +51,34 @@ export const createUser = async (user) => {
 
 	return result;
 };
+
+export const updateUser = async (user) => {
+	const id = user.id;
+	const result = await getCollection("users").updateOne({ id }, { $set: user });
+	return result;
+}
+
+export const banUser = async (id) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $set: { banned: true } });
+	return result;
+};
+
+export const unbanUser = async (id) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $set: { banned: false } });
+	return result;
+}
+
+export const deleteUser = async (id) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").deleteOne({ _id });
+	return result;
+};
+
+export const addToBalance = async (id, amount) => {
+	const _id = new ObjectId(id);
+	const result = await getCollection("users").updateOne({ _id }, { $inc: { balance: amount } });
+	console.log("hej från addToBalance");
+	return result;
+}

@@ -3,4 +3,6 @@ filter:
         - "*/tests/*"
         - "services/rest-api/coverage/*"
     dependency_paths:
+
         - "*/node_modules/*"
+

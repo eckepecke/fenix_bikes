@@ -2,8 +2,9 @@ import express from "express";
 import { getCities } from "../../../db/cities.js";
 import { getParking, getAllParking } from "../../../db/parkingZones.js";
 import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
-import { getUsers, getUserByEmail } from "../../../db/users.js";
+import { getUsers, getUser, getUserByUserId, getUserByEmail } from "../../../db/users.js";
 import { getTrip, getTrips } from "../../../db/trips.js";
+import { getAdmins } from "../../../db/admin.js";
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
@@ -33,10 +34,18 @@ router.get("/all/users", async (req, res) => {
     res.json(result);
 });
 
-// GET /user/:email
-router.get("/user/:email", async (req, res) => {
+// GET /user/email/:email
+router.get("/user/email/:email", async (req, res) => {
     const email = req.params.email;
     const result = await getUserByEmail(email);
+
+    res.json(result);
+});
+
+// GET /user/:id
+router.get("/user/id/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await getUser(id);
 
     res.json(result);
 });
@@ -121,5 +130,20 @@ router.get("/trip/:id", async (req, res) => {
 
     res.json(result);
 });
+
+// GET /bikes/with/warning
+router.get("/bikes/with/warning", async (req, res) => {
+    const result = await bikeManager.getAllBikesWithRedLight();
+
+    res.json(result);
+});
+
+// GET /all/admins
+router.get("/all/admins", async (req, res) => {
+    const result = await getAdmins();
+
+    res.json(result);
+});
+
 
 export default router;

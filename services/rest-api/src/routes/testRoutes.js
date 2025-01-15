@@ -36,7 +36,6 @@ router.get("/generate", async (req, res) => {
     res.json([result1, result2]);
 });
 
-
 router.post("/location/update", async (req, res) => {
     let bikeId = req.body.bike_id;
     let location = req.body.location;
@@ -60,6 +59,13 @@ router.get("/location/report/:bikeId", async (req, res) => {
     const result = await bike.sendLocation(bikeId);
 
     res.json(result.location);
+})
+
+// GET /city/:city/parking-zones
+router.get("/city/:city/parking-zones", async (req, res) => {
+    const city = req.params.city;
+    const result = await getParking(city);
+    res.json(result);
 
     // console.log(bikeId, coordinates);
 });

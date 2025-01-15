@@ -19,6 +19,14 @@
   background-color: #fff;
 }
 
+.green {
+  background-color: var(--color-green-primary);
+}
+
+.btn {
+  border-radius: 0.5em;
+}
+
 h1 {
   font-family: var(--h1-font);
   font-size: 2.5em;
@@ -41,4 +49,12 @@ p {
   margin: auto;
   padding: 3em 1em;
   width: 80%;
+}
+
+.green-btn {
+	background-color: var(--color-green-primary);
+	border-radius: 5px;
+	padding: 0.5em;
+	color: #fff;
+	border: 1px solid var(--color-green-dark);
 }

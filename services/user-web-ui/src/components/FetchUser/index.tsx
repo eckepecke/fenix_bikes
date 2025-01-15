@@ -8,11 +8,12 @@ interface User {
   banned: boolean;
   completed_trips: string[];
   user_id?: string;
+  balance: number;
 }
 
 const FetchUser = async (userEmail: string): Promise<User | null> => {
   try {
-    const response = await fetch(`http://localhost:1337/get/user/${userEmail}`);
+    const response = await fetch(`http://localhost:1337/get/user/email/${userEmail}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
