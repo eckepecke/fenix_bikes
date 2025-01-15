@@ -61,7 +61,7 @@ afterAll(async () => {
     // setTimeout( async () => {
     //     console.log("closing db");
     //   }, 1000); 
-      await connection.close();
+    await connection.close();
 
 });
 
