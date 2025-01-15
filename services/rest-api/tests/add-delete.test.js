@@ -75,6 +75,16 @@ describe("GET /add/", () => {
     });
 });
 
+describe("GET /delete/", () => {
+    it("should print greeting", async () => {
+        const res = await request(app)
+            .get("/delete")
+            .expect(200);
+
+        expect(res.text).toMatch('\"These are all the delete routes\"');
+    });
+});
+
 describe('POST /add/bike', function () {
     it('responds with json', function (done) {
         request(app)
@@ -231,11 +241,10 @@ describe('POST /test/delete/bike', function () {
     });
 });
 
-describe('POST /test/delete/user', function () {
+describe('POST /delete/user', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/user')
-            .send({ user_id: 'U0018' })
+            .delete('/delete/user/6787cf8db3c577b81eef4fb5')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)

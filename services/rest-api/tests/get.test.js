@@ -52,7 +52,7 @@ describe("GET /get/all/users", () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(res.body).toHaveLength(2);
+        expect(res.body).toHaveLength(3);
     });
 });
 
@@ -63,7 +63,7 @@ describe("GET /get/all/trips", () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(res.body).toHaveLength(4);
+        expect(res.body).toHaveLength(5);
     });
 });
 

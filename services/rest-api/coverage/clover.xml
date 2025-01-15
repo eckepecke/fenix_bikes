@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1736953314307" clover="3.2.0">
-  <project timestamp="1736953314307" name="All files">
-    <metrics statements="323" coveredstatements="180" conditionals="52" coveredconditionals="12" methods="58" coveredmethods="31" elements="433" coveredelements="223" complexity="0" loc="323" ncloc="323" packages="2" files="10" classes="10"/>
+<coverage generated="1736954152889" clover="3.2.0">
+  <project timestamp="1736954152889" name="All files">
+    <metrics statements="323" coveredstatements="181" conditionals="52" coveredconditionals="12" methods="58" coveredmethods="32" elements="433" coveredelements="225" complexity="0" loc="323" ncloc="323" packages="2" files="10" classes="10"/>
     <package name="src">
       <metrics statements="50" coveredstatements="34" conditionals="14" coveredconditionals="7" methods="6" coveredmethods="2"/>
       <file name="app.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/app.js">
@@ -59,7 +59,7 @@
       </file>
     </package>
     <package name="src.routes">
-      <metrics statements="273" coveredstatements="146" conditionals="38" coveredconditionals="5" methods="52" coveredmethods="29"/>
+      <metrics statements="273" coveredstatements="147" conditionals="38" coveredconditionals="5" methods="52" coveredmethods="30"/>
       <file name="addDataRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/addDataRoutes.js">
         <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="4" count="5" type="stmt"/>
@@ -156,14 +156,14 @@
         <line num="214" count="0" type="stmt"/>
       </file>
       <file name="deleteRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/deleteRoutes.js">
-        <metrics statements="7" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="4" count="5" type="stmt"/>
         <line num="6" count="5" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
       <file name="getDataRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/getDataRoutes.js">
         <metrics statements="68" coveredstatements="59" conditionals="6" coveredconditionals="5" methods="17" coveredmethods="14"/>
@@ -285,7 +285,7 @@
         <line num="52" count="0" type="stmt"/>
       </file>
       <file name="testRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/testRoutes.js">
-        <metrics statements="28" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="2"/>
+        <metrics statements="28" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="1"/>
         <line num="6" count="5" type="stmt"/>
         <line num="8" count="5" type="stmt"/>
         <line num="9" count="0" type="stmt"/>
@@ -294,9 +294,9 @@
         <line num="17" count="3" type="stmt"/>
         <line num="19" count="3" type="stmt"/>
         <line num="22" count="5" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
         <line num="32" count="5" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
