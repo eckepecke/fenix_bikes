@@ -4,6 +4,7 @@ import { getParking, getAllParking } from "../../../db/parkingZones.js";
 import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
 import { getUsers, getUser, getUserByUserId, getUserByEmail } from "../../../db/users.js";
 import { getTrip, getTrips } from "../../../db/trips.js";
+import { getAdmins } from "../../../db/admin.js";
 import bikeManager from "../../../bike-logic/bikeManager.js";
 import bike from "../../../bike-logic/bike.js";
 
@@ -136,5 +137,13 @@ router.get("/bikes/with/warning", async (req, res) => {
 
     res.json(result);
 });
+
+// GET /all/admins
+router.get("/all/admins", async (req, res) => {
+    const result = await getAdmins();
+
+    res.json(result);
+});
+
 
 export default router;
