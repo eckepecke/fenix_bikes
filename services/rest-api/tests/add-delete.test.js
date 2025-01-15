@@ -51,8 +51,18 @@ beforeAll(async () => {
     await db.collection('counters').insertMany(counters);
 });
 
+// Give time to any async operation to complete after each test
+// afterEach(async () => {
+//     console.log("Sleeping")
+//     await sleep(2000);
+// });
+
 afterAll(async () => {
-    await connection.close();
+    // setTimeout( async () => {
+    //     console.log("closing db");
+    //   }, 1000); 
+      await connection.close();
+
 });
 
 describe("GET /add/", () => {
