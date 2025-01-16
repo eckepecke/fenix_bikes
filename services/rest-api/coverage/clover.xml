@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1737018224148" clover="3.2.0">
-  <project timestamp="1737018224148" name="All files">
-    <metrics statements="319" coveredstatements="187" conditionals="52" coveredconditionals="12" methods="57" coveredmethods="35" elements="428" coveredelements="234" complexity="0" loc="319" ncloc="319" packages="2" files="10" classes="10"/>
+<coverage generated="1737019527080" clover="3.2.0">
+  <project timestamp="1737019527080" name="All files">
+    <metrics statements="319" coveredstatements="193" conditionals="52" coveredconditionals="12" methods="57" coveredmethods="36" elements="428" coveredelements="241" complexity="0" loc="319" ncloc="319" packages="2" files="10" classes="10"/>
     <package name="src">
       <metrics statements="50" coveredstatements="34" conditionals="14" coveredconditionals="7" methods="6" coveredmethods="2"/>
       <file name="app.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/app.js">
@@ -59,7 +59,7 @@
       </file>
     </package>
     <package name="src.routes">
-      <metrics statements="269" coveredstatements="153" conditionals="38" coveredconditionals="5" methods="51" coveredmethods="33"/>
+      <metrics statements="269" coveredstatements="159" conditionals="38" coveredconditionals="5" methods="51" coveredmethods="34"/>
       <file name="addDataRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/addDataRoutes.js">
         <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
         <line num="4" count="6" type="stmt"/>
@@ -237,35 +237,35 @@
         <line num="145" count="0" type="stmt"/>
       </file>
       <file name="serviceRoutes.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/serviceRoutes.js">
-        <metrics statements="28" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+        <metrics statements="28" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
         <line num="6" count="6" type="stmt"/>
         <line num="8" count="6" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
-        <line num="12" count="6" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="21" count="6" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="30" count="6" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="34" count="1" type="stmt"/>
-        <line num="37" count="6" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="39" count="1" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="44" count="6" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="50" count="0" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
+        <line num="41" count="6" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="50" count="6" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="6" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="73" count="6" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="79" count="9" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
       </file>
       <file name="stripe.js" path="/home/vemla/dbwebb-kurser/vteam/fenix/services/rest-api/src/routes/stripe.js">
         <metrics statements="14" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
