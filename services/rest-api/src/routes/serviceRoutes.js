@@ -6,7 +6,36 @@ import bikeManager from "../../../bike-logic/bikeManager.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.json("hej service routes");
+    return res.status(200).json({
+        message: "These are all the service routes",
+        routes: {
+            serviceBike: {
+                method: "POST",
+                path: "service/bike",
+                description: "Starts service mode on a bike and makes it unavailable."
+            },
+            ServiceCompleteBike: {
+                method: "POST",
+                path: "service/complete/bike",
+                description: "Ends service mode on a bike and makes it available."
+            },
+            chargeBike: {
+                method: "POST",
+                path: "service/charge",
+                description: "Sets a bike to charge and makes it unavailable."
+            },
+            stopChargeBike: {
+                method: "POST",
+                path: "service/stop_charge",
+                description: "Ends charging and makes it available."
+            },
+            updateRedLight: {
+                method: "GET",
+                path: "service/update/red_light",
+                description: "Checks battery level onn all bikes and turns on a red light if the battery level is to low."
+            },
+        }
+    });
 });
 
 router.post("/bike", async (req, res) => {

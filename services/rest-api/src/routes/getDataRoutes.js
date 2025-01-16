@@ -12,7 +12,91 @@ const router = express.Router();
 
 // GET /bikes
 router.get("/", async (req, res) => {
-    res.json("hej getData routes");
+    return res.status(200).json({
+        message: "These are all the get routes",
+        routes: {
+            getAllCities: {
+                method: "GET",
+                path: "get/all/cities",
+                description: "Returns all cities"
+            },
+            getAllBikes: {
+                method: "GET",
+                path: "get/all/bikes",
+                description: "Returns all bikes"
+            },
+            getAllUsers: {
+                method: "GET",
+                path: "get/all/users",
+                description: "Returns all users."
+            },
+            getUserByEmail: {
+                method: "GET",
+                path: "get/user/email/:email",
+                description: "Returns the user via email."
+            },
+            getUserById: {
+                method: "GET",
+                path: "get/user/id/:id",
+                description: "Returns the user via _id"
+            },
+            getAllTrips: {
+                method: "GET",
+                path: "get/all/trips",
+                description: "Returns all trips."
+            },
+            getBikesInPagination: {
+                method: "GET",
+                path: "get/all/bikes/pagination",
+                description: "Returns all bikes in groups of five."
+            },
+            getAllBikesInCity: {
+                method: "GET",
+                path: "get/all/bikes/in/city/:city",
+                description: "Returns all bikes in the city given in the URL."
+            },
+            getCertainBike: {
+                method: "GET",
+                path: "get/certain/bike/:bike_id",
+                description: "Returns a bike via bike_id."
+            },
+            getCityParkingZones: {
+                method: "GET",
+                path: "get/city/:city/parking-zones",
+                description: "Returns all parkingzones in the city given in the URL."
+            },
+            getAllParkingZones: {
+                method: "GET",
+                path: "get/all/parking-zones",
+                description: "Returns all parkingzones."
+            },
+            getAllChargingStations: {
+                method: "GET",
+                path: "get/all/charging-stations",
+                description: "Returns all charging stations."
+            },
+            getCityChargingStations: {
+                method: "GET",
+                path: "get/city/:city/charging-stations",
+                description: "Returns all charging stations in the city given in the URL."
+            },
+            getTripById: {
+                method: "GET",
+                path: "get/trip/:trip_id",
+                description: "Returns a trip via tripId"
+            },
+            getAllBikesWithRedLight: {
+                method: "GET",
+                path: "get/bikes/with/warning",
+                description: "Returns all bikes with a red light/low battery."
+            },
+            getAllAdmins: {
+                method: "GET",
+                path: "get/all/admins",
+                description: "Returns all admins."
+            },
+        }
+    });
 });
 
 router.get("/all/cities", async (req, res) => {

@@ -1,16 +1,26 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Header: React.FC = () => {
-  const [cookies, , removeCookie] = useCookies(["user"]);
-  const navigate = useNavigate();
+	const [cookies, , removeCookie] = useCookies(["user"]);
+	const navigate = useNavigate();
 
-  const handleLogout = () => {
-    removeCookie("user");
-    navigate("/");
-  };
+	const handleLogout = () => {
+		removeCookie("user");
+		navigate("/");
+	};
+
+	const [cookies, , removeCookie] = useCookies(["user"]);
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		removeCookie("user");
+		navigate("/");
+	};
 
 	return (
 		<header className="header">
