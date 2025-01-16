@@ -7,6 +7,7 @@ interface Trip {
   start_location: Array<number>;
   end_location: Array<number>;
   cost?: number;
+  paid?: boolean;
 }
 
 // Fetch trip data

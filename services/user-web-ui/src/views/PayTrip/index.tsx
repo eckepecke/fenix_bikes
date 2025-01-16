@@ -21,7 +21,7 @@ const PayTrip: React.FC<PayTripProps> = () => {
         clientSecret: "",
     });
 
-    const { tripId } = useParams<{ tripId: string }>();
+    const { tripId = "" } = useParams<{ tripId: string }>();
 
     const fetchTripDetails = async () => {
         if (tripId) {
@@ -72,7 +72,7 @@ const PayTrip: React.FC<PayTripProps> = () => {
             <h1>Payment</h1>
             {payment.clientSecret && (
                 <Elements stripe={stripePromise} options={{ clientSecret: payment.clientSecret }}>
-                    <CheckoutForm type="trip" />
+                    <CheckoutForm tripId={tripId} />
                 </Elements>
             )}
         </div>
