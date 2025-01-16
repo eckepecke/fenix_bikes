@@ -9,16 +9,6 @@ router.get("/", async (req, res) => {
     res.json("hej test routes");
 });
 
-// Needed for tests
-router.post("/delete/bike", async (req, res) => {
-    let bikeId = req.body.bike_id;
-    // Fake bike id:
-    // bikeId = "B0010";
-    const result = await bikeManager.deleteBike(bikeId);
-
-    res.json(result);
-});
-
 
 router.get("/generate", async (req, res) => {
     const result1 = await bikeManager.generateTripId();
@@ -52,14 +42,6 @@ router.get("/location/report/:bikeId", async (req, res) => {
     res.json(result.location);
 })
 
-// GET /city/:city/parking-zones
-router.get("/city/:city/parking-zones", async (req, res) => {
-    const city = req.params.city;
-    const result = await getParking(city);
-    res.json(result);
-
-    // console.log(bikeId, coordinates);
-});
 
 
 export default router;

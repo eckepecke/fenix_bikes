@@ -62,3 +62,4 @@ describe("GET /get/certain/bike/:id", () => {
         expect(res.text).toMatch('"available\":true');
     });
 });
+

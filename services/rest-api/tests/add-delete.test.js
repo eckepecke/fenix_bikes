@@ -172,7 +172,7 @@ describe('POST /add/many/bikes', function () {
     });
 });
 
-describe('POST add and find user', function () {
+describe('POST add and find user + change banned status', function () {
     let user_id;
     it('Add user and respond with json object', function (done) {
         request(app)
@@ -206,12 +206,34 @@ describe('POST add and find user', function () {
 
         expect(res.text).toMatch("Test Add User");
     });
+
+    it('change user status', function (done) {
+        request(app)
+            .put(`/edit/user/ban/change/${user_id}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .end(function (err, res) {
+                if (err) { return done(err); }
+                return done();
+            });
+    });
+
+    it('change user status', function (done) {
+        request(app)
+            .put(`/edit/user/ban/change/${user_id}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .end(function (err, res) {
+                if (err) { return done(err); }
+                return done();
+            });
+    });
 });
 
-describe('POST /test/delete/bike', function () {
+describe('POST /delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0025' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -226,7 +248,7 @@ describe('POST /test/delete/bike', function () {
 describe('POST /test/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0026' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -241,7 +263,7 @@ describe('POST /test/delete/bike', function () {
 describe('POST /test/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0027' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)

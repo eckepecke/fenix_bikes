@@ -115,13 +115,13 @@ describe("GET /get/certain/bike/:id", () => {
     });
 });
 
-// describe("GET service/update/red_light", () => {
-//     it("should return a bike with service false", async () => {
-//         const res = await request(app)
-//             .get("/service/update/red_light")
-//             .expect('Content-Type', /json/)
-//             .expect(200);
+describe("GET service/update/red_light", () => {
+    it("should return a bike with service false", async () => {
+        const res = await request(app)
+            .get("/service/update/red_light")
+            .expect('Content-Type', /json/)
+            .expect(200);
 
-//         expect(res.text).toMatch('"Updated bikes"');
-//     });
-// });
+        expect(res.text).toMatch('"Updated bikes"');
+    });
+});
