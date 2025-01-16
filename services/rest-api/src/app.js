@@ -98,9 +98,7 @@ const startServer = async () => {
         }
 
         if (process.env.NODE_ENV === 'simulation') {
-            // Use a different database for simulation
-            // mongoUri = `mongodb://db:27017/simulation`;
-            // mongoUri=`mongodb://root:example@mongo_db:27017/myDatabase?authSource=admin`
+
             mongoUri=`${process.env.DB_TEST_URI}`
         }
         console.log("AAAAAAAAAAAAAAAAAAAAA")

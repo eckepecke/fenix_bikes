@@ -33,14 +33,36 @@ services:
       - ./simulation:/server/simulation
     command: ["sh", "-c", "npm run ${env:-dev}"]
 
-  bike:
-    build: ./bike-logic
-    container_name: bike_service
-
+  admin-web-ui:
+    build: ./admin-web-ui
+    container_name: admin-web-ui
+    environment:
+      - SERVER_URL=localhost://1337
     networks:
       - my_network
-    volumes:
-      - ./db:/bike-service/db
+    ports:
+      - "5173:5173"
+    command: ["sh", "-c", "npm run dev"]
+
+  user-web-ui:
+    build: ./user-web-ui
+    container_name: user-web-ui
+    environment:
+      - SERVER_URL=localhost://1337
+    networks:
+      - my_network
+    ports:
+      - "8080:5174"
+    command: ["sh", "-c", "npm run dev"]
+
+  user_app:
+    image: alfrijde/viav23:fenix_app
+    container_name: user_app
+    ports:
+      - "43785:43785"
+    networks:
+      - my_network
+
 networks:
   my_network:
     driver: bridge
