@@ -3,8 +3,8 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 // import { connectToDatabase } from "../../db/db.js";
-import { connectToDatabase } from '../db/db.js';
-import { getUsers } from '../db/users.js';
+import { connectToDatabase } from '../../db/db.js';
+import { getUsers } from '../../db/users.js';
 
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
@@ -24,8 +24,8 @@ import trip from './routes/tripRoutes.js';
 // import bike from '../../bike-logic/bike.js'
 // import simSetup from "../../simulation/simSetup.js";
 import { group } from "console";
-import bikeManager from '../bike-logic/bikeManager.js'
-import { startSimulation } from "../simulation/runSim.js";
+import { startSimulation } from "../../simulation/runSim.js";
+import bikeManager from '../../bike-logic/bikeManager.js'
 
 
 
@@ -78,15 +78,16 @@ app.get("/", (req, res) => {
 const startServer = async () => {
     try {
         // Connect to the database
+        console.log(process.env.NODE_ENV);
 
         let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
         //let mongoUri = process.env.DB_URI;
-        console.log(mongoUri);
 
 
         if (process.env.NODE_ENV === 'test') {
-            // We can even use MongoDB Atlas for testing
-            // mongoUri = `mongodb://db:27017/test`;
+            // Works locally
+            //mongoUri = "mongodb://localhost:27017"
+            // Works docker
             mongoUri=`${process.env.DB_TEST_URI}`
         }
 
@@ -94,10 +95,11 @@ const startServer = async () => {
 
             mongoUri=`${process.env.DB_TEST_URI}`
         }
-        console.log("AAAAAAAAAAAAAAAAAAAAA")
+
         console.log(mongoUri);
 
         await connectToDatabase(mongoUri);
+
 
         // Start the Express server
         const port = process.env.PORT || 1338;

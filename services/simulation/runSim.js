@@ -47,30 +47,43 @@ export const startSimulation = async (io) => {
                         await bikeManager.saveBikesToDb(flatSimulatedTrips);
                     }
                 })
-        // Socket.io setup for emitting bike location updates
-        io.on('connection', async (socket) => {
-            console.log(`Socket connected: ${socket.id}`);
 
-            setInterval(async () => {
-                console.log("Getting bikes");
-                let activeSimBikes = await bikeManager.getAllActiveBikes();
 
-                if (activeSimBikes) {
-                    console.log("simManager updating locations");
-                    for (const bike of activeSimBikes) {
-                        await simManager.updateLocation(bike);
+                let activeSimBikes = [];
+
+                // Socket.io setup
+                io.on('connection', (socket) => {
+                    console.log(`Socket connected: ${socket.id}`);
+                
+                    // Emit the latest bike data when a new client connects
+                    socket.emit('location_update', activeSimBikes);
+                
+                    socket.on('disconnect', () => {
+                        console.log(`Socket disconnected: ${socket.id}`);
+                    });
+                });
+                
+                // Periodic update and emit
+                setInterval(async () => {
+                    console.log("Getting bikes");
+                    activeSimBikes = await bikeManager.getAllActiveBikes();
+                
+                    if (activeSimBikes) {
+                        console.log("simManager updating locations");
+                        for (const bike of activeSimBikes) {
+                            await simManager.updateLocation(bike);
+                        }
+                
+                        console.log("bikeManager saving to DB");
+                        await bikeManager.saveBikesToDb(activeSimBikes);
+                
+                        console.log(`Number of active bikes: ${activeSimBikes.length}`);
                     }
-                }
+                
+                    // Emit updated bike data to all connected clients
+                    io.emit('location_update', activeSimBikes);
+                }, 5000);
 
-                console.log("bikeManager saving to DB");
-                await bikeManager.saveBikesToDb(activeSimBikes);
-
-                // Fetch the active bikes again after saving
-                activeSimBikes = await bikeManager.getAllActiveBikes();
-                console.log(`Number of active bikes: ${activeSimBikes.length}`);
-                socket.emit('location_update', activeSimBikes);  // Emit location update to the client
-            }, 5000);
-        });
     } catch (error) {
         console.error('Error setting up simulation:', error);
     }

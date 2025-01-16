@@ -4,7 +4,6 @@ import { getCities } from "../db/cities.js"
 const bike = {
     reportState: async function reportState(bikeId) {
         let bikeCollection = getCollection("bikes");
-        console.log(bikeId);
 
         try {
             const result = await bikeCollection.findOne({ bike_id: bikeId });
@@ -180,8 +179,6 @@ const bike = {
     },
 
     warning: async function warning(bike) {
-        console.log("warning");
-        console.log(bike);
 
         let bikeCollection = getCollection("bikes");
 

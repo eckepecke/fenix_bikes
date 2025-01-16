@@ -1,5 +1,5 @@
 import express from 'express';
-import bikeManager from "../../bike-logic/bikeManager.js";
+import bikeManager from "../../../bike-logic/bikeManager.js";
 
 const router = express.Router();
 
