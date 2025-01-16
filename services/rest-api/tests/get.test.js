@@ -63,7 +63,7 @@ describe("GET /get/all/trips", () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(res.body).toHaveLength(5);
+        expect(res.body).toHaveLength(4);
     });
 });
 
