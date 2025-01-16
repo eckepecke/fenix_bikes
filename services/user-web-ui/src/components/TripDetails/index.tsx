@@ -13,7 +13,7 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
   React.useEffect(() => {
     FetchTrip(tripId).then(fetchedTrip => {
       setTrip(fetchedTrip);
-      
+
     });
   }, [tripId]);
 
@@ -36,7 +36,11 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
       <p className="trip-p">Duration: {formattedDuration}</p>
       <p className="trip-p">Total: {formattedCost} SEK</p>
 
-      <a href={`/pay-trip/${tripId}`} className="trip-link">Payment &gt;</a>
+      {trip.paid ? (
+        <p className="trip-paid">Already paid</p>
+      ) : (
+        <a href={`/pay-trip/${tripId}`} className="trip-link">Payment &gt;</a>
+      )}
     </div>
   );
 }
