@@ -69,13 +69,6 @@ app.get("/", (req, res) => {
     res.send("Greetings, friend of Fenix!");
 });
 
-// GET /users
-app.get("/users", async (req, res) => {
-    const result = await getUsers();
-
-    res.json(result);
-});
-
 
 // Start the server after connecting to the database
 const startServer = async () => {

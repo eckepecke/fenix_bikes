@@ -8,7 +8,36 @@ import jwt from "jsonwebtoken";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.json("hej authRoutes");
+    return res.status(200).json({
+        message: "These are all the auth routes",
+        routes: {
+            env: {
+                method: "GET",
+                path: "auth/env",
+                description: "Returns Github details."
+            },
+            authUser: {
+                method: "GET",
+                path: "auth/user",
+                description: "Authenticates a user using Github."
+            },
+            authAppUser: {
+                method: "POST",
+                path: "auth/app/user",
+                description: "Checks if user is already in database and if not registers a new user. This route is only used from the app."
+            },
+            admninLogin: {
+                method: "POST",
+                path: "auth/admin/login",
+                description: "Admin Login route, checks against JSW-token."
+            },
+            admninSignup: {
+                method: "POST",
+                path: "auth/admin/signup",
+                description: "Creates a new admin-user."
+            },
+        }
+    });
 });
 
 router.get("/env", (req, res) => {

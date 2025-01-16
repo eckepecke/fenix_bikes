@@ -4,7 +4,27 @@ import bikeManager from "../../../bike-logic/bikeManager.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.json("hej add data routes");
+    return res.status(200).json({
+        message: "These are all the add routes",
+        routes: {
+            addBike: {
+                method: "POST",
+                path: "add/bike",
+                description: "Add a bike to the database."
+            },
+            addManyBikes: {
+                method: "POST",
+                path: "add/many/bikes",
+                description: "Add an array of bikes to the database,"
+            },
+            addUser: {
+                method: "POST",
+                path: "add/user",
+                description: "Add a new user to the database."
+            },
+        }
+    });
+
 });
 
 // räcker för att lägga till cykel i city

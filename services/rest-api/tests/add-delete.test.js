@@ -72,7 +72,7 @@ describe("GET /add/", () => {
             .get("/add")
             .expect(200);
 
-        expect(res.text).toBe('\"hej add data routes\"');
+        expect(res.text).toMatch('These are all the add routes');
     });
 });
 
