@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongo_db
+    networks:
+      - my_network
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "27017:27017"
+
+  rest-api:
+    build: ./rest-api
+    container_name: rest_api_service
+    depends_on:
+      - db
+    environment:
+      - env=${env}
+      - DB_URI=mongodb://root:example@mongo_db:27017/myDatabase?authSource=admin
+    networks:
+      - my_network
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./db:/server/db
+      - ./bike-logic:/server/bike-logic
+      - ./trips:/server/trips
+      - ./simulation:/server/simulation
+    command: ["sh", "-c", "npm run ${env:-dev}"]
+
+  bike:
+    build: ./bike-logic
+    container_name: bike_service
+
+    networks:
+      - my_network
+    volumes:
+      - ./db:/bike-service/db
+networks:
+  my_network:
+    driver: bridge

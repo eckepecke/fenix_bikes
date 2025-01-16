@@ -5,15 +5,25 @@ import bike from "./bike.js";
 const bikeManager = {
     generateBikeId: async function () {
         const counterCollection = getCollection("counters");
-
-        // Increment and retrieve the updated counter
+    
+        // Increment and retrieve the updated counter, create if it doesn't exist
         const counter = await counterCollection.findOneAndUpdate(
-            { _id: "bike_id" },
-            { $inc: { counter_value: 1 } },
-            { returnDocument: "after" }
+            { _id: "bike_id" }, // Filter to find the counter document
+            { 
+                $inc: { counter_value: 1 }, // Increment the counter_value field
+                $setOnInsert: { seq: 0 } // Set the seq field if document is inserted
+            },
+            {
+                returnDocument: "after", // Return the document after the update
+                upsert: true, // Insert the document if it doesn't exist
+            }
         );
-
-        return `B${counter.counter_value.toString().padStart(4, "0")}`;
+    
+        // Ensure counter_value is correctly retrieved
+        const counterValue = counter?.value?.counter_value || 1;
+    
+        // Return formatted bike ID
+        return `B${counterValue.toString().padStart(4, "0")}`;
     },
 
     generateTripId: async function () {
@@ -87,7 +97,7 @@ const bikeManager = {
                 red_light: false,
                 active_trip: null,
                 completed_trips: [],
-                // plugged_in: false
+                plugged_in: false
             };
         }));
 

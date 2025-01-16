@@ -4,7 +4,8 @@
   "description": "*RESTful Express/Node API.*",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/app.js",
+    "dev": "NODE_ENV=development node src/app.js",
+    "sim": "NODE_ENV=simulation node src/app.js",
     "eslint": "eslint --fix . --ignore-pattern 'tests/*'",
     "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --coverage --forceExit",
     "buildtests": "mongosh test --eval 'db.dropDatabase()' && npm run testimport",

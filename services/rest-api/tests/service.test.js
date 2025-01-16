@@ -63,7 +63,7 @@ describe("GET /get/certain/bike/:id", () => {
     });
 });
 
-describe('POST /service/charge', function () {
+describe('POST /service/charge/bike', function () {
     it('responds with json', function (done) {
         request(app)
             .post('/service/charge')
@@ -89,7 +89,7 @@ describe("GET /get/certain/bike/:id", () => {
     });
 });
 
-describe('POST /service/stop_charge', function () {
+describe('POST /service/stop_charge/bike', function () {
     it('responds with json', function (done) {
         request(app)
             .post('/service/stop_charge')
