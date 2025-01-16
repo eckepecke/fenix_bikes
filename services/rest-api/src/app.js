@@ -79,7 +79,7 @@ const startServer = async () => {
 
         if (process.env.NODE_ENV === 'test') {
             // We can even use MongoDB Atlas for testing
-            mongoUri = "mongodb://127.0.0.1:27017/test";
+            mongoUri = "mongodb://localhost:27017/test";
         }
 
         if (process.env.NODE_ENV === 'simulation') {
