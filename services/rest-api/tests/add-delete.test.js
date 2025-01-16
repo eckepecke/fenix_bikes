@@ -5,6 +5,7 @@ import { MongoClient } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { log } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -171,8 +172,9 @@ describe('POST /add/many/bikes', function () {
     });
 });
 
-describe('POST /add/user', function () {
-    it('responds with json', function (done) {
+describe('POST add and find user', function () {
+    let user_id;
+    it('Add user and respond with json object', function (done) {
         request(app)
             .post('/add/user')
             .send({
@@ -191,8 +193,18 @@ describe('POST /add/user', function () {
             .expect(200)
             .end(function (err, res) {
                 if (err) return done(err);
+                user_id = res.body.insertedId;
                 return done();
             });
+    });
+
+    it("should return a user identified by _id", async () => {
+        const res = await request(app)
+            .get(`/get/user/id/${user_id}`)
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.text).toMatch("Test Add User");
     });
 });
 
