@@ -8,6 +8,25 @@ const stripe = Stripe(stripeApiKey);
 
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+  return res.status(200).json({
+    message: "These are all the stripe routes",
+    routes: {
+      paymentIntent: {
+        method: "POST",
+        path: "stripe/payment-intent",
+        description: ""
+      },
+      createCheckoutSession: {
+        method: "POST",
+        path: "stripe/create-checkout-session",
+        description: ""
+      },
+
+    }
+  });
+});
+
 router.post('/payment-intent', async (req, res) => {
   const { amount } = req.body;
 

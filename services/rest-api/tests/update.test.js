@@ -40,7 +40,7 @@ describe('PUT /edit/unban/user/:id', function () {
 // describe('PUT edit/user/ban/change/:id', function () {
 //     it('responds with json', function (done) {
 //         request(app)
-//             .put('/edit/user/ban/change/6765617d4cd3ac975e5ca6fd')
+//             .put('edit/user/ban/change/6765617d4cd3ac975e5ca6fd')
 //             .set('Accept', 'application/json')
 //             .expect(200)
 //             .end(function (err, res) {

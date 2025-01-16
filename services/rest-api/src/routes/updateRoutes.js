@@ -46,7 +46,7 @@ router.put("/user/unban/:id", async (req, res) => {
 router.put("/user/ban/change/:id", async (req, res) => {
     const id = req.params.id;
     const user = await getUser(id);
-
+    console.log(user);
     if (user.banned) {
         const result = await unbanUser(id);
         res.json(result);
