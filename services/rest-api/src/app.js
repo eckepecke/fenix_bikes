@@ -2,11 +2,15 @@ import express from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import { connectToDatabase } from "../../db/db.js";
-import { getUsers } from '../../db/users.js';
+// import { connectToDatabase } from "../../db/db.js";
+import { connectToDatabase } from '../db/db.js';
+import { getUsers } from '../db/users.js';
+
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
-import simManager from "../../simulation/simManager.js"
+
+// Dealing with sim service later
+// import simManager from "../../simulation/simManager.js"
 import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
@@ -17,11 +21,11 @@ import deleteRoutes from './routes/deleteRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
-import bike from '../../bike-logic/bike.js'
-import simSetup from "../../simulation/simSetup.js";
+// import bike from '../../bike-logic/bike.js'
+// import simSetup from "../../simulation/simSetup.js";
 import { group } from "console";
-import bikeManager from '../../bike-logic/bikeManager.js'
-import { startSimulation } from "../../simulation/runSim.js";
+import bikeManager from '../bike-logic/bikeManager.js'
+import { startSimulation } from "../simulation/runSim.js";
 
 
 
@@ -76,16 +80,22 @@ const startServer = async () => {
         // Connect to the database
 
         let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&w=majority&appName=Cluster0`;
+        //let mongoUri = process.env.DB_URI;
+        console.log(mongoUri);
+
 
         if (process.env.NODE_ENV === 'test') {
             // We can even use MongoDB Atlas for testing
-            mongoUri = "mongodb://localhost:27017/test";
+            // mongoUri = `mongodb://db:27017/test`;
+            mongoUri=`${process.env.DB_TEST_URI}`
         }
 
         if (process.env.NODE_ENV === 'simulation') {
-            // Use a different database for simulation
-            mongoUri = "mongodb://localhost:27017/simulation";
+
+            mongoUri=`${process.env.DB_TEST_URI}`
         }
+        console.log("AAAAAAAAAAAAAAAAAAAAA")
+        console.log(mongoUri);
 
         await connectToDatabase(mongoUri);
 
@@ -112,7 +122,7 @@ if (process.env.NODE_ENV === 'simulation') {
     await startSimulation(io);  // Pass io to startSimulation
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
     io.sockets.on('connection', async function (socket) {
         console.log(socket.id);
 

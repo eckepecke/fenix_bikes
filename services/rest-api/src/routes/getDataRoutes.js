@@ -1,12 +1,11 @@
 import express from "express";
-import { getCities } from "../../../db/cities.js";
-import { getParking, getAllParking } from "../../../db/parkingZones.js";
-import { getChargingStations, getAllChargingStations } from "../../../db/chargingStations.js";
-import { getUsers, getUser, getUserByUserId, getUserByEmail } from "../../../db/users.js";
-import { getTrip, getTrips } from "../../../db/trips.js";
-import { getAdmins } from "../../../db/admin.js";
-import bikeManager from "../../../bike-logic/bikeManager.js";
-import bike from "../../../bike-logic/bike.js";
+import { getCities } from "../../db/cities.js";
+import { getParking, getAllParking } from "../../db/parkingZones.js";
+import { getChargingStations, getAllChargingStations } from "../../db/chargingStations.js";
+import { getUsers, getUser, getUserByUserId, getUserByEmail } from "../../db/users.js";
+import { getTrip, getTrips } from "../../db/trips.js";
+import bikeManager from "../../bike-logic/bikeManager.js";
+import bike from "../../bike-logic/bike.js";
 
 const router = express.Router();
 

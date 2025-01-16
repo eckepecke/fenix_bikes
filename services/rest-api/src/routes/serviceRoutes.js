@@ -1,6 +1,6 @@
 import express from 'express';
-import bike from "../../../bike-logic/bike.js";
-import bikeManager from "../../../bike-logic/bikeManager.js";
+import bike from "../../bike-logic/bike.js";
+import bikeManager from "../../bike-logic/bikeManager.js";
 
 
 const router = express.Router();
@@ -56,14 +56,14 @@ router.post("/complete/bike", async (req, res) => {
     res.json(result);
 });
 
-router.post("/charge", async (req, res) => {
+router.post("/charge/bike", async (req, res) => {
     const bikeId = req.body.bike_id;
     const result = await bike.charge(bikeId);
 
     res.json(result);
 });
 
-router.post("/stop_charge", async (req, res) => {
+router.post("/stop_charge/bike", async (req, res) => {
     const bikeId = req.body.bike_id;
     const result = await bike.stopCharge(bikeId);
 

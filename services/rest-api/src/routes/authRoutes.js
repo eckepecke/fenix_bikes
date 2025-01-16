@@ -1,7 +1,8 @@
 import express from "express";
 import axios from "axios";
-import { getUserByEmail, createUser } from "../../../db/users.js";
-import { getAdminByEmail, createAdmin } from "../../../db/admin.js";
+
+import { getUserByEmail, createUser } from "../../db/users.js";
+import { getAdminByEmail, createAdmin } from "../../db/admin.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
