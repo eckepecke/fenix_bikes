@@ -45,7 +45,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path="/wallet" element={<AddToWallet />} /> */}
           <Route path="/pay-trip/:tripId" element={<PayTrip />} />
-          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-success/:tripId" element={<PaymentSuccess />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

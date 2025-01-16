@@ -11,3 +11,9 @@ export const getTrip = async (id) => {
   const trip = await getCollection('trips').findOne({ trip_id: id });
   return trip;
 };
+
+// Set trip paid status
+export const setTripPaid = async (id) => {
+  const result = await getCollection('trips').updateOne({ trip_id: id }, { $set: { paid: true } });
+  return result;
+};
