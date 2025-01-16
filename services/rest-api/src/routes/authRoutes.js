@@ -1,17 +1,51 @@
 import express from "express";
 import axios from "axios";
+
 import { getUserByEmail, createUser } from "../../db/users.js";
+import { getAdminByEmail, createAdmin } from "../../db/admin.js";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    res.json("hej authRoutes");
+    return res.status(200).json({
+        message: "These are all the auth routes",
+        routes: {
+            env: {
+                method: "GET",
+                path: "auth/env",
+                description: "Returns Github details."
+            },
+            authUser: {
+                method: "GET",
+                path: "auth/user",
+                description: "Authenticates a user using Github."
+            },
+            authAppUser: {
+                method: "POST",
+                path: "auth/app/user",
+                description: "Checks if user is already in database and if not registers a new user. This route is only used from the app."
+            },
+            admninLogin: {
+                method: "POST",
+                path: "auth/admin/login",
+                description: "Admin Login route, checks against JSW-token."
+            },
+            admninSignup: {
+                method: "POST",
+                path: "auth/admin/signup",
+                description: "Creates a new admin-user."
+            },
+        }
+    });
 });
 
 router.get("/env", (req, res) => {
     res.json({
         GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
         GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+        JWT_SECRET: process.env.JWT_SECRET,
     });
 });
 
@@ -151,5 +185,69 @@ router.post("/app/user", async (req, res) => {
     }
 
 });
+
+// Jason Webtoken login with email and password in admin app
+router.post("/admin/login", async (req, res) => {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await getAdminByEmail(email);
+
+    if (!user) {
+        return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+        return res.status(401).json({ error: "Invalid email or password" });
+    }
+
+    const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
+        expiresIn: "1h",
+    });
+
+    res.json({
+        user: {
+            name: user.name,
+            email: user.email,
+        },
+        token,
+    });
+});
+
+// Jason Webtoken signup with email and password in admin app
+router.post("/admin/signup", async (req, res) => {
+    const JWT_SECRET = process.env.JWT_SECRET;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    const user = await getAdminByEmail(email);
+
+    if (user) {
+        return res.status(400).json({ error: "User already exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = {
+        email,
+        password: hashedPassword,
+    };
+
+    await createAdmin(newUser);
+
+    const token = jwt.sign({ id: newUser._id, email: newUser.email }, JWT_SECRET, {
+        expiresIn: "1h",
+    });
+
+    res.json({
+        user: {
+            email: newUser.email,
+        },
+        token,
+    });
+});
+
 
 export default router;

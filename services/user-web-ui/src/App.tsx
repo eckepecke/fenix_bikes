@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { FetchUser, User } from "./components/FetchUser";
 import { useCookies } from "react-cookie";
 import { FetchUser, User } from "./components/FetchUser";
 import "./App.css";
@@ -9,6 +11,11 @@ import Home from "./views/Home";
 import RideHistory from "./views/RideHistory";
 import Profile from "./views/Profile";
 import Payments from "./views/Payments";
+import Login from "./views/Login";
+import AddToWallet from "./views/AddToWallet";
+import PayTrip from "./views/PayTrip";
+import PaymentSuccess from "./views/PaymentSuccess";
+import NotFound from "./views/NotFound";
 import Login from "./views/Login";
 import AddToWallet from "./views/AddToWallet";
 import PayTrip from "./views/PayTrip";
@@ -45,7 +52,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* <Route path="/wallet" element={<AddToWallet />} /> */}
           <Route path="/pay-trip/:tripId" element={<PayTrip />} />
-          <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/payment-success/:tripId" element={<PaymentSuccess />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>

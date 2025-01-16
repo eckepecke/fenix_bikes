@@ -7,6 +7,6 @@ describe("GET /auth/", () => {
             .get("/auth")
             .expect(200);
 
-        expect(res.text).toBe('\"hej authRoutes\"');
+        expect(res.text).toMatch('These are all the auth routes');
     });
 });

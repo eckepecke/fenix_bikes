@@ -7,7 +7,7 @@ describe("GET /service/", () => {
             .get("/service")
             .expect(200);
 
-        expect(res.text).toBe('\"hej service routes\"');
+        expect(res.text).toMatch('"These are all the service routes"');
     });
 });
 
@@ -20,7 +20,7 @@ describe('POST /service/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -46,7 +46,7 @@ describe('POST /service/complete/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -72,7 +72,7 @@ describe('POST /service/charge/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -98,7 +98,7 @@ describe('POST /service/stop_charge/bike', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -112,5 +112,16 @@ describe("GET /get/certain/bike/:id", () => {
             .expect(200);
 
         expect(res.text).toMatch('"available\":true');
+    });
+});
+
+describe("GET service/update/red_light", () => {
+    it("should return a bike with service false", async () => {
+        const res = await request(app)
+            .get("/service/update/red_light")
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.text).toMatch('"Updated bikes"');
     });
 });

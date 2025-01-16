@@ -7,6 +7,7 @@ interface Trip {
   start_location: Array<number>;
   end_location: Array<number>;
   cost?: number;
+  paid?: boolean;
 }
 
 // Fetch trip data
@@ -27,8 +28,8 @@ const FetchTrip = async (tripId: string): Promise<Trip | null> => {
 
     const tripCost = await tripCostResponse.json();
     trip.cost = tripCost;
-    
-    
+
+
     // Check if the trip ID matches
     return trip.trip_id === tripId ? trip : null;
   } catch (error) {

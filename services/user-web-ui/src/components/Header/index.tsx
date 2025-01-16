@@ -1,16 +1,26 @@
 import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const Header: React.FC = () => {
-  const [cookies, , removeCookie] = useCookies(["user"]);
-  const navigate = useNavigate();
+	const [cookies, , removeCookie] = useCookies(["user"]);
+	const navigate = useNavigate();
 
-  const handleLogout = () => {
-    removeCookie("user");
-    navigate("/");
-  };
+	const handleLogout = () => {
+		removeCookie("user");
+		navigate("/");
+	};
+
+	const [cookies, , removeCookie] = useCookies(["user"]);
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		removeCookie("user");
+		navigate("/");
+	};
 
 	return (
 		<header className="header">
@@ -25,13 +35,13 @@ const Header: React.FC = () => {
 						{cookies.user ? (
 							<>
 								<li>
-									<a href="ride-history">Ride History</a>
+									<a href="/ride-history">Ride History</a>
 								</li>
 								<li>
-									<a href="profile">Profile</a>
+									<a href="/profile">Profile</a>
 								</li>
 								{/* <li>
-									<a href="wallet">Wallet</a>
+									<a href="/wallet">Wallet</a>
 								</li> */}
 								<li>
 									<button className="green-btn" onClick={handleLogout}>Sign out</button>
@@ -39,7 +49,7 @@ const Header: React.FC = () => {
 							</>
 						) : (
 							<li>
-								<a href="login">Sign in</a>
+								<a href="/login">Sign in</a>
 							</li>
 						)}
 					</ul>
