@@ -1,13 +1,4 @@
-module.exports = {
-    preset: 'ts-jest/presets/default-esm',
-    testEnvironment: 'node',
-    transform: {
-      '^.+\.tsx?$': 'ts-jest',
-    },
-    extensionsToTreatAsEsm: ['.ts', '.tsx'],
-    globals: {
-      'ts-jest': {
-        useESM: true,
-      },
-    },
-  };
+export default {
+  testEnvironment: 'node', // Use Node.js environment for testing
+  testMatch: ['/tests/*.test.js'], // Specify where the tests are located
+};
