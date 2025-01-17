@@ -22,9 +22,9 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
 	}
 
 	const handleLogout = () => {
-    removeCookie("user");
-    navigate("/");
-  };
+		removeCookie("user");
+		navigate("/");
+	};
 
 	const handleDelete = async () => {
 		const confirmed = window.confirm("Are you sure you want to delete this user?");
@@ -32,7 +32,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
 			return;
 		}
 		try {
-			const response = await fetch(`http://localhost:1337/delete/user/${user._id}`, {
+			const response = await fetch(`http://localhost:1337/api/v1/delete/user/${user._id}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",
@@ -42,9 +42,8 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
 			await response.json();
-			
-			handleLogout();
 
+			handleLogout();
 		} catch (error) {
 			console.error("Error deleting user:", error);
 		}

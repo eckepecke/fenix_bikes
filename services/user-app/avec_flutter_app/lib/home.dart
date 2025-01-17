@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<void> _fetchUser() async {
     await http.post(
-      Uri.parse('http://localhost:1337/auth/app/user'),
+      Uri.parse('http://localhost:1337/api/v1/auth/app/user'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
