@@ -17,7 +17,8 @@
   font-weight: 300;
 }
 
-.trip-link, .trip-paid {
+.trip-link,
+.trip-paid {
   margin-top: 0.5em;
   font-size: 1em;
   font-weight: 400;

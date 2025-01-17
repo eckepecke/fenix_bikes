@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 interface PaymentSuccessProps {
 }
 
-const PaymentSuccess: React.FC<PaymentSuccessProps> = ({  }) => {
+const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ }) => {
 	const { tripId } = useParams<{ tripId: string }>();
 	useEffect(() => {
 		document.title = "Payment successful - Avec";

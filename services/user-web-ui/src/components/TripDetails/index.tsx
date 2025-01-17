@@ -13,7 +13,7 @@ const TripDetails: React.FC<TripProps> = ({ tripId }) => {
   React.useEffect(() => {
     FetchTrip(tripId).then(fetchedTrip => {
       setTrip(fetchedTrip);
-      
+
     });
   }, [tripId]);
 
