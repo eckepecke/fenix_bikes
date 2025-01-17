@@ -21,7 +21,7 @@ const UserDetails: React.FC = () => {
 
 	const fetchUser = async () => {
 		try {
-			const response = await fetch(`http://localhost:1337/get/user/id/${userId}`);
+			const response = await fetch(`http://localhost:1337/api/v1/get/user/id/${userId}`);
 			const data = await response.json();
 			console.log("Fetched user data:", data); // Debugging information
 			setUser(data);
@@ -39,7 +39,7 @@ const UserDetails: React.FC = () => {
 	const changeBanStatus = async () => {
 		setLoading(true);
 		try {
-			const response = await fetch(`http://localhost:1337/edit/user/ban/change/${userId}`, {
+			const response = await fetch(`http://localhost:1337/api/v1/edit/user/ban/change/${userId}`, {
 				method: "PUT",
 				headers: {
 					"Content-Type": "application/json",
@@ -65,7 +65,7 @@ const UserDetails: React.FC = () => {
 		}
 		setLoading(true);
 		try {
-			const response = await fetch(`http://localhost:1337/delete/user/${userId}`, {
+			const response = await fetch(`http://localhost:1337/api/v1/delete/user/${userId}`, {
 				method: "DELETE",
 				headers: {
 					"Content-Type": "application/json",

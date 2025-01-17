@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-interface PaymentSuccessProps {
-}
+interface PaymentSuccessProps {}
 
-const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ }) => {
+const PaymentSuccess: React.FC<PaymentSuccessProps> = ({}) => {
 	const { tripId } = useParams<{ tripId: string }>();
 	useEffect(() => {
 		document.title = "Payment successful - Avec";
 
 		const updatePaymentStatus = async () => {
 			try {
-				const response = await fetch(`http://localhost:1337/stripe/payment-success/${tripId}`, {
-					method: "GET",
-				});
+				const response = await fetch(
+					`http://localhost:1337/api/v1/stripe/payment-success/${tripId}`,
+					{
+						method: "GET",
+					}
+				);
 
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
@@ -24,7 +26,7 @@ const PaymentSuccess: React.FC<PaymentSuccessProps> = ({ }) => {
 			} catch (error) {
 				console.log("Failed to update payment status:", error);
 			}
-		}
+		};
 
 		if (tripId) {
 			updatePaymentStatus();

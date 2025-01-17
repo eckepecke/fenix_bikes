@@ -21,7 +21,7 @@ export default simManager;
 //     setTimeout(() => {
 //         console.log(data[0].trip1.coords[coord]);
 //         let coordinates = data[0].trip1.coords[coord];
-//         fetch("http://localhost:1337/test/location/update", {
+//         fetch("http://localhost:1337/api/v1/test/location/update", {
 //             method: "POST",
 //             body: JSON.stringify({
 //                 bike_id: "B0024",

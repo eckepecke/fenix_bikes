@@ -45,18 +45,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:43785'],
 }));
 app.use(helmet());
 
-app.use('/add', add);
-app.use('/get', get);
-app.use('/service', service);
-app.use('/trip', trip);
-app.use('/auth', auth);
-app.use('/stripe', stripe);
-app.use('/edit', edit);
-app.use('/delete', deleteRoutes);
+app.use('/api/v1/add', add);
+app.use('/api/v1/get', get);
+app.use('/api/v1/service', service);
+app.use('/api/v1/trip', trip);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/stripe', stripe);
+app.use('/api/v1/edit', edit);
+app.use('/api/v1/delete', deleteRoutes);
 
 
 app.use('/test', test);

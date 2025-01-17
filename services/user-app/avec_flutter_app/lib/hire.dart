@@ -24,7 +24,7 @@ class _HireBikeState extends State<HireBike> {
 
   Future<void> _fetchUser() async {
     final response = await http
-        .get(Uri.parse('http://localhost:1337/get/user/${widget.userEmail}'));
+        .get(Uri.parse('http://localhost:1337/api/v1/get/user/${widget.userEmail}'));
     if (response.statusCode == 200) {
       var userData = json.decode(response.body);
       print(userData);
@@ -38,7 +38,7 @@ class _HireBikeState extends State<HireBike> {
     var bikeID = _textFieldValue;
     print(bikeID);
     final response = await http.post(
-      Uri.parse('http://localhost:1337/trip/start'),
+      Uri.parse('http://localhost:1337/api/v1/trip/start'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
