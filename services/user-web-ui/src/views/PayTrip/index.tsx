@@ -9,7 +9,7 @@ const stripePromise = loadStripe(
     "pk_test_51Qecw3HCLCJGrqtYLCNqi4ZLICjXGEBvDOrr4FXZQUTAzm3JMkRN5bXI0sIIb7B7yjheuL9GorYdu95w65TpR5fq00C0ZmolBn"
 );
 
-interface PayTripProps {}
+interface PayTripProps { }
 
 const PayTrip: React.FC<PayTripProps> = () => {
     useEffect(() => {

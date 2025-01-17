@@ -19,7 +19,7 @@ describe("GET /get/", () => {
             .get("/get")
             .expect(200);
 
-        expect(res.text).toBe('\"hej getData routes\"');
+        expect(res.text).toMatch('These are all the get routes');
     });
 });
 
@@ -52,7 +52,7 @@ describe("GET /get/all/users", () => {
             .expect('Content-Type', /json/)
             .expect(200);
 
-        expect(res.body).toHaveLength(2);
+        expect(res.body).toHaveLength(3);
     });
 });
 
@@ -111,6 +111,7 @@ describe("GET /get/user/email/:email", () => {
     });
 });
 
+
 describe("GET /get/certain/bike/:id", () => {
     it("should return a bike identified by ID", async () => {
         const res = await request(app)
@@ -163,5 +164,16 @@ describe("GET /get/all/bikes/pagination", () => {
             .expect(200);
 
         expect(res.body.bikes).toHaveLength(5);
+    });
+});
+
+describe("GET /get/bikes/with/warning", () => {
+    it("should return 0 bikes", async () => {
+        const res = await request(app)
+            .get("/get/bikes/with/warning")
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.body).toHaveLength(0);
     });
 });

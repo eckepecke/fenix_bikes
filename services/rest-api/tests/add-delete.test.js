@@ -5,6 +5,7 @@ import { MongoClient } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { log } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,7 +62,7 @@ afterAll(async () => {
     // setTimeout( async () => {
     //     console.log("closing db");
     //   }, 1000); 
-      await connection.close();
+    await connection.close();
 
 });
 
@@ -71,7 +72,17 @@ describe("GET /add/", () => {
             .get("/add")
             .expect(200);
 
-        expect(res.text).toBe('\"hej add data routes\"');
+        expect(res.text).toMatch('These are all the add routes');
+    });
+});
+
+describe("GET /delete/", () => {
+    it("should print greeting", async () => {
+        const res = await request(app)
+            .get("/delete")
+            .expect(200);
+
+        expect(res.text).toMatch('\"These are all the delete routes\"');
     });
 });
 
@@ -161,8 +172,9 @@ describe('POST /add/many/bikes', function () {
     });
 });
 
-describe('POST /add/user', function () {
-    it('responds with json', function (done) {
+describe('POST add and find user + change banned status', function () {
+    let user_id;
+    it('Add user and respond with json object', function (done) {
         request(app)
             .post('/add/user')
             .send({
@@ -181,15 +193,47 @@ describe('POST /add/user', function () {
             .expect(200)
             .end(function (err, res) {
                 if (err) return done(err);
+                user_id = res.body.insertedId;
+                return done();
+            });
+    });
+
+    it("should return a user identified by _id", async () => {
+        const res = await request(app)
+            .get(`/get/user/id/${user_id}`)
+            .expect('Content-Type', /json/)
+            .expect(200);
+
+        expect(res.text).toMatch("Test Add User");
+    });
+
+    it('change user status', function (done) {
+        request(app)
+            .put(`/edit/user/ban/change/${user_id}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .end(function (err, res) {
+                if (err) { return done(err); }
+                return done();
+            });
+    });
+
+    it('change user status', function (done) {
+        request(app)
+            .put(`/edit/user/ban/change/${user_id}`)
+            .set('Accept', 'application/json')
+            .expect(200)
+            .end(function (err, res) {
+                if (err) { return done(err); }
                 return done();
             });
     });
 });
 
-describe('POST /test/delete/bike', function () {
+describe('POST /delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0025' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -204,7 +248,7 @@ describe('POST /test/delete/bike', function () {
 describe('POST /test/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0026' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -219,7 +263,7 @@ describe('POST /test/delete/bike', function () {
 describe('POST /test/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/bike')
+            .post('/delete/bike')
             .send({ bike_id: 'B0027' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -231,11 +275,10 @@ describe('POST /test/delete/bike', function () {
     });
 });
 
-describe('POST /test/delete/user', function () {
+describe('POST /delete/user', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/test/delete/user')
-            .send({ user_id: 'U0018' })
+            .delete('/delete/user/6787cf8db3c577b81eef4fb5')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)

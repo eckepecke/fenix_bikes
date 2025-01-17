@@ -7,7 +7,7 @@ describe("GET /trip/", () => {
             .get("/trip")
             .expect(200);
 
-        expect(res.text).toBe('\"hej tripRoutes\"');
+        expect(res.text).toMatch('\"These are all the trip routes\"');
     });
 });
 
@@ -20,7 +20,7 @@ describe('POST /trip/start', function () {
             .expect('Content-Type', /json/)
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -46,7 +46,7 @@ describe('POST /trip/end', function () {
             .set('Accept', 'application/json')
             .expect(200)
             .end(function (err, res) {
-                if (err) {return done(err);}
+                if (err) { return done(err); }
                 return done();
             });
     });
@@ -62,3 +62,4 @@ describe("GET /get/certain/bike/:id", () => {
         expect(res.text).toMatch('"available\":true');
     });
 });
+
