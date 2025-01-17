@@ -57,10 +57,14 @@ router.get("/user", async (req, res) => {
         return res.status(400).json({ error: "No code provided" });
     }
 
-    const clientId = process.env.UI_GITHUB_CLIENT_ID;
-    const clientSecret = process.env.UI_GITHUB_CLIENT_SECRET;
+    const clientId = process.env.GITHUB_CLIENT_ID;
+    const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
     try {
+        console.log("Before crash?")
+        console.log(clientId);
+        console.log(clientSecret);
+
         const tokenResponse = await axios.post(
             "https://github.com/login/oauth/access_token",
             {
@@ -135,6 +139,7 @@ router.get("/user", async (req, res) => {
                         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
                     }
                 );
+                console.log("path i authrutes: ", path);
 
                 res.redirect(`http://localhost:5174${path}`);
             }

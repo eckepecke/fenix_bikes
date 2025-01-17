@@ -85,16 +85,14 @@ const startServer = async () => {
 
 
         if (process.env.NODE_ENV === 'test') {
-            // Works locally
-            //mongoUri = "mongodb://localhost:27017"
-            // Works docker
-            mongoUri=`${process.env.DB_TEST_URI}`
+            mongoUri = "mongodb://db:27017/test"
         }
 
         if (process.env.NODE_ENV === 'simulation') {
 
             mongoUri=`${process.env.DB_TEST_URI}`
         }
+        console.log("Hallå!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         console.log(mongoUri);
 
