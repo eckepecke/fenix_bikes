@@ -187,7 +187,6 @@ const bikeManager = {
         try {
             const bikeToDelete = await bike.reportState(bikeId);
             const cityName = bikeToDelete.city_name;
-            console.log(cityName);
             const filter = { bike_id: bikeId }
             let result = await bikeCollection.deleteOne(filter);
             result = await cityCollection.updateOne(
@@ -280,14 +279,11 @@ const bikeManager = {
     },
 
     checkBikesForWarning: async function checkBikesForWarning(bikeArray) {
-        console.log("Checking!");
-        console.log(bikeArray);
     
         const bikesNeedingWarning = [];
     
         for (const bikeObj of bikeArray) {
             if (bikeObj.status.battery_level < 15) {
-                console.log("passing to bike!");
                 bikesNeedingWarning.push(bikeObj);
             }
         }

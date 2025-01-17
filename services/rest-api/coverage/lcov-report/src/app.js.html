@@ -16,38 +16,37 @@
 </head>
 
 <body>
-    <div class='wrapper'>
-        <div class='pad1'>
-            <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> app.js</h1>
-            <div class='clearfix'>
 
-                <div class='fl pad1y space-right2'>
-                    <span class="strong">70.21% </span>
-                    <span class="quiet">Statements</span>
-                    <span class='fraction'>33/47</span>
-                </div>
-
-
-                <div class='fl pad1y space-right2'>
-                    <span class="strong">50% </span>
-                    <span class="quiet">Branches</span>
-                    <span class='fraction'>7/14</span>
-                </div>
-
-
-                <div class='fl pad1y space-right2'>
-                    <span class="strong">40% </span>
-                    <span class="quiet">Functions</span>
-                    <span class='fraction'>2/5</span>
-                </div>
-
-
-                <div class='fl pad1y space-right2'>
-                    <span class="strong">70.21% </span>
-                    <span class="quiet">Lines</span>
-                    <span class='fraction'>33/47</span>
-                </div>
-
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> app.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">72% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>36/50</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>7/14</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">40% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>2/5</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">72% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>36/50</span>
 
             </div>
             <p class="quiet">
@@ -195,7 +194,24 @@
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -271,20 +287,29 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
@@ -331,11 +356,15 @@
 import * as dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import { connectToDatabase } from "../../db/db.js";
+// import { connectToDatabase } from "../../db/db.js";
+import { connectToDatabase } from '../../db/db.js';
 import { getUsers } from '../../db/users.js';
+&nbsp;
 // import { getCities } from '../../db/cities.js';
 // import { getBikes } from '../../db/bikes.js';
-import simManager from "../../simulation/simManager.js"
+&nbsp;
+// Dealing with sim service later
+// import simManager from "../../simulation/simManager.js"
 import get from './routes/getDataRoutes.js';
 import add from './routes/addDataRoutes.js';
 import test from './routes/testRoutes.js';
@@ -346,11 +375,11 @@ import deleteRoutes from './routes/deleteRoutes.js';
 import { Server } from "socket.io";
 import { createServer } from 'http';
 import trip from './routes/tripRoutes.js';
-import bike from '../../bike-logic/bike.js'
-import simSetup from "../../simulation/simSetup.js";
+// import bike from '../../bike-logic/bike.js'
+// import simSetup from "../../simulation/simSetup.js";
 import { group } from "console";
-import bikeManager from '../../bike-logic/bikeManager.js'
 import { startSimulation } from "../../simulation/runSim.js";
+import bikeManager from '../../bike-logic/bikeManager.js'
 &nbsp;
 &nbsp;
 &nbsp;
@@ -403,20 +432,29 @@ app.get("/", (req, res) =&gt; {
 const startServer = async () =&gt; {
     try {
         // Connect to the database
+        console.log(process.env.NODE_ENV);
 &nbsp;
         let mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.k5lbc.mongodb.net/fenix?retryWrites=true&amp;w=majority&amp;appName=Cluster0`;
+        //let mongoUri = process.env.DB_URI;
+&nbsp;
 &nbsp;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (process.env.NODE_ENV === 'test') {
-            // We can even use MongoDB Atlas for testing
-            mongoUri = "mongodb://localhost:27017/test";
+            // Works locally
+            mongoUri = "mongodb://localhost:27017/test"
+            // Works docker
+            //mongoUri=`${process.env.DB_TEST_URI}`
         }
 &nbsp;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV === 'simulation') {
-            // Use a different database for simulation
-<span class="cstat-no" title="statement not covered" >            mongoUri = "mongodb://localhost:27017/simulation";</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            mongoUri=`${process.env.DB_TEST_URI}`</span>
         }
+        console.log("Hallå!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+&nbsp;
+        console.log(mongoUri);
 &nbsp;
         await connectToDatabase(mongoUri);
+&nbsp;
 &nbsp;
         // Start the Express server
         const port = process.env.PORT || <span class="branch-1 cbranch-no" title="branch not covered" >1338;</span>
@@ -441,7 +479,7 @@ console.log(process.env.NODE_ENV)
 <span class="cstat-no" title="statement not covered" >    await startSimulation(io); </span> // Pass io to startSimulation
 }
 &nbsp;
-<span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV === 'production') {
+<span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.NODE_ENV === 'development') {
 <span class="cstat-no" title="statement not covered" >    io.sockets.on('connection', <span class="fstat-no" title="function not covered" >as</span>ync function (socket) {</span>
 <span class="cstat-no" title="statement not covered" >        console.log(socket.id);</span>
 &nbsp;
@@ -465,21 +503,22 @@ export default app;
         </table>
         </pre>
 
-        <div class='push'></div><!-- for sticky footer -->
-    </div><!-- /wrapper -->
-    <div class='footer quiet pad2 space-top1 center small'>
-        Code coverage generated by
-        <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-        at 2025-01-16T16:13:26.444Z
-    </div>
-    <script src="../prettify.js"></script>
-    <script>
-        window.onload = function () {
-            prettyPrint();
-        };
-    </script>
-    <script src="../sorter.js"></script>
-    <script src="../block-navigation.js"></script>
-</body>
-
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-01-17T07:50:24.050Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
 </html>
+    
+

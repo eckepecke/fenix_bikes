@@ -15,13 +15,19 @@ let db;
 
 beforeAll(async () => {
     // Set the MongoDB URI and database name for testing
-    global.__MONGO_URI__ = "mongodb://localhost:27017";
+    global.__MONGO_URI__ = "mongodb://db:27017";
     global.__MONGO_DB_NAME__ = "test";
+
+    console.log("Adress i test");
+
+    console.log(`${global.__MONGO_URI__}/${global.__MONGO_DB_NAME__}`);
+
 
     connection = await MongoClient.connect(global.__MONGO_URI__, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
+
     db = await connection.db(global.__MONGO_DB_NAME__);
 
     // Clear the collections

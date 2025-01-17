@@ -27,10 +27,10 @@ services:
     ports:
       - "1337:1337"
     volumes:
-      - ./db:/server/db
-      - ./bike-logic:/server/bike-logic
-      - ./trips:/server/trips
-      - ./simulation:/server/simulation
+      - ./db:/db
+      - ./bike-logic:/bike-logic
+      - ./trips:/trips
+      - ./simulation:/simulation
     command: ["sh", "-c", "npm run ${env:-dev}"]
 
   admin-web-ui:
@@ -52,7 +52,7 @@ services:
     networks:
       - my_network
     ports:
-      - "8080:5174"
+      - "5174:5174"
     command: ["sh", "-c", "npm run dev"]
 
   user_app:

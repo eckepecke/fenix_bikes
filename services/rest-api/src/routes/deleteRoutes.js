@@ -1,7 +1,7 @@
 import express from "express";
 
-import { deleteUser } from "../../db/users.js";
-import bikeManager from "../../bike-logic/bikeManager.js";
+import { deleteUser } from "../../../db/users.js";
+import bikeManager from "../../../bike-logic/bikeManager.js";
 
 
 const router = express.Router();
