@@ -19,7 +19,7 @@ class _RideState extends State<Ride> {
     var bikeID = widget.bikeID;
     print(bikeID);
     final response = await http.post(
-      Uri.parse('http://localhost:1337/trip/end'),
+      Uri.parse('http://localhost:1337/api/v1/trip/end'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

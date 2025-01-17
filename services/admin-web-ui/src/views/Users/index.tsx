@@ -10,7 +10,7 @@ const Users: React.FC = () => {
 
 		const fetchUsers = async () => {
 			try {
-				const response = await fetch("http://localhost:1337/get/all/users");
+				const response = await fetch("http://localhost:1337/api/v1/get/all/users");
 				const data = await response.json();
 				setFetchedUsers(data);
 			} catch (error) {

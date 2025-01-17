@@ -72,7 +72,7 @@ class _MapPageState extends State<MapPage> {
 
   Future<void> _fetchBikes() async {
     final response = await http.get(Uri.parse(
-        'http://localhost:1337/get/all/bikes/in/city/${widget.selectedCity}'));
+        'http://localhost:1337/api/v1/get/all/bikes/in/city/${widget.selectedCity}'));
     var bikes = <Bike>[];
     if (response.statusCode == 200) {
       var bikesData = json.decode(response.body);
