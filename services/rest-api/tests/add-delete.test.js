@@ -15,12 +15,15 @@ let db;
 
 beforeAll(async () => {
     // Set the MongoDB URI and database name for testing
-    global.__MONGO_URI__ = "mongodb://db:27017";
-    global.__MONGO_DB_NAME__ = "test";
+    // global.__MONGO_URI__ = "mongodb://db:27017";
+    // global.__MONGO_DB_NAME__ = "test";
 
-    console.log("Adress i test");
+    global.__MONGO_URI__ = process.env.DB_TEST_URI;
 
-    console.log(`${global.__MONGO_URI__}/${global.__MONGO_DB_NAME__}`);
+
+    console.log("Address i test");
+
+    console.log(global.__MONGO_URI__);
 
 
     connection = await MongoClient.connect(global.__MONGO_URI__, {
@@ -28,7 +31,7 @@ beforeAll(async () => {
         useUnifiedTopology: true,
     });
 
-    db = await connection.db(global.__MONGO_DB_NAME__);
+    db = await connection.db();
 
     // Clear the collections
     await db.collection('bikes').deleteMany({});
@@ -205,6 +208,7 @@ describe('POST add and find user + change banned status', function () {
     });
 
     it("should return a user identified by _id", async () => {
+        console.log("USER_ID_HÄR: ", user_id)
         const res = await request(app)
             .get(`/get/user/id/${user_id}`)
             .expect('Content-Type', /json/)
@@ -251,7 +255,7 @@ describe('POST /delete/bike', function () {
     });
 });
 
-describe('POST /test/delete/bike', function () {
+describe('POST /delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
             .post('/delete/bike')

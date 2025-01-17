@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development node src/app.js",
     "sim": "NODE_ENV=simulation node src/app.js",
     "eslint": "eslint --fix . --ignore-pattern 'tests/*'",
-    "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles --coverage --forceExit",
+    "test": "export NODE_ENV=test && node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage --forceExit --runInBand",
     "buildtests": "mongosh test --eval 'db.dropDatabase()' && npm run testimport",
     "testimport": "cd testdb && mongoimport --db test -c bikes --jsonArray addbikes.json && mongoimport --db test -c users --jsonArray addusers.json && mongoimport --db test -c cities --jsonArray addcities.json && mongoimport --db test -c parking_zones --jsonArray addparking.json && mongoimport --db test -c charging_stations --jsonArray addcharging.json && mongoimport --db test -c trips --jsonArray addtrips.json"
   },
