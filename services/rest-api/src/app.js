@@ -85,12 +85,12 @@ const startServer = async () => {
 
 
         if (process.env.NODE_ENV === 'test') {
-            mongoUri = "mongodb://db:27017/test"
+            mongoUri = process.env.DB_TEST_URI 
         }
 
         if (process.env.NODE_ENV === 'simulation') {
 
-            mongoUri=`${process.env.DB_TEST_URI}`
+            mongoUri= process.env.DB_SIM_URI
         }
         console.log("Hallå!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 

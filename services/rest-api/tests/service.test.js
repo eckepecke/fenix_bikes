@@ -66,7 +66,7 @@ describe("GET /get/certain/bike/:id", () => {
 describe('POST /service/charge/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/service/charge')
+            .post('/service/charge/bike')
             .send({ bike_id: 'B0012' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -92,7 +92,7 @@ describe("GET /get/certain/bike/:id", () => {
 describe('POST /service/stop_charge/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/service/stop_charge')
+            .post('/service/stop_charge/bike')
             .send({ bike_id: 'B0012' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)

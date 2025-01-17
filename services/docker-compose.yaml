@@ -21,7 +21,8 @@ services:
       - db
     environment:
       - env=${env}
-      - DB_URI=mongodb://root:example@mongo_db:27017/myDatabase?authSource=admin
+      - DB_TEST_URI=mongodb://root:example@mongo_db:27017/testDatabase?authSource=admin
+      - DB_SIM_URI=mongodb://root:example@mongo_db:27017/simDatabase?authSource=admin
     networks:
       - my_network
     ports:

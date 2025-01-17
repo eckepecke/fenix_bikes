@@ -134,6 +134,7 @@ const bike = {
 
     charge: async function charge(bikeId) {
         let bikeCollection = getCollection("bikes");
+        console.log("Logging id for test: ", bikeId)
 
         try {
             const result = await bikeCollection.updateOne(
