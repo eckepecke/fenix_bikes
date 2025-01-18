@@ -1,20 +1,20 @@
 import request from 'supertest';
 import app from '../src/app.js';
 
-describe("GET /stripe/", () => {
+describe("GET /api/v1/stripe/", () => {
     it("should print greeting", async () => {
         const res = await request(app)
-            .get("/stripe")
+            .get("/api/v1/stripe")
             .expect(200);
 
         expect(res.text).toMatch('"These are all the stripe routes"');
     });
 });
 
-describe('POST /stripe/payment-intent', function () {
+describe('POST /api/v1/stripe/payment-intent', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/stripe/payment-intent')
+            .post('/api/v1/stripe/payment-intent')
             .send({ amount: 10 })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
