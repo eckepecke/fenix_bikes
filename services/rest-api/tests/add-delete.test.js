@@ -18,7 +18,7 @@ beforeAll(async () => {
     // global.__MONGO_URI__ = "mongodb://db:27017";
     // global.__MONGO_DB_NAME__ = "test";
 
-    global.__MONGO_URI__ = process.env.DB_TEST_URI;
+    global.__MONGO_URI__ = process.env.DB_TEST_URI || process.env.LOCAL_TEST_URI;
 
 
     console.log("Address i test");
@@ -75,30 +75,30 @@ afterAll(async () => {
 
 });
 
-describe("GET /add/", () => {
+describe("GET /api/v1/add/", () => {
     it("should print greeting", async () => {
         const res = await request(app)
-            .get("/add")
+            .get("/api/v1/add")
             .expect(200);
 
         expect(res.text).toMatch('These are all the add routes');
     });
 });
 
-describe("GET /delete/", () => {
+describe("GET /api/v1/delete/", () => {
     it("should print greeting", async () => {
         const res = await request(app)
-            .get("/delete")
+            .get("/api/v1/delete")
             .expect(200);
 
         expect(res.text).toMatch('\"These are all the delete routes\"');
     });
 });
 
-describe('POST /add/bike', function () {
+describe('POST /api/v1/add/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/add/bike')
+            .post('/api/v1/add/bike')
             .send({
                 bike: {
                     speed: 0,
@@ -127,10 +127,10 @@ describe('POST /add/bike', function () {
     });
 });
 
-describe('POST /add/many/bikes', function () {
+describe('POST /api/v1/add/many/bikes', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/add/many/bikes')
+            .post('/api/v1/add/many/bikes')
             .send({
                 bikes: [
                     {
@@ -185,7 +185,7 @@ describe('POST add and find user + change banned status', function () {
     let user_id;
     it('Add user and respond with json object', function (done) {
         request(app)
-            .post('/add/user')
+            .post('/api/v1/add/user')
             .send({
                 user: {
                     name: "Test Add User",
@@ -210,7 +210,7 @@ describe('POST add and find user + change banned status', function () {
     it("should return a user identified by _id", async () => {
         console.log("USER_ID_HÄR: ", user_id)
         const res = await request(app)
-            .get(`/get/user/id/${user_id}`)
+            .get(`/api/v1/get/user/id/${user_id}`)
             .expect('Content-Type', /json/)
             .expect(200);
 
@@ -219,7 +219,7 @@ describe('POST add and find user + change banned status', function () {
 
     it('change user status', function (done) {
         request(app)
-            .put(`/edit/user/ban/change/${user_id}`)
+            .put(`/api/v1/edit/user/ban/change/${user_id}`)
             .set('Accept', 'application/json')
             .expect(200)
             .end(function (err, res) {
@@ -230,7 +230,7 @@ describe('POST add and find user + change banned status', function () {
 
     it('change user status', function (done) {
         request(app)
-            .put(`/edit/user/ban/change/${user_id}`)
+            .put(`/api/v1/edit/user/ban/change/${user_id}`)
             .set('Accept', 'application/json')
             .expect(200)
             .end(function (err, res) {
@@ -240,10 +240,10 @@ describe('POST add and find user + change banned status', function () {
     });
 });
 
-describe('POST /delete/bike', function () {
+describe('POST /api/v1/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/delete/bike')
+            .post('/api/v1/delete/bike')
             .send({ bike_id: 'B0025' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -258,7 +258,7 @@ describe('POST /delete/bike', function () {
 describe('POST /delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/delete/bike')
+            .post('/api/v1/delete/bike')
             .send({ bike_id: 'B0026' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -270,10 +270,10 @@ describe('POST /delete/bike', function () {
     });
 });
 
-describe('POST /test/delete/bike', function () {
+describe('POST /api/v1/test/delete/bike', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/delete/bike')
+            .post('/api/v1/delete/bike')
             .send({ bike_id: 'B0027' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -285,10 +285,10 @@ describe('POST /test/delete/bike', function () {
     });
 });
 
-describe('POST /delete/user', function () {
+describe('POST /api/v1/delete/user', function () {
     it('responds with json', function (done) {
         request(app)
-            .delete('/delete/user/6787cf8db3c577b81eef4fb5')
+            .delete('/api/v1/delete/user/6787cf8db3c577b81eef4fb5')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)

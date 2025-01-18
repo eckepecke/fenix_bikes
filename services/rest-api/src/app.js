@@ -85,7 +85,7 @@ const startServer = async () => {
 
 
         if (process.env.NODE_ENV === 'test') {
-            mongoUri = process.env.DB_TEST_URI 
+            mongoUri = process.env.DB_TEST_URI
         }
 
         if (process.env.NODE_ENV === 'simulation') {

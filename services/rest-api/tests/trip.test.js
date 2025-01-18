@@ -1,20 +1,20 @@
 import request from 'supertest';
 import app from '../src/app.js';
 
-describe("GET /trip/", () => {
+describe("GET /api/v1/trip/", () => {
     it("should print greeting", async () => {
         const res = await request(app)
-            .get("/trip")
+            .get("/api/v1/trip")
             .expect(200);
 
         expect(res.text).toMatch('\"These are all the trip routes\"');
     });
 });
 
-describe('POST /trip/start', function () {
+describe('POST /api/v1/trip/start', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/trip/start')
+            .post('/api/v1/trip/start')
             .send({ bike_id: 'B0017', user_id: 'U0012' })
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -26,10 +26,10 @@ describe('POST /trip/start', function () {
     });
 });
 
-describe("GET /get/certain/bike/:id", () => {
+describe("GET /api/v1/get/certain/bike/:id", () => {
     it("should return a bike with available false", async () => {
         const res = await request(app)
-            .get("/get/certain/bike/B0017")
+            .get("/api/v1/get/certain/bike/B0017")
             .expect('Content-Type', /json/)
             .expect(200);
 
@@ -38,10 +38,10 @@ describe("GET /get/certain/bike/:id", () => {
 });
 
 
-describe('POST /trip/end', function () {
+describe('POST /api/v1/trip/end', function () {
     it('responds with json', function (done) {
         request(app)
-            .post('/trip/end')
+            .post('/api/v1/trip/end')
             .send({ bike_id: 'B0017', user_id: 'U0012' })
             .set('Accept', 'application/json')
             .expect(200)
@@ -52,10 +52,10 @@ describe('POST /trip/end', function () {
     });
 });
 
-describe("GET /get/certain/bike/:id", () => {
+describe("GET /api/v1/get/certain/bike/:id", () => {
     it("should return a bike with available true", async () => {
         const res = await request(app)
-            .get("/get/certain/bike/B0017")
+            .get("/api/v1/get/certain/bike/B0017")
             .expect('Content-Type', /json/)
             .expect(200);
 

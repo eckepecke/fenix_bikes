@@ -4,6 +4,8 @@ let db;
 
 const connectToDatabase = async (uri) => {
   const client = new MongoClient(uri);
+  console.log("uri in db connect: ", uri);
+
 
   await client.connect();
   db = client.db();
