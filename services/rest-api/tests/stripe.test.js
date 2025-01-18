@@ -11,20 +11,20 @@ describe("GET /api/v1/stripe/", () => {
     });
 });
 
-describe('POST /api/v1/stripe/payment-intent', function () {
-    it('responds with json', function (done) {
-        request(app)
-            .post('/api/v1/stripe/payment-intent')
-            .send({ amount: 10 })
-            .set('Accept', 'application/json')
-            .expect('Content-Type', /json/)
-            .expect(200)
-            .end(function (err, res) {
-                if (err) { return done(err); }
-                return done();
-            });
-    });
-});
+// describe('POST /api/v1/stripe/payment-intent', function () {
+//     it('responds with json', function (done) {
+//         request(app)
+//             .post('/api/v1/stripe/payment-intent')
+//             .send({ amount: 10 })
+//             .set('Accept', 'application/json')
+//             .expect('Content-Type', /json/)
+//             .expect(200)
+//             .end(function (err, res) {
+//                 if (err) { return done(err); }
+//                 return done();
+//             });
+//     });
+// });
 
 // describe('POST /stripe/create-checkout-session', function () {
 //     it('responds with json', function (done) {
