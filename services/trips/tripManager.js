@@ -31,6 +31,8 @@ const tripManager = {
                 throw new Error(`Trip with trip_id: ${tripId} not found.`);
             }
 
+            console.log("Trip object:", tripObject);
+
             const startLocation = tripObject.start_location;
             const stopLocation = tripObject.end_location;
             const startTime = tripObject.start_time;
@@ -45,12 +47,12 @@ const tripManager = {
             const cost = (minutes * runningFee) + startFee;
 
             if (await this.checkParking(startLocation) === false) {
-                if (await this.checkParking(stopLocation) === true) {
+                if (await this.checkParking(stopLocation) === true || await this.checkCharging(stopLocation) === true) {
                     discount = -5;
                 }
             }
 
-            if (await this.checkParking(stopLocation) === false) {
+            if (await this.checkParking(stopLocation) === false && await this.checkCharging(stopLocation) === false) {
                 penalty = 5;
             }
 
@@ -84,7 +86,22 @@ const tripManager = {
         }
         // console.log("Ej på parkering");
         return flag;
+    },
+
+    checkCharging: async function checkCharging(stopLocation) {
+        const chargingStations = await getAllChargingStations();
+    
+        for (const station of chargingStations) {
+            if (station.location === stopLocation) {
+                console.log("Bike is charging at station:", station);
+                return true;
+            }
+        }
+
+        console.log("Bike is not charging");
+        return false;
     }
+
 }
 
 export default tripManager
