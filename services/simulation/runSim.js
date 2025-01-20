@@ -33,7 +33,7 @@ export const startSimulation = async (io) => {
 
                     // Loop over each batch progressively
                     for (let i = 0; i < totalBatches; i++) {
-                        console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
+                        // console.log(`Updating batches 1 to ${i + 1}`);  // Log the progress
 
                         // Loop through the batches up to the current batch `i`
                         for (let j = 0; j <= i; j++) {
@@ -42,7 +42,7 @@ export const startSimulation = async (io) => {
                                 simManager.updateLocation(trip);
                             }
                         }
-                        console.log(`Finished updating batches 1 to ${i + 1}`);
+                        // console.log(`Finished updating batches 1 to ${i + 1}`);
                         flatSimulatedTrips = simulatedTrips.flat();
                         await bikeManager.saveBikesToDb(flatSimulatedTrips);
                     }
@@ -67,18 +67,28 @@ export const startSimulation = async (io) => {
                 setInterval(async () => {
                     console.log("Getting bikes");
                     activeSimBikes = await bikeManager.getAllActiveBikes();
-                
+
+                    // Update location
                     if (activeSimBikes) {
                         console.log("simManager updating locations");
                         for (const bike of activeSimBikes) {
                             await simManager.updateLocation(bike);
                         }
-                
+                        
+                        // Save to db after update
                         console.log("bikeManager saving to DB");
-                        await bikeManager.saveBikesToDb(activeSimBikes);
+                        bikeManager.saveBikesToDb(activeSimBikes);
                 
                         console.log(`Number of active bikes: ${activeSimBikes.length}`);
                     }
+                
+                    // Emit updated bike data to all connected clients
+                    //io.emit('location_update', activeSimBikes);
+                }, 5000);
+
+                // Periodic update and emit
+                setInterval(() => {
+                    console.log("Emitting bikes");
                 
                     // Emit updated bike data to all connected clients
                     io.emit('location_update', activeSimBikes);

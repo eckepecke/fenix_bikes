@@ -26,6 +26,8 @@ import trip from './routes/tripRoutes.js';
 import { group } from "console";
 import { startSimulation } from "../../simulation/runSim.js";
 import bikeManager from '../../bike-logic/bikeManager.js'
+import bike from '../../bike-logic/bike.js'
+
 
 
 
@@ -123,19 +125,39 @@ if (process.env.NODE_ENV === 'simulation') {
 }
 
 if (process.env.NODE_ENV === 'development') {
-    io.sockets.on('connection', async function (socket) {
-        console.log(socket.id);
 
-        setInterval(async () => {
-            console.log("getting bikes");
-            let allBikes = await bikeManager.getAllBikes();
-
-            console.log(`Number of bikes: ${allBikes.length}`);
-            socket.emit('location_update', allBikes);
-
-        }, 5000);
-
+    io.on('connection', (socket) => {
+        console.log(`Socket connected: ${socket.id}`);
+    
+        socket.on('disconnect', () => {
+            console.log(`Socket disconnected: ${socket.id}`);
+        });
     });
+
+    setInterval(async () => {
+        // console.log("getting bikes");
+        console.log("Emitting bike locations");
+
+        let allBikes = await bikeManager.getAllBikes();
+
+        // console.log(`Number of bikes: ${allBikes.length}`);
+        io.emit('location_update', allBikes);
+
+    }, 5000);
+
+    setInterval(async () => {
+        // console.log("getting bikes");
+        console.log("Updating red_light");
+
+        let allBikes = await bikeManager.getAllBikes();
+        
+
+        for (const bikeObj of allBikes) {
+            await bike.warning(bikeObj);
+        };
+
+    }, 7500);
+
 }
 
 
