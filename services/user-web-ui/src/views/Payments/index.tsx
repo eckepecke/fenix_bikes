@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 
 const Payments: React.FC = () => {
 	useEffect(() => {
-		document.title = "Payments - Avec";
-}, []);
+		document.title = "Payments - Fenix";
+	}, []);
 	return (
 		<div>
 			<h1>Payments</h1>

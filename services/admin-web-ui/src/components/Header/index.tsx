@@ -7,16 +7,13 @@ const Header: React.FC = () => {
 			<div className="header-wrapper">
 				<div className="logo">
 					<a href="/">
-						<img src="src/assets/avec-logo.svg" alt="Logo" />
+						<img src="src/assets/fenix-logo.svg" alt="Logo" />
 					</a>
 				</div>
 				<nav className="navigation">
 					<ul>
 						<li>
 							<a href="/bikes">Bikes</a>
-						</li>
-						<li>
-							<a href="/cities">Cities</a>
 						</li>
 						<li>
 							<a href="/maps">Maps</a>

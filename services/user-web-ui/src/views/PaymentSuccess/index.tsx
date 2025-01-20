@@ -6,7 +6,7 @@ interface PaymentSuccessProps {}
 const PaymentSuccess: React.FC<PaymentSuccessProps> = ({}) => {
 	const { tripId } = useParams<{ tripId: string }>();
 	useEffect(() => {
-		document.title = "Payment successful - Avec";
+		document.title = "Payment successful - Fenix";
 
 		const updatePaymentStatus = async () => {
 			try {

@@ -15,12 +15,12 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
                 <strong>Email:</strong> {user.email}
             </p>
             <p>
-                <strong>Payment Method:</strong> {user.payment_method}
+                <strong>User ID:</strong> {user.user_id}
             </p>
-            {/* <p>
+            <p>
                 <strong>Completed Trips:</strong>{" "}
                 {user.completed_trips.length > 0 ? user.completed_trips.join(", ") : "No trips completed"}
-            </p> */}
+            </p>
         </div>
     );
 };
