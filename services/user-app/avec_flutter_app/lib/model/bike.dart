@@ -10,7 +10,7 @@ class Bike {
   final List location;
   final Status status;
 
-  @JsonKey(name: 'completed_trips')
+  @JsonKey(name: 'completed_trips', defaultValue: [])
   final List completedTrips;
 
   @JsonKey(name: 'city_name', defaultValue: 'Okänd')

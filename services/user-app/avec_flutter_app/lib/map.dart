@@ -123,16 +123,22 @@ class _MapPageState extends State<MapPage> {
       }
 
       for (var zone in parkingzones) {
-        List<LatLng> _tempList = [];
-        for (var coordinate in zone.area) {
-          _tempList.add(LatLng(coordinate[0], coordinate[1]));
-        }
-        _polygons.add(
-          Polygon(
-            points: _tempList,
-            color: Colors.green,
-          ),
-        );
+        _markers.add(Marker(
+            key: Key(zone.parkingID),
+            point: LatLng(zone.area[0][0], zone.area[0][1]),
+            child: const Image(
+              image: AssetImage('assets/parking-spot.png'),
+            )));
+        // List<LatLng> _tempList = [];
+        // for (var coordinate in zone.area) {
+        //   _tempList.add(LatLng(coordinate[0], coordinate[1]));
+        // }
+        // _polygons.add(
+        //   Polygon(
+        //     points: _tempList,
+        //     color: Colors.green,
+        //   ),
+        // );
       }
     } else {
       throw Exception('Failed to load JSON data');

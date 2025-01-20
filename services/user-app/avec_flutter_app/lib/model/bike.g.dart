@@ -11,7 +11,7 @@ Bike _$BikeFromJson(Map<String, dynamic> json) => Bike(
       status: Status.fromJson(json['status'] as Map<String, dynamic>),
       cityName: json['city_name'] as String? ?? 'Okänd',
       bikeID: json['bike_id'] as String? ?? 'Okänt',
-      completedTrips: json['completed_trips'] as List<dynamic>,
+      completedTrips: json['completed_trips'] as List<dynamic>? ?? [],
     );
 
 Map<String, dynamic> _$BikeToJson(Bike instance) => <String, dynamic>{
