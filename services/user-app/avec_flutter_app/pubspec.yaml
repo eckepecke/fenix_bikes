@@ -83,7 +83,7 @@ flutter:
     - assets/location-pin.png
     - assets/charging-station.png
     - assets/parking-spot.png
-    - assets/fenix-logo.svg
+    - assets/fenix-logo.png
     - .env
 
 
