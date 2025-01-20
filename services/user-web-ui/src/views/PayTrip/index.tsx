@@ -13,7 +13,7 @@ interface PayTripProps {}
 
 const PayTrip: React.FC<PayTripProps> = () => {
 	useEffect(() => {
-		document.title = "Pay - Avec";
+		document.title = "Pay - Fenix";
 	}, []);
 
 	const [payment, setPayment] = useState({

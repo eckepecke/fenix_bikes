@@ -4,9 +4,9 @@ import "./index.css";
 
 const Cities: React.FC = () => {
 	useEffect(() => {
-		document.title = "Cities - Avec";
+		document.title = "Cities - Fenix";
 	}, []);
-	
+
 	const cities = [
 		{ name: "Lund", route: "lund" },
 		{ name: "Solna", route: "solna" },
@@ -16,25 +16,24 @@ const Cities: React.FC = () => {
 
 	const displayCity = (city: string) => {
 		navigate(`/city/${city}`);
-  	};
+	};
 
 	return (
-	<div>
-		<h1>Cities</h1>
-      	<ul className="city-list">
-			{cities.map((city, index) => (
-				<li 
-					key={city.route}
-					onClick={() => displayCity(city.route)}
-					className={index === cities.length - 1 ? "li-last-city" : ""}
-				>
-            		{city.name}
-          		</li>
-        	))}
-      	</ul>
-		<p>Add new city (not implemented yet)</p>
-    </div>
-  );
+		<div>
+			<h1>Cities</h1>
+			<ul className="city-list">
+				{cities.map((city, index) => (
+					<li
+						key={city.route}
+						onClick={() => displayCity(city.route)}
+						className={index === cities.length - 1 ? "li-last-city" : ""}>
+						{city.name}
+					</li>
+				))}
+			</ul>
+			<p>Add new city (not implemented yet)</p>
+		</div>
+	);
 };
 
 export default Cities;

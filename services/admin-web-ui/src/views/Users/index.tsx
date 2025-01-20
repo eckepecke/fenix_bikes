@@ -6,7 +6,7 @@ const Users: React.FC = () => {
 	const [fetchedUsers, setFetchedUsers] = useState<any[]>([]);
 
 	useEffect(() => {
-		document.title = "Users - Avec";
+		document.title = "Users - Fenix";
 
 		const fetchUsers = async () => {
 			try {

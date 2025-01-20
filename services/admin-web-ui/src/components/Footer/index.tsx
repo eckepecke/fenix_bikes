@@ -7,28 +7,11 @@ const Footer: React.FC = () => {
 			<div className="footer-wrapper">
 				<ul>
 					<li>
-						<a href="">Some link</a>
-					</li>
-					<li>
-						<a href="">Another one</a>
-					</li>
-					<li>
-						<a href="">Here goes a third link</a>
-					</li>
-				</ul>
-				<ul>
-					<li>
-						<a href="">Scooter</a>
-					</li>
-					<li>
-						<a href="">About Avec</a>
-					</li>
-					<li>
-						<a href="">Manage payments</a>
+						<a href="/">Home</a>
 					</li>
 				</ul>
 			</div>
-            <p>&copy; Copyright 2024 – Avec, Inc.</p>
+			<p>&copy; Copyright 2024 – Fenix, Inc.</p>
 		</footer>
 	);
 };
