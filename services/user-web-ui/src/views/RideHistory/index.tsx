@@ -4,29 +4,29 @@ import { FetchUser, User } from "../../components/FetchUser";
 import CompletedTrips from "../../components/CompletedTrips";
 
 const RideHistory: React.FC = () => {
-  const [cookies] = useCookies(["user"]);
-  const [user, setUser] = useState<User | null>(null);
+	const [cookies] = useCookies(["user"]);
+	const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    document.title = "Ride History - Avec";
+	useEffect(() => {
+		document.title = "Ride History - Fenix";
 
-    const getUser = async () => {
-      if (cookies.user?.email) {
-        const fetchedUser = await FetchUser(cookies.user.email);
-        setUser(fetchedUser);
-      }
-    };
+		const getUser = async () => {
+			if (cookies.user?.email) {
+				const fetchedUser = await FetchUser(cookies.user.email);
+				setUser(fetchedUser);
+			}
+		};
 
-    getUser();
-  }, [cookies]);
+		getUser();
+	}, [cookies]);
 
-  return (
-    <div>
-      <h1>Ride History</h1>
-      <p>Overview of your past rides.</p>
-      <CompletedTrips user={user} />
-    </div>
-  );
+	return (
+		<div>
+			<h1>Ride History</h1>
+			<p>Overview of your past rides.</p>
+			<CompletedTrips user={user} />
+		</div>
+	);
 };
 
 export default RideHistory;

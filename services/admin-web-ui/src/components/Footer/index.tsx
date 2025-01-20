@@ -18,17 +18,11 @@ const Footer: React.FC = () => {
 				</ul>
 				<ul>
 					<li>
-						<a href="">Scooter</a>
-					</li>
-					<li>
-						<a href="">About Avec</a>
-					</li>
-					<li>
-						<a href="">Manage payments</a>
+						<a href="">About Fenix</a>
 					</li>
 				</ul>
 			</div>
-            <p>&copy; Copyright 2024 – Avec, Inc.</p>
+			<p>&copy; Copyright 2024 – Fenix, Inc.</p>
 		</footer>
 	);
 };

@@ -9,7 +9,7 @@ const Login: React.FC = () => {
 	const path = "/profile";
 	console.log(clientId);
 	useEffect(() => {
-		document.title = "Login - Avec";
+		document.title = "Login - Fenix";
 	}, []);
 	return (
 		<>

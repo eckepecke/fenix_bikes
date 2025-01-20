@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 
-interface NotFoundProps {
-}
+interface NotFoundProps {}
 
-const NotFound: React.FC<NotFoundProps> = ({  }) => {
+const NotFound: React.FC<NotFoundProps> = ({}) => {
 	useEffect(() => {
-		document.title = "Payment successful - Avec";
+		document.title = "Payment successful - Fenix";
 	}, []);
 
 	return (

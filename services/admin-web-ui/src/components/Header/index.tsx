@@ -16,9 +16,6 @@ const Header: React.FC = () => {
 							<a href="/bikes">Bikes</a>
 						</li>
 						<li>
-							<a href="/cities">Cities</a>
-						</li>
-						<li>
 							<a href="/maps">Maps</a>
 						</li>
 						<li>

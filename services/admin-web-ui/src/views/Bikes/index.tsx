@@ -6,7 +6,7 @@ import { tempDataBikes } from "../../components/Bike/tempBikeData";
 
 const Bikes: React.FC = () => {
 	useEffect(() => {
-		document.title = "Bikes - Avec";
+		document.title = "Bikes - Fenix";
 	}, []);
 	const navigate = useNavigate();
 
