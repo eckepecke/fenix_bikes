@@ -67,7 +67,7 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        origin: ['http://localhost:5173', 'http://localhost:5174'],
+        origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:43785'],
     }
 });
 
@@ -92,7 +92,7 @@ const startServer = async () => {
 
         if (process.env.NODE_ENV === 'simulation') {
 
-            mongoUri= process.env.DB_SIM_URI
+            mongoUri = process.env.DB_SIM_URI
         }
         console.log("Hallå!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
