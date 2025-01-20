@@ -24,7 +24,7 @@ class _HireBikeState extends State<HireBike> {
 
   Future<void> _fetchUser() async {
     final response = await http
-        .get(Uri.parse('http://localhost:1337/api/v1/get/user/${widget.userEmail}'));
+        .get(Uri.parse('http://localhost:1337/api/v1/get/user/email/${widget.userEmail}'));
     if (response.statusCode == 200) {
       var userData = json.decode(response.body);
       print(userData);
