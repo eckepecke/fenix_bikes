@@ -180,22 +180,23 @@ const bike = {
     },
 
     warning: async function warning(bike) {
-
         let bikeCollection = getCollection("bikes");
-
+    
         try {
+            const redLightStatus = bike.status.battery_level <= 15; // Red light is true if battery is 15 or below
             const result = await bikeCollection.updateOne(
                 { bike_id: bike.bike_id },
                 {
                     $set: {
-                        red_light: true,
+                        red_light: redLightStatus,
                     }
-                });
-
+                }
+            );
+    
             return result;
         } catch (e) {
-            console.error(e)
-            throw new Error(`Failed to start service for bike with bike_id: ${bikeId}.`);
+            console.error(e);
+            throw new Error(`Failed to update red light status for bike with bike_id: ${bike.bike_id}.`);
         }
     },
 

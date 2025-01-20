@@ -26,7 +26,6 @@ router.get("/", async (req, res) => {
             },
         }
     });
-
 });
 
 router.post("/start", async (req, res) => {

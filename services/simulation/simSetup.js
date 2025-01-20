@@ -23,10 +23,10 @@ const simSetup = async (simManager) => {
 
     try {
         // Generate 1000 bikes
-        const bikeArray = await simManager.generateBikes(3000);
+        const bikeArray = await simManager.generateBikes(1000);
     
         // Generate 1000 customers (users)
-        const userArray = await simManager.generateUsers(3000);
+        const userArray = await simManager.generateUsers(1000);
     
         // Create 1000 Trips
         let tripObjects = await simManager.getSimCoordinates();

@@ -22,6 +22,15 @@ p.map-loading-msg {
 		font-size: 1em;
 		margin: 0.3em 0;
 	}
+
+    .red-dot {
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        margin-top: 5px;
+    }
 }
 
 .bold {
