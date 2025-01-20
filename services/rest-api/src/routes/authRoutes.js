@@ -61,7 +61,7 @@ router.get("/user", async (req, res) => {
     const clientSecret = process.env.GITHUB_CLIENT_SECRET;
 
     try {
-        console.log("Before crash?")
+        console.log("Before crash?");
         console.log(clientId);
         console.log(clientSecret);
 
@@ -180,7 +180,6 @@ router.post("/app/user", async (req, res) => {
 
             await createUser(newUser);
         }
-
     } catch (error) {
         console.error("Error during Google OAuth:", error);
 
@@ -188,7 +187,6 @@ router.post("/app/user", async (req, res) => {
             res.status(500).json({ error: "Internal Server Error" });
         }
     }
-
 });
 
 // Jason Webtoken login with email and password in admin app
@@ -204,6 +202,7 @@ router.post("/admin/login", async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
     if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid email or password" });
     }

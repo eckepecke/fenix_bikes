@@ -40,7 +40,7 @@ router.get("/location/report/:bikeId", async (req, res) => {
     const result = await bike.sendLocation(bikeId);
 
     res.json(result.location);
-})
+});
 
 
 
