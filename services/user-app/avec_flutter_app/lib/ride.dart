@@ -1,4 +1,5 @@
 import 'package:avec_flutter_app/main.dart';
+import 'package:avec_flutter_app/receipt.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,8 +29,8 @@ class _RideState extends State<Ride> {
     );
     if (response.statusCode == 200) {
       print('success! Stopped bike');
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const SignInPage()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => Receipt(bikeID: bikeID)));
     } else {
       // If the server returns an error response, throw an exception
       throw Exception('Failed to post data');
@@ -41,7 +42,7 @@ class _RideState extends State<Ride> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Hyr cykel'),
+          title: const Text('Fenix'),
         ),
         body: Center(
           child: Column(

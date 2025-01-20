@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:latlong2/latlong.dart';
 
 part 'parkingzones.g.dart';
 
