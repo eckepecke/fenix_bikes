@@ -14,7 +14,7 @@ interface AddToWalletProps {}
 
 const AddToWallet: React.FC<AddToWalletProps> = () => {
 	useEffect(() => {
-		document.title = "Wallet - Avec";
+		document.title = "Wallet - Fenix";
 	}, []);
 
 	const [payment, setPayment] = useState({
@@ -27,7 +27,7 @@ const AddToWallet: React.FC<AddToWalletProps> = () => {
 	const [user, setUser] = useState<User | null>(null);
 
 	useEffect(() => {
-		document.title = "Ride History - Avec";
+		document.title = "Ride History - Fenix";
 
 		const getUser = async () => {
 			if (cookies.user?.email) {

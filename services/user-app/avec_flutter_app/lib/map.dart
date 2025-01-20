@@ -1,3 +1,5 @@
+import 'package:avec_flutter_app/model/chargingstation.dart';
+import 'package:avec_flutter_app/model/parkingzones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -26,6 +28,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   LatLng? _currentPosition;
   final List<Marker> _markers = [];
+  final List<Polygon> _polygons = [];
 
   GeoJsonParser myGeoJson = GeoJsonParser(
       defaultPolygonIsFilled: false,
@@ -35,8 +38,9 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
     _getCurrentPosition();
-    _fetchCity();
     _fetchBikes();
+    _fetchCharging();
+    _fetchParking();
   }
 
 // gets current location from user
@@ -54,20 +58,6 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
-//Fetches citylimits from nominatim and converts with geojsonparser
-  Future<void> _fetchCity() async {
-    final response = await http.get(Uri.parse(
-        'https://nominatim.openstreetmap.org/search?q=${widget.selectedCity}&limit=1&polygon_geojson=1&format=geojson'));
-    if (response.statusCode == 200) {
-      // print(response);
-      myGeoJson.parseGeoJsonAsString(response.body);
-      // var data = json.decode(response.body);
-      // print(data);
-    } else {
-      throw Exception('Failed to load JSON data');
-    }
-  }
-
   // Fetches all the bikes and filters them on city and availabilty, only the available bikes in the right city are shown.
 
   Future<void> _fetchBikes() async {
@@ -82,13 +72,67 @@ class _MapPageState extends State<MapPage> {
       }
 
       for (var bike in bikes) {
-        print(bike);
+        // print(bike);
         if (bike.status.available == true) {
           _markers.add(Marker(
               key: Key(bike.bikeID),
               point: LatLng(bike.location[0], bike.location[1]),
-              child: const Icon(Icons.place)));
+              child: const Image(
+                image: AssetImage('assets/scooter-pin.png'),
+                width: 100,
+              )));
         }
+      }
+    } else {
+      throw Exception('Failed to load JSON data');
+    }
+  }
+
+  Future<void> _fetchCharging() async {
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/api/v1/get/city/${widget.selectedCity}/charging-stations'));
+    var chargingstations = <ChargingStation>[];
+    if (response.statusCode == 200) {
+      var chargingData = json.decode(response.body);
+      for (var station in chargingData) {
+        chargingstations.add(ChargingStation.fromJson(station));
+      }
+
+      for (var station in chargingstations) {
+        // print(station);
+        _markers.add(Marker(
+            key: Key(station.chargingID),
+            point: LatLng(station.location[0], station.location[1]),
+            child: const Image(
+              image: AssetImage('assets/charging-station.png'),
+            )));
+      }
+    } else {
+      throw Exception('Failed to load JSON data');
+    }
+  }
+
+  Future<void> _fetchParking() async {
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/api/v1/get/city/${widget.selectedCity}/parking-zones'));
+    var parkingzones = <ParkingZone>[];
+    if (response.statusCode == 200) {
+      var parkingData = json.decode(response.body);
+      for (var zone in parkingData) {
+        parkingzones.add(ParkingZone.fromJson(zone));
+      }
+
+      for (var zone in parkingzones) {
+        List<LatLng> _tempList = [];
+        for (var coordinate in zone.area) {
+          _tempList.add(LatLng(coordinate[0], coordinate[1]));
+        }
+        _polygons.add(
+          Polygon(
+            points: _tempList,
+            color: Colors.green,
+          ),
+        );
       }
     } else {
       throw Exception('Failed to load JSON data');
@@ -122,23 +166,15 @@ class _MapPageState extends State<MapPage> {
                     alignDirectionOnUpdate: AlignOnUpdate.never,
                     style: const LocationMarkerStyle(
                       marker: DefaultLocationMarker(
-                        child: Icon(
-                          Icons.navigation,
-                          color: Colors.white,
-                        ),
+                        child:
+                            Image(image: AssetImage('assets/location-pin.png')),
                       ),
                       markerSize: Size.square(40),
                       markerDirection: MarkerDirection.heading,
                     ),
                   ),
+                  PolygonLayer(polygons: _polygons),
                   MarkerLayer(markers: _markers),
-                  PolygonLayer(useAltRendering: true, polygons: [
-                    Polygon(points: [
-                      const LatLng(30, 40),
-                      const LatLng(20, 50),
-                      const LatLng(25, 45)
-                    ], color: Colors.blue, label: 'Här är en polygon'),
-                  ]),
                   RichAttributionWidget(
                     // Include a stylish prebuilt attribution widget that meets all requirments
                     attributions: [
@@ -156,7 +192,7 @@ class _MapPageState extends State<MapPage> {
                   child: Align(
                       alignment: FractionalOffset.bottomCenter,
                       child: Padding(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(20),
                           child: ElevatedButton(
                               onPressed: () {
                                 Navigator.push(
@@ -166,7 +202,15 @@ class _MapPageState extends State<MapPage> {
                                           userEmail: widget.userEmail)),
                                 );
                               },
-                              child: const Text('Hyr cykel')))))
+                              style: ButtonStyle(
+                                  padding: MaterialStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                    vertical: 20.0, horizontal: 60.0),
+                              )),
+                              child: const Text(
+                                'Hyr cykel',
+                                style: TextStyle(fontSize: 18),
+                              )))))
             ],
           );
   }

@@ -14,7 +14,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
 	const [cookies, , removeCookie] = useCookies(["user"]);
 
 	useEffect(() => {
-		document.title = "Profile - Avec";
+		document.title = "Profile - Fenix";
 	}, []);
 
 	if (!user) {

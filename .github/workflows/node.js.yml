@@ -1,36 +1,77 @@
+# name: Node.js CI
+
+# on:
+#   push:
+#     branches: ["main", "tests", "tests-aug"]
+#   pull_request:
+#     branches: ["main"]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [20.x, 22.x]
+#         mongodb-version: ["4.4", "5.0", "6.0"]
+
+#     steps:
+#       - uses: actions/checkout@v3
+
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
+
+#       - name: Start MongoDB
+#         uses: supercharge/mongodb-github-action@1.7.0
+#         with:
+#           mongodb-version: ${{ matrix.mongodb-version }}
+
+#       - run: npm install
+#         working-directory: services/rest-api
+#       - run: npm run test
+#         working-directory: services/rest-api
+
 name: Node.js CI
 
 on:
   push:
-    branches: [ "main", "tests", "tests-aug" ]
+    branches: ["main", "tests", "tests-aug"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [20.x, 22.x]
-        mongodb-version: ['4.4', '5.0', '6.0']
+        mongodb-version: ["4.4", "5.0", "6.0"]
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: Start MongoDB
-      uses: supercharge/mongodb-github-action@1.7.0
-      with:
-        mongodb-version: ${{ matrix.mongodb-version }}
-        
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
 
-    - run: npm install
-      working-directory: services/rest-api
-    - run: npm run test
-      working-directory: services/rest-api
+      - name: Install dependencies
+        run: npm install
+        working-directory: services/rest-api
+
+      - name: Run tests
+        env:
+          NODE_ENV: test
+          DB_TEST_URI: "mongodb://localhost:27017/test"
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+
+        run: npm run test
+        working-directory: services/rest-api

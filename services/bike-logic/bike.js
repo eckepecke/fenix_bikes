@@ -34,6 +34,10 @@ const bike = {
 				);
 			}
 
+            if (!bikeObject.status.available) {
+                throw new Error(`Bike ${bikeId} not available fot hire.`);
+            }
+
 			const tripResult = await tripCollection.insertOne({
 				trip_id: tripId,
 				start_time: new Date(),
@@ -149,6 +153,7 @@ const bike = {
 
 	charge: async function charge(bikeId) {
 		let bikeCollection = getCollection("bikes");
+        console.log("Logging id for test: ", bikeId)
 
 		try {
 			const result = await bikeCollection.updateOne(
@@ -191,25 +196,26 @@ const bike = {
 		}
 	},
 
-	warning: async function warning(bike) {
-		let bikeCollection = getCollection("bikes");
-
-		try {
-			const result = await bikeCollection.updateOne(
-				{ bike_id: bike.bike_id },
-				{
-					$set: {
-						red_light: true,
-					},
-				}
-			);
-
-			return result;
-		} catch (e) {
-			console.error(e);
-			throw new Error(`Failed to start service for bike with bike_id: ${bikeId}.`);
-		}
-	},
+    warning: async function warning(bike) {
+        let bikeCollection = getCollection("bikes");
+    
+        try {
+            const redLightStatus = bike.status.battery_level <= 15; // Red light is true if battery is 15 or below
+            const result = await bikeCollection.updateOne(
+                { bike_id: bike.bike_id },
+                {
+                    $set: {
+                        red_light: redLightStatus,
+                    }
+                }
+            );
+    
+            return result;
+        } catch (e) {
+            console.error(e);
+            throw new Error(`Failed to update red light status for bike with bike_id: ${bike.bike_id}.`);
+        }
+    },
 
 	startService: async function startService(bikeId) {
 		let bikeCollection = getCollection("bikes");

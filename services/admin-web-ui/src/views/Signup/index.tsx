@@ -3,16 +3,16 @@ import SignupForm from "../../components/SignupForm";
 import "./index.css";
 
 const Signup: React.FC = () => {
-  useEffect(() => {
-    document.title = "Signup - Avec";
-  }, []);
+	useEffect(() => {
+		document.title = "Signup - Fenix";
+	}, []);
 
-  return (
-    <div className="signup-container">
-      <h1>Signup</h1>
-      <SignupForm />
-    </div>
-  );
+	return (
+		<div className="signup-container">
+			<h1>Signup</h1>
+			<SignupForm />
+		</div>
+	);
 };
 
 export default Signup;

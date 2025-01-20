@@ -20,7 +20,10 @@ const bikeManager = {
         );
     
         // Ensure counter_value is correctly retrieved
-        const counterValue = counter?.value?.counter_value || 1;
+        console.log("counterHÄR: ", counter)
+        const counterValue = counter?.counter_value || 1;
+        console.log("counterHÄR2: ", counterValue)
+
     
         // Return formatted bike ID
         return `B${counterValue.toString().padStart(4, "0")}`;
@@ -44,7 +47,7 @@ const bikeManager = {
 
         // Increment and retrieve the updated counter
         const counter = await counterCollection.findOneAndUpdate(
-            { _id: "trip_id" },
+            { _id: "user_id" },
             { $inc: { counter_value: 1 } },
             { returnDocument: "after" }
         );
@@ -125,6 +128,7 @@ const bikeManager = {
         try {
             const result = await collection.find({}).toArray();
 
+
             return result;
         } catch (e) {
             console.error("Error retrieving bikes:", e.message || e);
@@ -184,19 +188,27 @@ const bikeManager = {
         let bikeCollection = getCollection("bikes");
         let cityCollection = getCollection("cities");
 
+        console.log("Bike to delete: ", bikeId)
+
         try {
             const bikeToDelete = await bike.reportState(bikeId);
+            console.log("Bike to delete: ", bikeToDelete)
+
             const cityName = bikeToDelete.city_name;
             const filter = { bike_id: bikeId }
             let result = await bikeCollection.deleteOne(filter);
+            console.log(result);
             result = await cityCollection.updateOne(
                 { name: cityName },
                 { $pull: { bikes: bikeId } }
             );
+            console.log(result);
 
-            console.log(`Bike with id ${bikeId} was deleted.`)
 
-            return result;
+            return {
+                success: true,
+                message: `Bike with id ${bikeId} was deleted.`,
+            };
         } catch (e) {
             console.error("Error deleting bike:", e.message || e);
             throw new Error("Failed to delete bike from bike collection.");
