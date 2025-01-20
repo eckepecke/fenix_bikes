@@ -1,4 +1,5 @@
 import 'package:avec_flutter_app/model/chargingstation.dart';
+import 'package:avec_flutter_app/model/parkingzones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -27,6 +28,7 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   LatLng? _currentPosition;
   final List<Marker> _markers = [];
+  final List<Polygon> _polygons = [];
 
   GeoJsonParser myGeoJson = GeoJsonParser(
       defaultPolygonIsFilled: false,
@@ -36,9 +38,9 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
     _getCurrentPosition();
-    _fetchCity();
     _fetchBikes();
     _fetchCharging();
+    _fetchParking();
   }
 
 // gets current location from user
@@ -53,20 +55,6 @@ class _MapPageState extends State<MapPage> {
       });
     } else {
       throw Exception;
-    }
-  }
-
-//Fetches citylimits from nominatim and converts with geojsonparser
-  Future<void> _fetchCity() async {
-    final response = await http.get(Uri.parse(
-        'https://nominatim.openstreetmap.org/search?q=${widget.selectedCity}&limit=1&polygon_geojson=1&format=geojson'));
-    if (response.statusCode == 200) {
-      // print(response);
-      myGeoJson.parseGeoJsonAsString(response.body);
-      // var data = json.decode(response.body);
-      // print(data);
-    } else {
-      throw Exception('Failed to load JSON data');
     }
   }
 
@@ -124,6 +112,33 @@ class _MapPageState extends State<MapPage> {
     }
   }
 
+  Future<void> _fetchParking() async {
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/api/v1/get/city/${widget.selectedCity}/parking-zones'));
+    var parkingzones = <ParkingZone>[];
+    if (response.statusCode == 200) {
+      var parkingData = json.decode(response.body);
+      for (var zone in parkingData) {
+        parkingzones.add(ParkingZone.fromJson(zone));
+      }
+
+      for (var zone in parkingzones) {
+        List<LatLng> _tempList = [];
+        for (var coordinate in zone.area) {
+          _tempList.add(LatLng(coordinate[0], coordinate[1]));
+        }
+        _polygons.add(
+          Polygon(
+            points: _tempList,
+            color: Colors.green,
+          ),
+        );
+      }
+    } else {
+      throw Exception('Failed to load JSON data');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return _currentPosition == null && myGeoJson.polygons.isEmpty
@@ -158,14 +173,8 @@ class _MapPageState extends State<MapPage> {
                       markerDirection: MarkerDirection.heading,
                     ),
                   ),
+                  PolygonLayer(polygons: _polygons),
                   MarkerLayer(markers: _markers),
-                  PolygonLayer(useAltRendering: true, polygons: [
-                    Polygon(points: [
-                      const LatLng(30, 40),
-                      const LatLng(20, 50),
-                      const LatLng(25, 45)
-                    ], color: Colors.blue, label: 'Här är en polygon'),
-                  ]),
                   RichAttributionWidget(
                     // Include a stylish prebuilt attribution widget that meets all requirments
                     attributions: [
