@@ -37,25 +37,36 @@ class _HireBikeState extends State<HireBike> {
   void _startBike() async {
     var bikeID = _textFieldValue;
     print(bikeID);
-    final response = await http.post(
-      Uri.parse('http://localhost:1337/api/v1/trip/start'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(
-          <String, String>{'bike_id': bikeID, 'user_id': fetchedUser!.userId}),
-    );
-    if (response.statusCode == 200) {
-      print('success! Started bike');
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  Ride(bikeID: bikeID, userID: fetchedUser!.userId)),
-          (_) => false);
+    if (!fetchedUser!.banned) {
+      try {
+        final response = await http.post(
+          Uri.parse('http://localhost:1337/api/v1/trip/start'),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+          body: jsonEncode(<String, String>{
+            'bike_id': bikeID,
+            'user_id': fetchedUser!.userId
+          }),
+        );
+        if (response.statusCode == 200) {
+          print('success! Started bike');
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      Ride(bikeID: bikeID, userID: fetchedUser!.userId)),
+              (_) => false);
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Cykeln går inte att hyra, kontrollera cykelns ID.'),
+        ));
+      }
     } else {
-      // If the server returns an error response, throw an exception
-      throw Exception('Failed to post data');
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Du har inte möjlighet att hyra cykeln.'),
+      ));
     }
   }
 

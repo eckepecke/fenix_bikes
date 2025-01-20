@@ -1,3 +1,4 @@
+import 'package:avec_flutter_app/model/chargingstation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -37,6 +38,7 @@ class _MapPageState extends State<MapPage> {
     _getCurrentPosition();
     _fetchCity();
     _fetchBikes();
+    _fetchCharging();
   }
 
 // gets current location from user
@@ -82,13 +84,39 @@ class _MapPageState extends State<MapPage> {
       }
 
       for (var bike in bikes) {
-        print(bike);
+        // print(bike);
         if (bike.status.available == true) {
           _markers.add(Marker(
               key: Key(bike.bikeID),
               point: LatLng(bike.location[0], bike.location[1]),
-              child: const Icon(Icons.place)));
+              child: const Image(
+                image: AssetImage('assets/scooter-pin.png'),
+              )));
         }
+      }
+    } else {
+      throw Exception('Failed to load JSON data');
+    }
+  }
+
+  Future<void> _fetchCharging() async {
+    final response = await http.get(Uri.parse(
+        'http://localhost:1337/api/v1/get/city/${widget.selectedCity}/charging-stations'));
+    var chargingstations = <ChargingStation>[];
+    if (response.statusCode == 200) {
+      var chargingData = json.decode(response.body);
+      for (var station in chargingData) {
+        chargingstations.add(ChargingStation.fromJson(station));
+      }
+
+      for (var station in chargingstations) {
+        // print(station);
+        _markers.add(Marker(
+            key: Key(station.chargingID),
+            point: LatLng(station.location[0], station.location[1]),
+            child: const Image(
+              image: AssetImage('assets/charging-station.png'),
+            )));
       }
     } else {
       throw Exception('Failed to load JSON data');
@@ -122,10 +150,8 @@ class _MapPageState extends State<MapPage> {
                     alignDirectionOnUpdate: AlignOnUpdate.never,
                     style: const LocationMarkerStyle(
                       marker: DefaultLocationMarker(
-                        child: Icon(
-                          Icons.navigation,
-                          color: Colors.white,
-                        ),
+                        child:
+                            Image(image: AssetImage('assets/location-pin.png')),
                       ),
                       markerSize: Size.square(40),
                       markerDirection: MarkerDirection.heading,

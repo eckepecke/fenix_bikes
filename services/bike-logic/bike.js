@@ -34,6 +34,10 @@ const bike = {
                 );
             }
 
+            if (!bikeObject.status.available) {
+                throw new Error(`Bike ${bikeId} not available fot hire.`);
+            }
+
             const tripResult = await tripCollection.insertOne(
                 {
                     trip_id: tripId,
