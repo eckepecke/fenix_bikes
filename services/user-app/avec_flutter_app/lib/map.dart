@@ -91,6 +91,7 @@ class _MapPageState extends State<MapPage> {
               point: LatLng(bike.location[0], bike.location[1]),
               child: const Image(
                 image: AssetImage('assets/scooter-pin.png'),
+                width: 100,
               )));
         }
       }
@@ -182,7 +183,7 @@ class _MapPageState extends State<MapPage> {
                   child: Align(
                       alignment: FractionalOffset.bottomCenter,
                       child: Padding(
-                          padding: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(20),
                           child: ElevatedButton(
                               onPressed: () {
                                 Navigator.push(
@@ -192,7 +193,15 @@ class _MapPageState extends State<MapPage> {
                                           userEmail: widget.userEmail)),
                                 );
                               },
-                              child: const Text('Hyr cykel')))))
+                              style: ButtonStyle(
+                                  padding: MaterialStateProperty.all(
+                                const EdgeInsets.symmetric(
+                                    vertical: 20.0, horizontal: 60.0),
+                              )),
+                              child: const Text(
+                                'Hyr cykel',
+                                style: TextStyle(fontSize: 18),
+                              )))))
             ],
           );
   }

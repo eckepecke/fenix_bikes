@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Fenix app',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 211, 141, 76)),
-        primaryColor: const Color.fromARGB(255, 211, 141, 76),
+            seedColor: const Color.fromARGB(255, 46, 174, 99)),
+        primaryColor: const Color.fromARGB(255, 46, 174, 99),
         textTheme: GoogleFonts.fugazOneTextTheme(textTheme).copyWith(
           bodyMedium: GoogleFonts.oswald(textStyle: textTheme.bodyMedium),
           bodyLarge: GoogleFonts.fugazOne(textStyle: textTheme.bodyMedium),
@@ -64,7 +64,12 @@ class _SignInState extends State<SignInPage> {
       body: Center(
         child: ElevatedButton(
           onPressed: signIn,
-          child: Text('Sign in with Google'),
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all(
+            const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+          )),
+          child:
+              const Text('Sign in with Google', style: TextStyle(fontSize: 18)),
         ),
       ),
     );

@@ -92,7 +92,13 @@ class _HireBikeState extends State<HireBike> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: _startBike,
-                  child: const Text('Hyr cykel'),
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 60.0),
+                  )),
+                  child:
+                      const Text('Hyr cykel', style: TextStyle(fontSize: 18)),
                 ),
               ),
             ],

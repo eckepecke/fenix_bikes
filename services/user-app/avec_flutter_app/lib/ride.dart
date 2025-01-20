@@ -53,7 +53,13 @@ class _RideState extends State<Ride> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: _stopBike,
-                  child: const Text('Avsluta resa'),
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(
+                    const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 60.0),
+                  )),
+                  child: const Text('Avsluta resa',
+                      style: TextStyle(fontSize: 18)),
                 ),
               ),
             ],
