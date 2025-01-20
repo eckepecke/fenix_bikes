@@ -7,18 +7,7 @@ const Footer: React.FC = () => {
 			<div className="footer-wrapper">
 				<ul>
 					<li>
-						<a href="">Some link</a>
-					</li>
-					<li>
-						<a href="">Another one</a>
-					</li>
-					<li>
-						<a href="">Here goes a third link</a>
-					</li>
-				</ul>
-				<ul>
-					<li>
-						<a href="">About Fenix</a>
+						<a href="/">Home</a>
 					</li>
 				</ul>
 			</div>
