@@ -106,22 +106,6 @@ const bike = {
 				}
 			);
 
-			// Append the bike to charging station if coordinates match
-			const chargingStation = await chargingStationCollection.findOne({
-				location: bikeObject.location,
-			});
-
-			if (chargingStation) {
-				await chargingStationCollection.updateOne(
-					{ location: bikeObject.location },
-					{
-						$push: {
-							charging_bikes: bikeObject.bike_id,
-						},
-					}
-				);
-			}
-
 			// Update the bike's status
 			const result = await bikeCollection.updateOne(
 				{ bike_id: bikeId },
@@ -136,6 +120,25 @@ const bike = {
 				},
 				{ returnDocument: "after" }
 			);
+
+
+			// Append the bike to charging station if coordinates match
+			const chargingStation = await chargingStationCollection.findOne({
+				location: bikeObject.location,
+			});
+
+			if (chargingStation) {
+				await chargingStationCollection.updateOne(
+					{ location: bikeObject.location },
+					{
+						$push: {
+							charging_bikes: bikeObject.bike_id,
+						},
+					}
+				);
+
+                this.charge(bikeObject.bike_id);
+			}
 
 			return result;
 		} catch (e) {
