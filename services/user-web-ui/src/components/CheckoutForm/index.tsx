@@ -1,5 +1,6 @@
 import React from "react";
 import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import "./index.css";
 
 interface CheckoutFormProps {
 	tripId: string;
@@ -28,9 +29,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ tripId }) => {
 	};
 
 	return (
-		<div>
+		<div className="checkout-form">
 			<PaymentElement />
-			<button className="btn green" onClick={handlePaymentSubmit}>
+			<button className="green-btn" onClick={handlePaymentSubmit}>
 				Finish payment
 			</button>
 		</div>
