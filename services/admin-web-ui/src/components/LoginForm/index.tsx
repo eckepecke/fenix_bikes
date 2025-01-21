@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const LoginForm: React.FC = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -21,6 +23,8 @@ const LoginForm: React.FC = () => {
 				localStorage.setItem("token", data.token);
 				// Handle successful login
 				console.log("Login successful", data);
+				navigate("/maps");
+
 			} else {
 				// Handle login error
 				console.error("Login failed", data);
@@ -32,7 +36,7 @@ const LoginForm: React.FC = () => {
 
 	return (
 		<form className="login-form" onSubmit={handleSubmit}>
-			<div>
+			<div className="login-field">
 				<label htmlFor="email">Email</label>
 				<input
 					type="text"
@@ -43,7 +47,7 @@ const LoginForm: React.FC = () => {
 					required
 				/>
 			</div>
-			<div>
+			<div className="login-field">
 				<label htmlFor="password">Password</label>
 				<input
 					type="password"
@@ -54,7 +58,7 @@ const LoginForm: React.FC = () => {
 					required
 				/>
 			</div>
-			<button type="submit">Login</button>
+			<button type="submit" className="green-btn">Log in</button>
 		</form>
 	);
 };
