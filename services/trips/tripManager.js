@@ -56,9 +56,9 @@ const tripManager = {
                 penalty = 5;
             }
 
-            console.log("kostnad", cost);
-            console.log("straffavgift", penalty);
-            console.log("rabatt", discount);
+            // console.log("kostnad", cost);
+            // console.log("straffavgift", penalty);
+            // console.log("rabatt", discount);
 
             let total = cost + penalty + discount;
 
