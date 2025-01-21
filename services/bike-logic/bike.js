@@ -177,9 +177,10 @@ const bike = {
 
 	stopCharge: async function stopCharge(bikeId) {
 		let bikeCollection = getCollection("bikes");
+        const chargingStationCollection = getCollection("charging_stations");
 
 		try {
-			const result = await bikeCollection.updateOne(
+			const bike = await bikeCollection.updateOne(
 				{ bike_id: bikeId },
 				{
 					$set: {
@@ -190,7 +191,23 @@ const bike = {
 				{ returnDocument: "after" }
 			);
 
-			return result;
+            // Remove the bike from the charging station
+            const chargingStation = await chargingStationCollection.findOne({
+                charging_bikes: bikeId,
+            });
+
+            if (chargingStation) {
+                await chargingStationCollection.updateOne(
+                    { location: chargingStation.location },
+                    {
+                        $pull: {
+                            charging_bikes: bikeId,
+                        },
+                    }
+                );
+            }
+
+			return bike;
 		} catch (e) {
 			console.error(e);
 			throw new Error(`Failed to stop charging bike with bike_id: ${bikeId}.`);
