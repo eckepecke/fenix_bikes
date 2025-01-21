@@ -60,7 +60,9 @@ class _SignInState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Fenix')),
+      appBar: AppBar(
+          title: const Image(
+              image: AssetImage('assets/fenix-logo.png'), width: 75)),
       body: Center(
         child: ElevatedButton(
           onPressed: signIn,

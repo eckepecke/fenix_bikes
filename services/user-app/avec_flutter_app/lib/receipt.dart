@@ -60,7 +60,8 @@ class _ReceiptState extends State<Receipt> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Fenix'),
+          title: const Image(
+              image: AssetImage('assets/fenix-logo.png'), width: 75),
         ),
         body: Center(
           child: Column(
