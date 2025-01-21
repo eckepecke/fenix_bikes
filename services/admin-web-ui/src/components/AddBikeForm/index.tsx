@@ -36,7 +36,7 @@ const AddBikeForm: React.FC = () => {
       city_name: selectedCity?.name || "",
       status: {
         available: true,
-        battery_level: 10,
+        battery_level: 100,
         in_service: false,
       },
       red_light: false,

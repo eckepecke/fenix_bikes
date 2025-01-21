@@ -44,7 +44,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Fenix'),
+          title: const Image(
+              image: AssetImage('assets/fenix-logo.png'), width: 75),
         ),
         body: selectedCity == null
             ? Center(
@@ -79,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 30,
             ),
             const Text(
-              'Här kommer mer information',
+              'Välkommen!',
               textAlign: TextAlign.left,
             ),
             const SizedBox(
@@ -89,11 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 30,
             ),
-            const Text('Tidigare resor'),
+            const Text('Betala och se tidigare resor'),
             const SizedBox(
               height: 30,
             ),
-            const Text('Byt stad'),
           ],
         )));
   }
