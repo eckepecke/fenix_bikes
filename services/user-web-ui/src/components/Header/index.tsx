@@ -3,6 +3,7 @@ import React from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+import logo from "../../assets/fenix-logo.svg";
 
 const Header: React.FC = () => {
 	const [cookies, , removeCookie] = useCookies(["user"]);
@@ -18,7 +19,7 @@ const Header: React.FC = () => {
 			<div className="header-wrapper">
 				<div className="logo">
 					<a href="/">
-						<img src="src/assets/fenix-logo.svg" alt="Logo" />
+          <img src={logo} alt="Logo" />
 					</a>
 				</div>
 				<nav className="navigation">
