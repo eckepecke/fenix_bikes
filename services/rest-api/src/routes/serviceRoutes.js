@@ -73,10 +73,12 @@ router.post("/stop_charge/bike", async (req, res) => {
 router.get("/update/red_light", async (req, res) => {
     try {
         const allBikes = await bikeManager.getAllBikes();
-        const bikesWithLowBattery = await bikeManager.checkBikesForWarning(allBikes);
+        // const bikesWithLowBattery = await bikeManager.checkBikesForWarning(allBikes);
+        // console.log("bikesWithLowBattery: ", bikesWithLowBattery)
 
-        for (const bikeObj of bikesWithLowBattery) {
-            await bike.warning(bikesWithLowBattery);
+        for (const bikeObj of allBikes) {
+            console.log("Updating red: ", bikeObj);
+            await bike.warning(bikeObj);
         }
 
         res.json({ message: "Updated bikes" });

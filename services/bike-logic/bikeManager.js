@@ -127,8 +127,6 @@ const bikeManager = {
 
         try {
             const result = await collection.find({}).toArray();
-            console.log(result);
-            console.log("HÄR");
 
 
             return result;
