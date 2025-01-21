@@ -1,0 +1,18 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 1em;
+  margin: 2em auto;
+  background-color: #fff;
+  padding: 1.5em;
+  border: solid 1px var(--color-green-dark);
+  border-radius: 10px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5em;
+}

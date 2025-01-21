@@ -42,3 +42,11 @@ p {
   padding: 3em 1em;
   width: 80%;
 }
+
+.green-btn {
+	background-color: var(--color-green-primary);
+	border-radius: 5px;
+	padding: 0.5em;
+	color: #fff;
+	border: 1px solid var(--color-green-dark);
+}
