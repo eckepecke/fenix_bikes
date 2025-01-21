@@ -56,9 +56,9 @@ const tripManager = {
                 penalty = 5;
             }
 
-            // console.log("kostnad", cost);
-            // console.log("straffavgift", penalty);
-            // console.log("rabatt", discount);
+            console.log("kostnad", cost);
+            console.log("straffavgift", penalty);
+            console.log("rabatt", discount);
 
             let total = cost + penalty + discount;
 
@@ -90,9 +90,11 @@ const tripManager = {
 
     checkCharging: async function checkCharging(stopLocation) {
         const chargingStations = await getAllChargingStations();
-    
+   
         for (const station of chargingStations) {
-            if (station.location === stopLocation) {
+            console.log("station.location:", station.location);
+            console.log("stopLocation:", stopLocation);
+            if (station.location[0] === stopLocation[0] && station.location[1] === stopLocation[1]) {
                 console.log("Bike is charging at station:", station);
                 return true;
             }
