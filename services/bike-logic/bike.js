@@ -72,7 +72,7 @@ const bike = {
 		let bikeCollection = getCollection("bikes");
 		let tripCollection = getCollection("trips");
 		let userCollection = getCollection("users");
-		let chargingStationCollection = getCollection("chargingStations");
+		let chargingStationCollection = getCollection("charging_stations");
 
 		try {
 			const bikeObject = await bikeCollection.findOne({ bike_id: bikeId });
@@ -162,6 +162,7 @@ const bike = {
 					$set: {
 						"status.available": false,
 						"status.in_service": true,
+                        plugged_in: true,
 					},
 				},
 				{ returnDocument: "after" }

@@ -90,9 +90,11 @@ const tripManager = {
 
     checkCharging: async function checkCharging(stopLocation) {
         const chargingStations = await getAllChargingStations();
-    
+   
         for (const station of chargingStations) {
-            if (station.location === stopLocation) {
+            console.log("station.location:", station.location);
+            console.log("stopLocation:", stopLocation);
+            if (station.location[0] === stopLocation[0] && station.location[1] === stopLocation[1]) {
                 console.log("Bike is charging at station:", station);
                 return true;
             }
