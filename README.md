@@ -10,5 +10,9 @@ This repository was created for the course Software Development in Virtual Teams
 
 The repository is divided into services and every subsystem has its own folder. Check out the service folder for an overview of the subsystem. All subsystem has its own README-file containing more information.
 
+## Start the system
+
+To run the system use the command <docker-compose up --build> in the service-directory. To run the simulation run <env=sim docker-compose up --build> instead in the same directory.
+
 
 #### [Project board](https://github.com/users/Alfrijde/projects/1)
